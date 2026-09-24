@@ -386,6 +386,60 @@ For \(c>0\), these are concentric circles.
 
 Level curves are analogous to contour lines on a geographical map.
 
+
+\section{From a Surface to Its Level Curves}
+
+For the paraboloid
+\[
+z=x^2+y^2,
+\]
+a horizontal plane \(z=c\) cuts the surface in the curve
+\[
+x^2+y^2=c.
+\]
+
+Thus every horizontal slice of the surface produces a circle in the
+\(xy\)-plane.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+width=8.8cm,
+height=6.2cm,
+view={45}{26},
+xlabel={$x$},
+ylabel={$y$},
+zlabel={$z$},
+domain=-2:2,
+y domain=-2:2,
+samples=23,
+samples y=23
+]
+\addplot3[surf,shader=interp,opacity=0.72]
+{x^2+y^2};
+\addplot3[very thick,domain=0:360,samples=80]
+({sqrt(2)*cos(x)},{sqrt(2)*sin(x)},2);
+\end{axis}
+\end{tikzpicture}
+
+\vspace{2mm}
+
+\begin{tikzpicture}[scale=0.85]
+\draw[->] (-3.2,0)--(3.2,0) node[right] {$x$};
+\draw[->] (0,-3.2)--(0,3.2) node[above] {$y$};
+\draw[thick] (0,0) circle (1);
+\draw[thick] (0,0) circle (1.414);
+\draw[thick] (0,0) circle (2);
+\node at (1.0,0.35) {$c=1$};
+\node at (1.55,0.75) {$c=2$};
+\node at (2.25,1.1) {$c=4$};
+\end{tikzpicture}
+\end{center}
+
+This is exactly analogous to contour lines on a topographical map:
+each contour represents a fixed height.
+
+
 \section{Distance and Neighbourhoods}
 
 The distance from \(P=(x,y)\) to \(P_0=(a,b)\) is
@@ -821,6 +875,42 @@ and, if \(M\ne0\),
 
 The proofs follow from the same \(\eps\)-\(\delta\) ideas used in
 one-variable calculus.
+
+
+\section{Visualizing Different Paths of Approach}
+
+The same point can be approached along infinitely many curves. The
+figure below shows several possible approaches to the origin.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.05,>=Stealth]
+\draw[->] (-3.3,0)--(3.3,0) node[right] {$x$};
+\draw[->] (0,-2.7)--(0,2.9) node[above] {$y$};
+
+\fill (0,0) circle (2pt) node[below right] {$(0,0)$};
+
+\draw[thick,->] (-3,-1.5)--(-0.18,-0.09);
+\node[below] at (-2.1,-1.05) {$y=\frac12x$};
+
+\draw[thick,->] (2.8,-1.4)--(0.18,-0.09);
+\node[below] at (2.05,-1.05) {$y=-\frac12x$};
+
+\draw[thick,domain=-2.2:-0.16,samples=40,->]
+plot (\x,{0.35*(\x)^2});
+\node[left] at (-1.75,1.15) {$y=0.35x^2$};
+
+\draw[thick,domain=2.2:0.16,samples=40,->]
+plot (\x,{0.12*(\x)^3});
+\node[right] at (1.6,0.7) {$y=0.12x^3$};
+
+\draw[dashed] (0,0) circle (1.8);
+\node at (-2.45,2.1) {many possible paths};
+\end{tikzpicture}
+\end{center}
+
+A genuine joint limit must give the same limiting value along
+\emph{all} of these approaches and along every other admissible path.
+
 
 \section{Path Testing}
 
@@ -1509,6 +1599,76 @@ f(x,y)\to0=f(0,0).
 Hence \(f\) is continuous at the origin.
 
 
+
+\section{Which Method Should I Use for a Two-Variable Limit?}
+
+A useful first decision is whether we are trying to \emph{prove
+existence} or \emph{prove nonexistence}. The following guide helps
+students choose an efficient method.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{0.94\textwidth}{>{\bfseries}p{0.31\textwidth}X}
+\toprule
+Situation & Recommended first method\\
+\midrule
+Direct substitution gives an ordinary real number
+&
+Use continuity and substitute directly.
+\\
+
+You suspect that the limit does not exist
+&
+Compare two convenient paths. Start with \(x=0\), \(y=0\), or
+\(y=mx\), then try a curved path if necessary.
+\\
+
+The denominator contains \(x^2+y^2\)
+&
+Try an estimate involving
+\(\sqrt{x^2+y^2}\), or use polar coordinates.
+\\
+
+Different powers such as \(x^4+y^2\) occur
+&
+Choose a balancing path such as \(y=kx^2\).
+\\
+
+Several tested paths give the same value
+&
+Do not conclude that the limit exists. Seek a uniform estimate,
+polar-coordinate argument, or an \(\eps\)-\(\delta\) proof.
+\\
+
+A rigorous proof of existence is required
+&
+Use an inequality, the Sandwich Theorem, polar coordinates with a
+uniform angular bound, or the \(\eps\)-\(\delta\) definition.
+\\
+
+Repeated limits are requested
+&
+Take one variable to its limit while holding the other fixed, then
+take the remaining limit. Repeat in the opposite order.
+\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The most important distinction is:
+
+\[
+\text{different path values}
+\Longrightarrow
+\text{joint limit does not exist},
+\]
+whereas
+\[
+\text{same values on several paths}
+\]
+does not by itself prove existence.
+
+
 \section{Detailed Solved Problems}
 
 \subsection*{Problem 1. A direct limit}
@@ -1694,6 +1854,45 @@ is the tangent slope of this trace at \(x=a\).
 
 Similarly \(f_y(a,b)\) is the tangent slope of the trace obtained by
 fixing \(x=a\).
+
+
+\section{Visualizing the Two Coordinate Slices}
+
+At a point \((a,b)\), the partial derivative \(f_x(a,b)\) is obtained
+from the slice in which \(y=b\) is held fixed. Likewise,
+\(f_y(a,b)\) comes from the slice \(x=a\).
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+% left
+\begin{scope}[xshift=-3.5cm]
+\draw[->] (-2.2,0)--(2.3,0) node[right] {$x$};
+\draw[->] (0,-0.4)--(0,3.1) node[above] {$z$};
+\draw[thick,domain=-1.8:1.8,samples=50]
+plot (\x,{0.55*(\x)^2+0.5});
+\fill (0.8,{0.55*0.64+0.5}) circle (2pt);
+\draw[thick] (-0.2,0.38)--(1.8,1.5);
+\node at (0,-0.9) {\(\text{slice }y=b\)};
+\node at (0,-1.35) {\(f_x(a,b)=\text{slope}\)};
+\end{scope}
+
+% right
+\begin{scope}[xshift=3.5cm]
+\draw[->] (-2.2,0)--(2.3,0) node[right] {$y$};
+\draw[->] (0,-0.4)--(0,3.1) node[above] {$z$};
+\draw[thick,domain=-1.8:1.8,samples=50]
+plot (\x,{0.35*(\x)^2+0.7});
+\fill (-0.7,{0.35*0.49+0.7}) circle (2pt);
+\draw[thick] (-1.6,1.55)--(0.2,0.65);
+\node at (0,-0.9) {\(\text{slice }x=a\)};
+\node at (0,-1.35) {\(f_y(a,b)=\text{slope}\)};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+Each partial derivative is therefore an ordinary one-variable tangent
+slope on a particular vertical cross-section of the surface.
+
 
 \section{Calculation from the Definition}
 
@@ -2465,6 +2664,246 @@ But
 \]
 and therefore do not imply differentiability.
 
+
+\section{A Stronger Counterexample: Continuity and Partial Derivatives Still Need Not Give Differentiability}
+
+The following example is particularly important because it shows that
+even the combination
+\[
+\text{continuity at the point}
+\quad+\quad
+\text{existence of both first partial derivatives}
+\]
+is still not enough to guarantee differentiability.
+
+Define
+\[
+f(x,y)=
+\begin{cases}
+\dfrac{x^3}{x^2+y^2},&(x,y)\ne(0,0),\\[1ex]
+0,&(x,y)=(0,0).
+\end{cases}
+\]
+
+We examine the function carefully.
+
+\subsection*{Step 1. Continuity at the origin}
+
+For \((x,y)\ne(0,0)\),
+\[
+\left|
+\frac{x^3}{x^2+y^2}
+\right|
+=
+|x|\frac{x^2}{x^2+y^2}.
+\]
+
+Since
+\[
+0\le
+\frac{x^2}{x^2+y^2}
+\le1,
+\]
+we obtain
+\[
+|f(x,y)|\le |x|.
+\]
+
+As
+\[
+(x,y)\to(0,0),
+\]
+we have
+\[
+|x|\to0.
+\]
+
+Hence, by the Sandwich Theorem,
+\[
+\lim_{(x,y)\to(0,0)}f(x,y)=0=f(0,0).
+\]
+
+Therefore \(f\) is continuous at \((0,0)\).
+
+\subsection*{Step 2. The partial derivative \(f_x(0,0)\)}
+
+By definition,
+\[
+f_x(0,0)
+=
+\lim_{h\to0}
+\frac{f(h,0)-f(0,0)}{h}.
+\]
+
+Now
+\[
+f(h,0)
+=
+\frac{h^3}{h^2}
+=
+h
+\qquad(h\ne0).
+\]
+
+Therefore
+\[
+f_x(0,0)
+=
+\lim_{h\to0}\frac{h}{h}
+=
+1.
+\]
+
+\subsection*{Step 3. The partial derivative \(f_y(0,0)\)}
+
+Similarly,
+\[
+f_y(0,0)
+=
+\lim_{k\to0}
+\frac{f(0,k)-f(0,0)}{k}.
+\]
+
+But
+\[
+f(0,k)=0.
+\]
+
+Hence
+\[
+f_y(0,0)=0.
+\]
+
+Thus both first partial derivatives exist.
+
+\subsection*{Step 4. Test differentiability}
+
+If \(f\) were differentiable at the origin, then we would need
+\[
+\frac{
+f(h,k)-f(0,0)-f_x(0,0)h-f_y(0,0)k
+}{
+\sqrt{h^2+k^2}
+}
+\longrightarrow0.
+\]
+
+Since
+\[
+f(0,0)=0,\qquad
+f_x(0,0)=1,\qquad
+f_y(0,0)=0,
+\]
+this becomes
+\[
+\frac{
+f(h,k)-h
+}{
+\sqrt{h^2+k^2}}
+\longrightarrow0.
+\]
+
+Now choose the path
+\[
+k=h.
+\]
+
+Then
+\[
+f(h,h)
+=
+\frac{h^3}{2h^2}
+=
+\frac h2.
+\]
+
+Therefore
+\[
+\frac{
+f(h,h)-h
+}{
+\sqrt{h^2+h^2}}
+=
+\frac{-h/2}{\sqrt2\,|h|}.
+\]
+
+Its absolute value is
+\[
+\frac{1}{2\sqrt2},
+\]
+which does not tend to \(0\).
+
+Therefore \(f\) is \emph{not differentiable} at the origin.
+
+So this example proves
+\[
+\text{continuous at the point + partial derivatives exist}
+\not\Longrightarrow
+\text{differentiable}.
+\]
+
+\section{Logical Map of the Main Concepts}
+
+The following diagram summarizes the implications that are valid under
+the hypotheses used in this chapter.
+
+\begin{center}
+\begin{tikzpicture}[
+node distance=1.7cm and 2.0cm,
+every node/.style={align=center},
+arr/.style={-{Stealth[length=2.5mm]},thick}
+]
+\node (cp) {\textbf{First partial derivatives}\\
+exist in a neighbourhood\\
+and are continuous at the point};
+
+\node[below=of cp] (d) {\textbf{Differentiable}\\
+at the point};
+
+\node[below left=1.7cm and 1.2cm of d] (c) {\textbf{Continuous}\\
+at the point};
+
+\node[below right=1.7cm and 1.2cm of d] (p) {\textbf{First partial derivatives}\\
+exist at the point};
+
+\draw[arr] (cp)--(d);
+\draw[arr] (d)--(c);
+\draw[arr] (d)--(p);
+
+\node[below=1.1cm of c,align=left] (n1)
+{\small Converse need not hold.};
+\node[below=1.1cm of p,align=left] (n2)
+{\small Converse need not hold.};
+\end{tikzpicture}
+\end{center}
+
+In particular,
+\[
+\text{differentiable}
+\Longrightarrow
+\text{continuous},
+\]
+but
+\[
+\text{continuous}
+\not\Longrightarrow
+\text{differentiable}.
+\]
+
+Also,
+\[
+\text{differentiable}
+\Longrightarrow
+\text{partial derivatives exist},
+\]
+but the existence of partial derivatives alone does not guarantee
+differentiability.
+
+The counterexample above shows something stronger:
+even continuity together with existence of both partial derivatives is
+still insufficient in general.
+
+
 \section{Young's Theorem}
 
 \begin{theorem}[Young's theorem --- statement]
@@ -2744,6 +3183,56 @@ f_x(0,0)
 \frac{|h|}{h}
 \]
 does not exist.
+
+
+\section{Surface and Tangent Plane}
+
+For
+\[
+f(x,y)=x^2+y^2,
+\]
+consider the point \((1,1,2)\). Since
+\[
+f_x(1,1)=2,\qquad f_y(1,1)=2,
+\]
+the tangent plane is
+\[
+z=2+2(x-1)+2(y-1)
+=
+2x+2y-2.
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+width=10cm,
+height=7cm,
+view={45}{25},
+xlabel={$x$},
+ylabel={$y$},
+zlabel={$z$},
+xmin=-0.4,xmax=2.3,
+ymin=-0.4,ymax=2.3,
+zmin=-1,zmax=8,
+domain=-0.2:2.1,
+y domain=-0.2:2.1,
+samples=22,
+samples y=22
+]
+\addplot3[surf,shader=interp,opacity=0.55]
+{x^2+y^2};
+\addplot3[surf,shader=flat,opacity=0.35,domain=0.35:1.65,y domain=0.35:1.65]
+{2*x+2*y-2};
+\addplot3[only marks,mark=*,mark size=2pt]
+coordinates {(1,1,2)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+The plane does not replace the surface globally. Differentiability says
+that, under sufficient magnification near the point of contact, the
+surface and this plane become indistinguishable to first order.
+
 
 \section{A Direct Differentiability Test}
 
@@ -3595,6 +4084,49 @@ may then be regarded as
 \[
 z=F(u,v).
 \]
+
+
+\section{Visualizing a Change of Coordinates}
+
+For the linear transformation
+\[
+u=x+y,\qquad v=x-y,
+\]
+lines of constant \(u\) and constant \(v\) form a rotated coordinate
+grid in the original \(xy\)-plane.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+% xy grid
+\begin{scope}[xshift=-4.2cm]
+\draw[->] (-2.7,0)--(2.7,0) node[right] {$x$};
+\draw[->] (0,-2.7)--(0,2.7) node[above] {$y$};
+\foreach \c in {-2,-1,1,2}{
+  \draw[dashed] (-2.4,{\c+2.4})--(2.4,{\c-2.4});
+  \draw[dotted] (-2.4,{-\c-2.4})--(2.4,{-\c+2.4});
+}
+\node at (0,-3.2) {constant \(u\) and \(v\) lines in the \(xy\)-plane};
+\end{scope}
+
+\draw[->,very thick] (-0.8,0)--(0.8,0);
+
+% uv grid
+\begin{scope}[xshift=4.2cm]
+\draw[->] (-2.7,0)--(2.7,0) node[right] {$u$};
+\draw[->] (0,-2.7)--(0,2.7) node[above] {$v$};
+\foreach \c in {-2,-1,1,2}{
+  \draw[dashed] (\c,-2.4)--(\c,2.4);
+  \draw[dotted] (-2.4,\c)--(2.4,\c);
+}
+\node at (0,-3.2) {the same families become coordinate lines};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+A change of variables is therefore not merely a symbolic
+substitution: it replaces one coordinate grid by another one chosen to
+fit the geometry of the problem more naturally.
+
 
 \section{The Jacobian}
 
