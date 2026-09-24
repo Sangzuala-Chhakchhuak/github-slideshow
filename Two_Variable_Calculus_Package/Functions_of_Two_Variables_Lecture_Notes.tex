@@ -1,0 +1,5239 @@
+\documentclass[11pt,oneside]{book}
+
+% ============================================================
+% Packages
+% ============================================================
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{booktabs,tabularx,array,multicol}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,patterns,positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{needspace}
+
+% ============================================================
+% Colours and typography
+% ============================================================
+\definecolor{MainBlue}{HTML}{163A5F}
+\definecolor{DeepBlue}{HTML}{0D2B45}
+\definecolor{MainGreen}{HTML}{2F6B4F}
+\definecolor{MainGold}{HTML}{9A6A16}
+\definecolor{MainRed}{HTML}{8A3030}
+\definecolor{Ink}{HTML}{222222}
+
+\color{Ink}
+\setstretch{1.08}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist[itemize]{leftmargin=1.6em,itemsep=2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=2em,itemsep=3pt,topsep=3pt}
+
+% ============================================================
+% Page style
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textsc{Undergraduate Calculus Notes}}
+\fancyhead[R]{\small\thepage}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
+
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\color{DeepBlue}}
+  {\filleft\Large\chaptername\ \thechapter}
+  {1ex}
+  {\titlerule\vspace{1.2ex}\Huge}
+  [\vspace{1ex}\titlerule]
+
+\titleformat{\section}
+  {\Large\bfseries\color{MainBlue}}
+  {\thesection}{0.7em}{}
+
+\titleformat{\subsection}
+  {\large\bfseries\color{MainGreen}}
+  {\thesubsection}{0.7em}{}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheoremstyle{studentthm}
+{6pt}{6pt}{\itshape}{}
+{\bfseries\color{DeepBlue}}{.}{0.5em}{}
+\theoremstyle{studentthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% ============================================================
+% Commands
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdd}[3]{\frac{\partial^2 #1}{\partial #2\,\partial #3}}
+\newcommand{\dd}{\,\mathrm d}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=MainBlue,
+  urlcolor=MainGreen,
+  pdfauthor={C. Zosangzuala},
+  pdftitle={Functions of Two Variables: Limits, Partial Derivatives, Differentiability and Homogeneous Functions}
+}
+
+% ============================================================
+\begin{document}
+
+% ============================================================
+% Cover
+% ============================================================
+\begin{titlepage}
+\centering
+\vspace*{2.0cm}
+
+{\Huge\bfseries\color{DeepBlue}
+Functions of Two Variables\par}
+
+\vspace{0.35cm}
+
+{\LARGE
+Limits, Continuity, Partial Derivatives,\\
+Differentiability, Composite Functions,\\
+Change of Variables and Homogeneous Functions\par}
+
+\vspace{1.25cm}
+
+{\large
+Extensive Lecture Notes for Undergraduate Calculus\par}
+
+\vspace{0.9cm}
+
+{\large
+Real-valued functions of two variables; limits and repeated limits;
+continuity; first- and second-order partial derivatives;
+differentiability; Young's and Schwarz's theorems;
+derivatives of composite functions; change of variables;
+Jacobians; and Euler's theorem on homogeneous functions.\par}
+
+\vfill
+
+{\Large\bfseries C. Zosangzuala\par}
+\vspace{0.25cm}
+{\large Lecture Notes and Problem-Solving Companion\par}
+
+\vspace{1cm}
+\end{titlepage}
+
+\frontmatter
+\tableofcontents
+
+% ============================================================
+\chapter*{How to Use These Notes}
+\addcontentsline{toc}{chapter}{How to Use These Notes}
+
+Calculus of one variable studies a function such as
+\[
+y=f(x),
+\]
+where one real number determines the output. In this unit the input
+consists of two real numbers:
+\[
+z=f(x,y).
+\]
+This apparently small change introduces several new ideas.
+
+For a function of one variable, \(x\) approaches \(a\) essentially
+from the left or from the right. In two variables, however,
+\((x,y)\) can approach \((a,b)\) along infinitely many lines,
+parabolas and other curves. Consequently, two-variable limits require
+greater care.
+
+Similarly, the derivative of a one-variable function gives one local
+slope, whereas a surface \(z=f(x,y)\) has different rates of change
+depending on how the point \((x,y)\) moves.
+
+The conceptual order of the unit is
+\[
+\text{functions}
+\longrightarrow
+\text{limits and continuity}
+\longrightarrow
+\text{partial derivatives}
+\longrightarrow
+\text{differentiability}
+\]
+\[
+\longrightarrow
+\text{composite functions}
+\longrightarrow
+\text{change of variables}
+\longrightarrow
+\text{homogeneous functions}.
+\]
+
+The most important distinction to remember is
+\[
+\text{existence of partial derivatives}
+\quad\not\Rightarrow\quad
+\text{differentiability}.
+\]
+
+\mainmatter
+
+% ============================================================
+\chapter{Real-Valued Functions of Two Variables}
+% ============================================================
+
+\section*{Learning Objectives}
+
+After this chapter a student should be able to:
+\begin{itemize}
+\item define a real-valued function of two variables;
+\item find and sketch common domains in the \(xy\)-plane;
+\item interpret the graph \(z=f(x,y)\) as a surface;
+\item use level curves to understand a surface;
+\item work with distance, neighbourhoods and deleted neighbourhoods
+in \(\R^2\).
+\end{itemize}
+
+\section*{Historical Motivation}
+
+The extension of calculus to several variables grew out of problems in
+mechanics, astronomy, geometry and mathematical physics. Temperature,
+pressure, potential energy and density naturally depend on more than
+one independent variable. Euler, Lagrange, Clairaut, Jacobi and
+Schwarz helped develop the language now used in multivariable
+calculus.
+
+\section{Definition}
+
+\begin{definition}
+Let \(D\subseteq\R^2\). A \emph{real-valued function of two real
+variables} is a rule
+\[
+f:D\longrightarrow\R
+\]
+which assigns exactly one real number \(f(x,y)\) to each
+\((x,y)\in D\).
+\end{definition}
+
+We usually write
+\[
+z=f(x,y).
+\]
+
+Here \(x,y\) are independent variables and \(z\) is the dependent
+variable.
+
+\paragraph{Everyday comparison.}
+A quantity may depend on two independent inputs. For example, a taxi
+fare may depend on both distance travelled and waiting time:
+\[
+\text{fare}=f(\text{distance},\text{waiting time}).
+\]
+Two inputs determine one output.
+
+\begin{example}
+For
+\[
+f(x,y)=x^2+y^2,
+\]
+every ordered pair is allowed, so
+\[
+\operatorname{Dom}(f)=\R^2.
+\]
+Since \(x^2+y^2\ge0\),
+\[
+\operatorname{Range}(f)=[0,\infty).
+\]
+\end{example}
+
+\section{Finding Domains}
+
+The familiar restrictions from one-variable calculus still apply:
+\begin{itemize}
+\item a denominator cannot be zero;
+\item an even root requires a non-negative radicand;
+\item a logarithm requires a positive argument.
+\end{itemize}
+
+\begin{example}
+Find the domain of
+\[
+f(x,y)=\sqrt{9-x^2-y^2}.
+\]
+We require
+\[
+9-x^2-y^2\ge0,
+\]
+hence
+\[
+x^2+y^2\le9.
+\]
+The domain is the closed disc of radius \(3\) centred at the origin.
+\end{example}
+
+\begin{example}
+Find the domain of
+\[
+f(x,y)=\log(4-x^2-y^2).
+\]
+We require
+\[
+4-x^2-y^2>0,
+\]
+hence
+\[
+x^2+y^2<4.
+\]
+The boundary circle is excluded.
+\end{example}
+
+\begin{example}
+Find the domain of
+\[
+f(x,y)=\frac{x+y}{x-y}.
+\]
+The denominator must be nonzero:
+\[
+x-y\ne0.
+\]
+Thus the line \(y=x\) is removed from the plane.
+\end{example}
+
+\section{Graphs and Surfaces}
+
+The graph of \(z=f(x,y)\) is
+\[
+\{(x,y,z)\in\R^3:z=f(x,y)\}.
+\]
+It is generally a surface.
+
+For example,
+\[
+z=x^2+y^2
+\]
+is an upward-opening paraboloid.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+width=10cm,height=7cm,
+view={45}{27},
+xlabel={$x$},ylabel={$y$},zlabel={$z$},
+domain=-2:2,y domain=-2:2,
+samples=23,samples y=23
+]
+\addplot3[surf,shader=interp,opacity=0.85]{x^2+y^2};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\section{Level Curves}
+
+\begin{definition}
+For a function \(z=f(x,y)\), a \emph{level curve} corresponding to
+\(c\) is defined by
+\[
+f(x,y)=c.
+\]
+\end{definition}
+
+For
+\[
+f(x,y)=x^2+y^2,
+\]
+the level curves are
+\[
+x^2+y^2=c.
+\]
+For \(c>0\), these are concentric circles.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\draw[->] (-3.4,0)--(3.4,0) node[right] {$x$};
+\draw[->] (0,-3.4)--(0,3.4) node[above] {$y$};
+\draw[thick] (0,0) circle (1);
+\draw[thick] (0,0) circle (1.8);
+\draw[thick] (0,0) circle (2.6);
+\node at (0.7,0.7) {$c=1$};
+\node at (1.4,1.35) {$c=3.24$};
+\node at (2.15,2.05) {$c=6.76$};
+\end{tikzpicture}
+\end{center}
+
+Level curves are analogous to contour lines on a geographical map.
+
+\section{Distance and Neighbourhoods}
+
+The distance from \(P=(x,y)\) to \(P_0=(a,b)\) is
+\[
+d(P,P_0)
+=
+\sqrt{(x-a)^2+(y-b)^2}.
+\]
+
+\begin{definition}
+The \(\delta\)-neighbourhood of \((a,b)\) is
+\[
+N_\delta(a,b)
+=
+\left\{
+(x,y):
+\sqrt{(x-a)^2+(y-b)^2}<\delta
+\right\}.
+\]
+\end{definition}
+
+A deleted neighbourhood excludes the centre:
+\[
+0<
+\sqrt{(x-a)^2+(y-b)^2}
+<\delta.
+\]
+
+\paragraph{Neighbourhood analogy.}
+Think of \((a,b)\) as a particular house. A neighbourhood contains
+all points sufficiently close to the house. In the plane there are
+infinitely many possible directions from which we may approach it.
+
+
+\section{Interior, Boundary and Accumulation Points}
+
+When limits and continuity are studied in two variables, it is useful to
+know how a point sits relative to the domain.
+
+\begin{definition}
+A point \(P=(a,b)\) is an \emph{interior point} of a set \(D\subseteq\R^2\)
+if there exists some \(\delta>0\) such that the whole disc
+\[
+N_\delta(a,b)
+=
+\{(x,y):\sqrt{(x-a)^2+(y-b)^2}<\delta\}
+\]
+lies inside \(D\).
+\end{definition}
+
+\begin{definition}
+A point \(P=(a,b)\) is a \emph{boundary point} of \(D\) if every
+neighbourhood of \(P\) contains points of \(D\) and also points which do
+not belong to \(D\).
+\end{definition}
+
+\begin{definition}
+A point \(P=(a,b)\) is an \emph{accumulation point} or \emph{limit point}
+of \(D\) if every deleted neighbourhood
+\[
+0<\sqrt{(x-a)^2+(y-b)^2}<\delta
+\]
+contains at least one point of \(D\).
+\end{definition}
+
+These distinctions matter because the limit
+\[
+\lim_{(x,y)\to(a,b)}f(x,y)
+\]
+can be discussed whenever \((a,b)\) is an accumulation point of the
+domain, even if \(f(a,b)\) itself is not defined.
+
+\paragraph{Neighbourhood analogy.}
+An interior house in a residential colony has a small circular region
+around it that remains entirely inside the colony. A house on the
+boundary does not have this property: every small neighbourhood around
+it meets both the colony and the outside region. This is the geometric
+idea behind interior and boundary points.
+
+\section{Open, Closed and Bounded Regions}
+
+A set \(D\subseteq\R^2\) is called \emph{open} if every point of \(D\) is
+an interior point. For example,
+\[
+x^2+y^2<4
+\]
+is the open disc of radius \(2\).
+
+A set is called \emph{closed} if it contains all its boundary points.
+For example,
+\[
+x^2+y^2\le4
+\]
+is a closed disc.
+
+A set is called \emph{bounded} if it is contained in some sufficiently
+large disc:
+\[
+x^2+y^2<R^2
+\]
+for some \(R>0\).
+
+Thus the closed disc
+\[
+x^2+y^2\le9
+\]
+is both closed and bounded, whereas the half-plane
+\[
+x+y>1
+\]
+is open but unbounded.
+
+\section{Reading a Domain Geometrically}
+
+Students should translate algebraic restrictions into plane regions.
+
+\begin{center}
+\begin{tabular}{ll}
+Condition & Geometric meaning\\
+\toprule
+\(x^2+y^2<r^2\) & inside a circle, boundary excluded\\
+\(x^2+y^2\le r^2\) & closed circular disc\\
+\(y>x^2\) & above the parabola \(y=x^2\)\\
+\(xy>0\) & first and third quadrants\\
+\(xy<0\) & second and fourth quadrants\\
+\(x\ne y\) & plane with the line \(y=x\) removed\\
+\(x^2-y^2>0\) & \(|x|>|y|\)\\
+\end{tabular}
+\end{center}
+
+\section{Additional Detailed Solved Problems}
+
+\subsection*{Problem 4. A domain involving both a logarithm and a square root}
+
+Find the domain of
+\[
+f(x,y)=\log\!\sqrt{9-x^2-y^2}.
+\]
+
+For the logarithm to be defined, its argument must be strictly positive.
+Thus
+\[
+\sqrt{9-x^2-y^2}>0.
+\]
+This is equivalent to
+\[
+9-x^2-y^2>0,
+\]
+so
+\[
+x^2+y^2<9.
+\]
+
+Hence the domain is the open disc of radius \(3\). Notice that the
+boundary circle is excluded, because on the boundary the square root is
+zero and \(\log0\) is not defined.
+
+\subsection*{Problem 5. A domain between two curves}
+
+Find the domain of
+\[
+f(x,y)=\sqrt{y-x^2}\,\sqrt{4-y}.
+\]
+
+We require
+\[
+y-x^2\ge0
+\]
+and
+\[
+4-y\ge0.
+\]
+Thus
+\[
+x^2\le y\le4.
+\]
+
+The domain is the region above the parabola \(y=x^2\) and below the
+horizontal line \(y=4\), including both boundary curves.
+
+\subsection*{Problem 6. Level curves and interpretation}
+
+Find and describe the level curves of
+\[
+f(x,y)=\frac{x^2}{4}+y^2.
+\]
+
+Putting \(f(x,y)=c\),
+\[
+\frac{x^2}{4}+y^2=c.
+\]
+
+If \(c<0\), there are no real level curves. If \(c=0\), the level set is
+the single point \((0,0)\). If \(c>0\),
+\[
+\frac{x^2}{4c}+\frac{y^2}{c}=1.
+\]
+Hence the level curves are ellipses whose semiaxes are
+\[
+2\sqrt c
+\quad\text{and}\quad
+\sqrt c.
+\]
+
+As \(c\) increases, the ellipses expand outward. This gives a
+two-dimensional picture of the three-dimensional paraboloid
+\[
+z=\frac{x^2}{4}+y^2.
+\]
+
+
+\section{Detailed Solved Problems}
+
+\subsection*{Problem 1. Domain of a square-root function}
+Find the domain of
+\[
+f(x,y)=\sqrt{16-x^2-4y^2}.
+\]
+
+We require
+\[
+16-x^2-4y^2\ge0.
+\]
+Thus
+\[
+x^2+4y^2\le16.
+\]
+Dividing by \(16\),
+\[
+\frac{x^2}{16}+\frac{y^2}{4}\le1.
+\]
+The domain is the closed elliptical region inside and on the ellipse.
+
+\subsection*{Problem 2. Domain of a logarithmic function}
+Find the domain of
+\[
+f(x,y)=\log(x-y^2).
+\]
+We require
+\[
+x-y^2>0,
+\]
+so
+\[
+x>y^2.
+\]
+The domain is the region to the right of the parabola \(x=y^2\);
+the parabola itself is excluded.
+
+\subsection*{Problem 3. Level curves}
+Describe the level curves of
+\[
+f(x,y)=x^2+4y^2.
+\]
+Setting \(f(x,y)=c\),
+\[
+x^2+4y^2=c.
+\]
+For \(c>0\), these are ellipses centred at the origin.
+
+\section{Graded Practice Problems}
+
+\subsection*{Level I: Foundations}
+\begin{enumerate}
+\item Find the domain of \(x^2-3xy+y^2\).
+\item Find the domain of \(\sqrt{25-x^2-y^2}\).
+\item Find the domain of \(1/(x+y)\).
+\item Describe the level curves of \(f(x,y)=x+y\).
+\end{enumerate}
+
+\subsection*{Level II: Standard Problems}
+\begin{enumerate}
+\item Find and sketch the domain of \(\sqrt{y-x^2}\).
+\item Find the domain of \(\log(9-x^2-y^2)\).
+\item Describe the level curves of \(4x^2+y^2\).
+\item Explain geometrically the surface \(z=4-x^2-y^2\).
+\end{enumerate}
+
+\subsection*{Level III: Challenging}
+\begin{enumerate}
+\item Determine the domain of
+\[
+\sqrt{\frac{x-y}{x+y}}.
+\]
+\item Describe the level curves of \(x/y\).
+\item Compare the surfaces \(z=x^2+y^2\) and \(z=x^2-y^2\).
+\end{enumerate}
+
+% ============================================================
+\chapter{Limits, Repeated Limits and Continuity}
+% ============================================================
+
+\section*{Learning Objectives}
+Students should be able to:
+\begin{itemize}
+\item state and use the \(\eps\)-\(\delta\) definition of a
+two-variable limit;
+\item test nonexistence by different paths;
+\item understand why a few agreeing paths do not prove existence;
+\item use inequalities and polar coordinates to prove existence;
+\item compute repeated limits;
+\item distinguish repeated limits from a joint limit;
+\item test continuity.
+\end{itemize}
+
+\section*{Historical Motivation}
+
+The rigorous ideas of Cauchy and Weierstrass extend naturally to the
+plane, but the geometry changes. A point in the plane can be
+approached in infinitely many ways. A correct definition must
+therefore control all approaches simultaneously.
+
+\section{Definition of a Joint Limit}
+
+\begin{definition}
+We say
+\[
+\lim_{(x,y)\to(a,b)}f(x,y)=L
+\]
+if, for every \(\eps>0\), there exists \(\delta>0\) such that
+\[
+0<
+\sqrt{(x-a)^2+(y-b)^2}
+<\delta
+\]
+implies
+\[
+\abs{f(x,y)-L}<\eps.
+\]
+\end{definition}
+
+The distance condition does not prescribe a path, so the definition
+controls every possible approach to \((a,b)\).
+
+\section{Visual Meaning of \(\eps\) and \(\delta\)}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+\draw[->] (-0.5,0)--(6,0) node[right] {$x$};
+\draw[->] (0,-0.5)--(0,5) node[above] {$y$};
+\coordinate (A) at (3,2.2);
+\draw[thick] (A) circle (1.35);
+\fill (A) circle (2pt);
+\node[below right] at (A) {$(a,b)$};
+\draw[<->] (3,2.2)--(4.35,2.2);
+\node[above] at (3.7,2.2) {$\delta$};
+\node at (3,4.1) {$N_\delta(a,b)$};
+\end{tikzpicture}
+\end{center}
+
+The \(\delta\)-disc controls the inputs. The \(\eps\)-condition controls
+the outputs.
+
+\section{A Direct \(\eps\)-\(\delta\) Proof}
+
+\begin{example}
+Prove
+\[
+\lim_{(x,y)\to(0,0)}(3x-2y)=0.
+\]
+\end{example}
+
+\textbf{Proof.}
+We want to make
+\[
+\abs{3x-2y}
+\]
+smaller than a prescribed \(\eps>0\).
+
+By the triangle inequality,
+\[
+\abs{3x-2y}
+\le3\abs{x}+2\abs{y}.
+\]
+
+Also,
+\[
+\abs{x}\le\sqrt{x^2+y^2},
+\qquad
+\abs{y}\le\sqrt{x^2+y^2}.
+\]
+Hence
+\[
+\abs{3x-2y}
+\le5\sqrt{x^2+y^2}.
+\]
+
+Choose
+\[
+\delta=\frac{\eps}{5}.
+\]
+Then
+\[
+0<\sqrt{x^2+y^2}<\delta
+\]
+implies
+\[
+\abs{3x-2y}
+<
+5\delta
+=
+\eps.
+\]
+Therefore
+\[
+\lim_{(x,y)\to(0,0)}(3x-2y)=0.
+\]
+
+\section{Standard Limit Laws}
+
+Suppose
+\[
+\lim_{(x,y)\to(a,b)}f(x,y)=L
+\]
+and
+\[
+\lim_{(x,y)\to(a,b)}g(x,y)=M.
+\]
+Then:
+\[
+\lim(f+g)=L+M,
+\]
+\[
+\lim(f-g)=L-M,
+\]
+\[
+\lim(fg)=LM,
+\]
+and, if \(M\ne0\),
+\[
+\lim\frac{f}{g}=\frac{L}{M}.
+\]
+
+The proofs follow from the same \(\eps\)-\(\delta\) ideas used in
+one-variable calculus.
+
+\section{Path Testing}
+
+If the joint limit exists, every path to the point must give the same
+value. Thus two paths with different limiting values prove
+nonexistence immediately.
+
+\begin{example}
+Examine
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^2-y^2}{x^2+y^2}.
+\]
+
+Along \(y=0\),
+\[
+\frac{x^2}{x^2}=1.
+\]
+Along \(x=0\),
+\[
+\frac{-y^2}{y^2}=-1.
+\]
+The two limits are different. Therefore the joint limit does not
+exist.
+\end{example}
+
+\section{Why Agreement Along Straight Lines Is Not Enough}
+
+Consider
+\[
+f(x,y)
+=
+\frac{x^2y}{x^4+y^2}.
+\]
+Along the line \(y=mx\),
+\[
+f(x,mx)
+=
+\frac{mx^3}{x^4+m^2x^2}
+=
+\frac{mx}{x^2+m^2}
+\longrightarrow0.
+\]
+Thus every fixed straight line gives \(0\).
+
+But along the parabola \(y=x^2\),
+\[
+f(x,x^2)
+=
+\frac{x^4}{x^4+x^4}
+=
+\frac12.
+\]
+Hence the joint limit does not exist.
+
+\paragraph{Key principle.}
+Different paths are excellent for proving nonexistence. Agreement
+along selected paths is not, by itself, a proof of existence.
+
+\section{Proving Existence by an Inequality}
+
+Consider
+\[
+f(x,y)=\frac{x^2y}{x^2+y^2}.
+\]
+Then
+\[
+\abs{f(x,y)}
+=
+\abs{y}\frac{x^2}{x^2+y^2}
+\le\abs{y}.
+\]
+Since
+\[
+\abs{y}\to0
+\quad\text{as}\quad
+(x,y)\to(0,0),
+\]
+the Squeeze (Sandwich) Theorem gives
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^2y}{x^2+y^2}
+=0.
+\]
+
+\section{Polar Coordinates in Limit Problems}
+
+At the origin, set
+\[
+x=r\cos\theta,\qquad y=r\sin\theta.
+\]
+Then
+\[
+x^2+y^2=r^2
+\]
+and
+\[
+(x,y)\to(0,0)
+\quad\Longleftrightarrow\quad
+r\to0.
+\]
+
+For example,
+\[
+\frac{x^2y}{x^2+y^2}
+=
+r\cos^2\theta\sin\theta.
+\]
+Hence
+\[
+\abs{r\cos^2\theta\sin\theta}\le r,
+\]
+so the limit is \(0\).
+
+\section{Repeated Limits}
+
+\begin{definition}
+The repeated limit
+\[
+\lim_{x\to a}
+\left[
+\lim_{y\to b}f(x,y)
+\right]
+\]
+is obtained by first holding \(x\) fixed and taking \(y\to b\), then
+taking \(x\to a\).
+\end{definition}
+
+The reverse order is
+\[
+\lim_{y\to b}
+\left[
+\lim_{x\to a}f(x,y)
+\right].
+\]
+
+\begin{example}
+For
+\[
+f(x,y)=\frac{x^2-y^2}{x^2+y^2},
+\]
+fix \(x\ne0\). Then
+\[
+\lim_{y\to0}f(x,y)=1.
+\]
+Thus
+\[
+\lim_{x\to0}\lim_{y\to0}f(x,y)=1.
+\]
+
+On the other hand, fixing \(y\ne0\),
+\[
+\lim_{x\to0}f(x,y)=-1,
+\]
+so
+\[
+\lim_{y\to0}\lim_{x\to0}f(x,y)=-1.
+\]
+The repeated limits are different.
+\end{example}
+
+\section{Relation Between Joint and Repeated Limits}
+
+\begin{theorem}
+If the joint limit
+\[
+\lim_{(x,y)\to(a,b)}f(x,y)=L
+\]
+exists and the relevant inner limits exist in a neighbourhood, then
+both repeated limits, when defined, must equal \(L\).
+\end{theorem}
+
+However, the converse is false.
+
+\begin{example}
+Let
+\[
+f(x,y)=
+\begin{cases}
+\dfrac{xy}{x^2+y^2},&(x,y)\ne(0,0),\\[1ex]
+0,&(x,y)=(0,0).
+\end{cases}
+\]
+For fixed \(x\),
+\[
+\lim_{y\to0}f(x,y)=0,
+\]
+so
+\[
+\lim_{x\to0}\lim_{y\to0}f(x,y)=0.
+\]
+Similarly,
+\[
+\lim_{y\to0}\lim_{x\to0}f(x,y)=0.
+\]
+
+But along \(y=x\),
+\[
+f(x,x)=\frac12.
+\]
+Therefore the joint limit does not exist.
+
+Thus
+\[
+\text{equal repeated limits}
+\not\Rightarrow
+\text{existence of the joint limit}.
+\]
+\end{example}
+
+\section{Continuity}
+
+\begin{definition}
+A function \(f(x,y)\) is continuous at \((a,b)\) if:
+\begin{enumerate}
+\item \(f(a,b)\) is defined;
+\item \(\lim_{(x,y)\to(a,b)}f(x,y)\) exists;
+\item
+\[
+\lim_{(x,y)\to(a,b)}f(x,y)=f(a,b).
+\]
+\end{enumerate}
+\end{definition}
+
+Polynomials in \(x,y\) are continuous everywhere. Rational functions
+are continuous wherever their denominators are nonzero.
+
+\begin{example}
+Define
+\[
+f(x,y)=
+\begin{cases}
+\dfrac{x^2y}{x^2+y^2},&(x,y)\ne(0,0),\\[1ex]
+0,&(x,y)=(0,0).
+\end{cases}
+\]
+Since
+\[
+\abs{\frac{x^2y}{x^2+y^2}}
+\le\abs{y}\to0,
+\]
+we have
+\[
+\lim_{(x,y)\to(0,0)}f(x,y)=0=f(0,0).
+\]
+Hence \(f\) is continuous at the origin.
+\end{example}
+
+
+\section{A Necessary Path Condition for a Joint Limit}
+
+\begin{theorem}
+Suppose
+\[
+\lim_{(x,y)\to(a,b)}f(x,y)=L.
+\]
+Let
+\[
+x=\phi(t),\qquad y=\psi(t)
+\]
+be any path for which
+\[
+(\phi(t),\psi(t))\to(a,b)
+\]
+as \(t\to t_0\), with \((\phi(t),\psi(t))\ne(a,b)\) near \(t_0\).
+Then
+\[
+\lim_{t\to t_0}f(\phi(t),\psi(t))=L.
+\]
+\end{theorem}
+
+\begin{proof}
+Because the joint limit equals \(L\), for every \(\eps>0\) there exists
+\(\delta>0\) such that
+\[
+0<
+\sqrt{(x-a)^2+(y-b)^2}
+<\delta
+\]
+implies
+\[
+|f(x,y)-L|<\eps.
+\]
+
+Since
+\[
+(\phi(t),\psi(t))\to(a,b),
+\]
+there exists a neighbourhood of \(t_0\) in which
+\[
+0<
+\sqrt{
+(\phi(t)-a)^2+(\psi(t)-b)^2
+}
+<\delta.
+\]
+
+Therefore
+\[
+|f(\phi(t),\psi(t))-L|<\eps.
+\]
+Hence the limit along the path is also \(L\).
+\end{proof}
+
+The theorem gives an extremely useful logical principle:
+
+\[
+\text{joint limit exists}
+\quad\Longrightarrow\quad
+\text{every admissible path gives the same limit}.
+\]
+
+Therefore, to prove nonexistence, it is enough to find two paths that
+give different answers.
+
+\section{The Sequential Criterion for a Two-Variable Limit}
+
+There is another useful way to understand a joint limit.
+
+\begin{theorem}[Sequential criterion]
+Let \((a,b)\) be an accumulation point of the domain of \(f\). Then
+\[
+\lim_{(x,y)\to(a,b)}f(x,y)=L
+\]
+if and only if for every sequence of points
+\[
+(x_n,y_n)\ne(a,b)
+\]
+satisfying
+\[
+(x_n,y_n)\to(a,b),
+\]
+we have
+\[
+f(x_n,y_n)\to L.
+\]
+\end{theorem}
+
+This theorem says that a two-variable limit must survive \emph{every
+possible sequence of points} approaching the point.
+
+For nonexistence, it is enough to find two sequences approaching the
+same point but producing different limiting values.
+
+\begin{example}
+Let
+\[
+f(x,y)=\frac{x^2-y^2}{x^2+y^2}.
+\]
+Choose
+\[
+(x_n,y_n)=\left(\frac1n,0\right).
+\]
+Then
+\[
+f(x_n,y_n)=1.
+\]
+But for
+\[
+(u_n,v_n)=\left(0,\frac1n\right),
+\]
+\[
+f(u_n,v_n)=-1.
+\]
+Both sequences approach \((0,0)\), but the function values approach
+different limits. Hence the joint limit does not exist.
+\end{example}
+
+\section{How to Choose a Useful Path}
+
+There is no mechanical rule that always finds the right path, but the
+algebra often suggests one.
+
+\begin{enumerate}
+\item If the denominator contains \(x^2+y^2\), try
+\[
+y=mx.
+\]
+
+\item If the denominator contains \(x^4+y^2\), try to balance the
+powers by choosing
+\[
+y=kx^2.
+\]
+
+\item If the denominator contains \(x^6+y^2\), a natural curved path is
+\[
+y=kx^3.
+\]
+
+\item More generally, if two terms have different powers, choose a path
+which makes them of comparable order.
+\end{enumerate}
+
+\begin{example}
+Consider
+\[
+f(x,y)=\frac{x^2y}{x^4+y^2}.
+\]
+The denominator contains \(x^4\) and \(y^2\). To make these of the same
+order, choose
+\[
+y=kx^2.
+\]
+Then
+\[
+f(x,kx^2)
+=
+\frac{kx^4}{x^4+k^2x^4}
+=
+\frac{k}{1+k^2}.
+\]
+The answer depends on \(k\). Therefore the limit cannot exist.
+\end{example}
+
+\section{Homogeneous Expressions and Polar Coordinates}
+
+Suppose the numerator and denominator are homogeneous expressions.
+Polar coordinates frequently expose the exact power of \(r\) which
+controls the limit.
+
+For example,
+\[
+f(x,y)
+=
+\frac{x^3y^2}{(x^2+y^2)^2}.
+\]
+Put
+\[
+x=r\cos\theta,\qquad y=r\sin\theta.
+\]
+Then
+\[
+x^3y^2
+=
+r^5\cos^3\theta\sin^2\theta
+\]
+and
+\[
+(x^2+y^2)^2=r^4.
+\]
+Hence
+\[
+f(x,y)
+=
+r\cos^3\theta\sin^2\theta.
+\]
+Since
+\[
+|\cos^3\theta\sin^2\theta|\le1,
+\]
+we obtain
+\[
+|f(x,y)|\le r.
+\]
+Therefore
+\[
+\lim_{(x,y)\to(0,0)}f(x,y)=0.
+\]
+
+The useful pattern is:
+
+\[
+r^\alpha\times\text{bounded angular factor}.
+\]
+
+If \(\alpha>0\), the limit is usually \(0\). If \(\alpha=0\), the
+angular factor may reveal path dependence. If \(\alpha<0\), the
+expression may become unbounded.
+
+\section{Repeated Limits: What They Do and Do Not Tell Us}
+
+Repeated limits inspect the variables in a prescribed order:
+\[
+\lim_{x\to a}\lim_{y\to b}f(x,y),
+\qquad
+\lim_{y\to b}\lim_{x\to a}f(x,y).
+\]
+
+The logical relations should be remembered carefully.
+
+If the joint limit exists under the usual local hypotheses, then any
+repeated limits which are defined must agree with that joint limit.
+
+But the converse fails:
+
+\[
+\text{both repeated limits exist and are equal}
+\quad\not\Rightarrow\quad
+\text{joint limit exists}.
+\]
+
+\begin{example}
+For
+\[
+f(x,y)=\frac{xy}{x^2+y^2},
+\]
+both repeated limits at the origin are zero, because fixing one
+variable and sending the other to zero produces zero. However, along
+\(y=x\),
+\[
+f(x,x)=\frac12.
+\]
+Hence the joint limit does not exist.
+\end{example}
+
+\section{Continuity: Algebraic Theorems}
+
+\begin{theorem}
+If \(f\) and \(g\) are continuous at \((a,b)\), then
+\[
+f+g,\qquad f-g,\qquad fg
+\]
+are continuous at \((a,b)\). If
+\[
+g(a,b)\ne0,
+\]
+then
+\[
+\frac{f}{g}
+\]
+is also continuous at \((a,b)\).
+\end{theorem}
+
+\begin{theorem}[Continuity of a composite]
+Suppose \(u=g(x,y)\) is continuous at \((a,b)\), and \(\phi\) is a
+one-variable function continuous at \(g(a,b)\). Then
+\[
+\phi(g(x,y))
+\]
+is continuous at \((a,b)\).
+\end{theorem}
+
+Thus functions such as
+\[
+e^{x^2+y^2},
+\qquad
+\sin(xy),
+\qquad
+\sqrt{1+x^2+y^2}
+\]
+are continuous everywhere.
+
+\section{Additional Detailed Solved Problems}
+
+\subsection*{Problem 5. Prove a limit by a direct estimate}
+
+Prove
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^2y^2}{x^2+y^2}
+=0.
+\]
+
+We use
+\[
+x^2\le x^2+y^2,
+\qquad
+y^2\le x^2+y^2.
+\]
+Therefore
+\[
+x^2y^2
+\le
+(x^2+y^2)^2.
+\]
+Hence
+\[
+0\le
+\frac{x^2y^2}{x^2+y^2}
+\le
+x^2+y^2.
+\]
+As
+\[
+(x,y)\to(0,0),
+\]
+the right-hand side tends to zero. Therefore, by the Sandwich Theorem,
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^2y^2}{x^2+y^2}
+=0.
+\]
+
+\subsection*{Problem 6. A curved-path counterexample}
+
+Examine
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^2y}{x^4+y^2}.
+\]
+
+Along \(y=0\),
+\[
+f(x,0)=0.
+\]
+
+Along the curved path
+\[
+y=x^2,
+\]
+\[
+f(x,x^2)
+=
+\frac{x^4}{x^4+x^4}
+=
+\frac12.
+\]
+
+The two path limits are different. Hence the joint limit does not
+exist.
+
+\subsection*{Problem 7. Repeated limits can agree while the joint limit fails}
+
+Let
+\[
+f(x,y)
+=
+\frac{xy}{x^2+y^2}.
+\]
+
+For fixed \(x\ne0\),
+\[
+\lim_{y\to0}f(x,y)=0,
+\]
+so
+\[
+\lim_{x\to0}\lim_{y\to0}f(x,y)=0.
+\]
+
+Similarly,
+\[
+\lim_{y\to0}\lim_{x\to0}f(x,y)=0.
+\]
+
+However, along \(y=x\),
+\[
+f(x,x)=\frac12.
+\]
+
+Therefore the joint limit does not exist even though the repeated
+limits exist and are equal.
+
+\subsection*{Problem 8. Continuity at a specially defined point}
+
+Define
+\[
+f(x,y)
+=
+\begin{cases}
+\dfrac{x^3+y^3}{x^2+y^2},&(x,y)\ne(0,0),\\[1ex]
+0,&(x,y)=(0,0).
+\end{cases}
+\]
+
+We estimate
+\[
+|x^3+y^3|
+\le
+|x|^3+|y|^3.
+\]
+Let
+\[
+r=\sqrt{x^2+y^2}.
+\]
+Then
+\[
+|x|\le r,\qquad |y|\le r,
+\]
+so
+\[
+|x^3+y^3|\le2r^3.
+\]
+Since
+\[
+x^2+y^2=r^2,
+\]
+\[
+|f(x,y)|
+\le2r.
+\]
+As \(r\to0\),
+\[
+f(x,y)\to0=f(0,0).
+\]
+Hence \(f\) is continuous at the origin.
+
+
+\section{Detailed Solved Problems}
+
+\subsection*{Problem 1. A direct limit}
+Evaluate
+\[
+\lim_{(x,y)\to(1,2)}(x^2+xy+y^2).
+\]
+Because a polynomial is continuous,
+\[
+1^2+(1)(2)+2^2=7.
+\]
+
+\subsection*{Problem 2. Limit by comparison}
+Evaluate
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^3}{x^2+y^2}.
+\]
+Since
+\[
+\abs{\frac{x^3}{x^2+y^2}}
+=
+\abs{x}\frac{x^2}{x^2+y^2}
+\le\abs{x},
+\]
+and \(\abs{x}\to0\), the limit is \(0\).
+
+\subsection*{Problem 3 (2024). Nonexistence of a double limit}
+Examine
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{2x}{x^2+y^2}.
+\]
+Along \(x=0\), the expression equals \(0\). Along \(y=0\),
+\[
+\frac{2x}{x^2}=\frac2x,
+\]
+which has no finite limit as \(x\to0\). Therefore the joint limit
+does not exist.
+
+\subsection*{Problem 4. Repeated limits}
+Let
+\[
+f(x,y)=\frac{x-y}{x+y}.
+\]
+For fixed \(x\ne0\),
+\[
+\lim_{y\to0}f(x,y)=1,
+\]
+hence
+\[
+\lim_{x\to0}\lim_{y\to0}f(x,y)=1.
+\]
+For fixed \(y\ne0\),
+\[
+\lim_{x\to0}f(x,y)=-1,
+\]
+hence
+\[
+\lim_{y\to0}\lim_{x\to0}f(x,y)=-1.
+\]
+
+\section{Graded Practice Problems}
+
+\subsection*{Level I}
+\begin{enumerate}
+\item Evaluate
+\[
+\lim_{(x,y)\to(1,1)}(x^2+3xy-y^2).
+\]
+\item Evaluate
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^2y}{x^2+y^2}.
+\]
+\item Test
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^2-y^2}{x^2+y^2}.
+\]
+\item State the definition of continuity at \((a,b)\).
+\end{enumerate}
+
+\subsection*{Level II}
+\begin{enumerate}
+\item Examine
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{xy}{x^2+y^2}.
+\]
+\item Prove by the \(\eps\)-\(\delta\) definition that
+\[
+\lim_{(x,y)\to(0,0)}(x+y)=0.
+\]
+\item Evaluate both repeated limits of
+\[
+\frac{x^2-y^2}{x^2+y^2}.
+\]
+\end{enumerate}
+
+\subsection*{Level III}
+\begin{enumerate}
+\item Show that straight-line checking is insufficient for
+\[
+\frac{x^2y}{x^4+y^2}.
+\]
+\item Find an example where both repeated limits are equal but the
+joint limit fails to exist.
+\item Use polar coordinates to prove
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^4y^2}{x^4+y^2}=0.
+\]
+\end{enumerate}
+
+% ============================================================
+\chapter{Partial Derivatives of First and Second Orders}
+% ============================================================
+
+\section*{Learning Objectives}
+Students should be able to:
+\begin{itemize}
+\item define partial derivatives from first principles;
+\item interpret them geometrically as slopes of traces;
+\item calculate first and second partial derivatives;
+\item distinguish pure and mixed derivatives;
+\item understand what the existence of partial derivatives does and
+does not imply.
+\end{itemize}
+
+\section*{Historical Motivation}
+
+A function \(z=f(x,y)\) may respond differently to changes in \(x\)
+and changes in \(y\). Partial differentiation isolates one direction
+at a time by temporarily fixing the other variable. This became
+fundamental in mechanics, thermodynamics and differential equations.
+
+\section{First-Order Partial Derivatives}
+
+\begin{definition}
+The partial derivative of \(f\) with respect to \(x\) at \((a,b)\) is
+\[
+f_x(a,b)
+=
+\lim_{h\to0}
+\frac{f(a+h,b)-f(a,b)}{h},
+\]
+provided the limit exists.
+\end{definition}
+
+Similarly,
+\[
+f_y(a,b)
+=
+\lim_{k\to0}
+\frac{f(a,b+k)-f(a,b)}{k}.
+\]
+
+When differentiating with respect to \(x\), treat \(y\) as a constant.
+When differentiating with respect to \(y\), treat \(x\) as a constant.
+
+\paragraph{Real-life comparison.}
+If \(T(x,y)\) is the temperature at position \((x,y)\), then \(T_x\)
+measures how temperature changes when moving in the \(x\)-direction
+while keeping \(y\) fixed; \(T_y\) does the analogous job in the
+\(y\)-direction.
+
+\section{Geometrical Interpretation}
+
+For the surface
+\[
+z=f(x,y),
+\]
+fix \(y=b\). Then
+\[
+z=f(x,b)
+\]
+is a curve in the vertical plane \(y=b\), and
+\[
+f_x(a,b)
+\]
+is the tangent slope of this trace at \(x=a\).
+
+Similarly \(f_y(a,b)\) is the tangent slope of the trace obtained by
+fixing \(x=a\).
+
+\section{Calculation from the Definition}
+
+Let
+\[
+f(x,y)=x^2+y^2.
+\]
+Then
+\[
+\begin{aligned}
+f_x(a,b)
+&=
+\lim_{h\to0}
+\frac{(a+h)^2+b^2-(a^2+b^2)}{h}\\
+&=
+\lim_{h\to0}
+\frac{2ah+h^2}{h}\\
+&=
+\lim_{h\to0}(2a+h)\\
+&=2a.
+\end{aligned}
+\]
+Similarly,
+\[
+f_y(a,b)=2b.
+\]
+
+\section{Second-Order Partial Derivatives}
+
+The four second-order partial derivatives are
+\[
+f_{xx},\qquad f_{xy},\qquad f_{yx},\qquad f_{yy}.
+\]
+
+Here
+\[
+f_{xy}
+=
+\frac{\partial}{\partial y}(f_x),
+\qquad
+f_{yx}
+=
+\frac{\partial}{\partial x}(f_y).
+\]
+
+\begin{example}
+Let
+\[
+f(x,y)=x^3y^2+e^{xy}.
+\]
+Then
+\[
+f_x=3x^2y^2+ye^{xy},
+\]
+\[
+f_y=2x^3y+xe^{xy}.
+\]
+Differentiate again:
+\[
+f_{xx}=6xy^2+y^2e^{xy},
+\]
+\[
+f_{xy}=6x^2y+e^{xy}+xye^{xy},
+\]
+\[
+f_{yx}=6x^2y+e^{xy}+xye^{xy},
+\]
+and
+\[
+f_{yy}=2x^3+x^2e^{xy}.
+\]
+Thus in this example
+\[
+f_{xy}=f_{yx}.
+\]
+\end{example}
+
+\section{Partial Derivatives Need Not Imply Continuity}
+
+Define
+\[
+f(x,y)=
+\begin{cases}
+\dfrac{xy}{x^2+y^2},&(x,y)\ne(0,0),\\[1ex]
+0,&(x,y)=(0,0).
+\end{cases}
+\]
+
+By definition,
+\[
+f_x(0,0)
+=
+\lim_{h\to0}
+\frac{f(h,0)-f(0,0)}{h}
+=0.
+\]
+Likewise,
+\[
+f_y(0,0)=0.
+\]
+
+But along \(y=x\),
+\[
+f(x,x)=\frac12,
+\]
+so the function is not continuous at \((0,0)\).
+
+Therefore
+\[
+f_x(0,0),f_y(0,0)\text{ exist}
+\quad\not\Rightarrow\quad
+f\text{ is continuous at }(0,0).
+\]
+
+
+\section{Notation for Partial Derivatives}
+
+Several notations are used interchangeably:
+\[
+f_x
+=
+\pd{f}{x},
+\qquad
+f_y
+=
+\pd{f}{y}.
+\]
+
+For second derivatives,
+\[
+f_{xx}
+=
+\frac{\partial^2f}{\partial x^2},
+\qquad
+f_{yy}
+=
+\frac{\partial^2f}{\partial y^2},
+\]
+while
+\[
+f_{xy}
+=
+\frac{\partial}{\partial y}
+\left(
+\pd{f}{x}
+\right),
+\]
+and
+\[
+f_{yx}
+=
+\frac{\partial}{\partial x}
+\left(
+\pd{f}{y}
+\right).
+\]
+
+Students should pay attention to the order: \(f_{xy}\) means
+differentiate first with respect to \(x\), then with respect to \(y\).
+
+\section{Partial Derivatives as Rates of Change}
+
+Suppose
+\[
+T=T(x,y)
+\]
+describes temperature on a thin metal plate.
+
+Then
+\[
+T_x(a,b)
+\]
+is the instantaneous rate of change of temperature when we move in the
+\(x\)-direction through \((a,b)\), keeping \(y=b\) fixed.
+
+Similarly,
+\[
+T_y(a,b)
+\]
+describes the rate of change in the \(y\)-direction while keeping
+\(x=a\) fixed.
+
+Thus partial derivatives are ordinary one-variable derivatives of
+appropriate slices of the surface.
+
+\section{A Detailed First-Principles Example}
+
+Let
+\[
+f(x,y)=xy+x^2.
+\]
+Find \(f_x(a,b)\) directly from the definition.
+
+By definition,
+\[
+f_x(a,b)
+=
+\lim_{h\to0}
+\frac{
+f(a+h,b)-f(a,b)
+}{h}.
+\]
+
+Now
+\[
+f(a+h,b)
+=
+(a+h)b+(a+h)^2.
+\]
+Therefore
+\[
+\begin{aligned}
+f(a+h,b)-f(a,b)
+&=
+ab+hb+a^2+2ah+h^2-ab-a^2\\
+&=
+hb+2ah+h^2.
+\end{aligned}
+\]
+
+Thus
+\[
+\frac{
+f(a+h,b)-f(a,b)
+}{h}
+=
+b+2a+h.
+\]
+
+Letting \(h\to0\),
+\[
+f_x(a,b)=b+2a.
+\]
+
+The same result is obtained by ordinary partial differentiation:
+\[
+f_x=y+2x.
+\]
+
+\section{Higher-Order Derivatives and Harmonic Functions}
+
+Second derivatives describe how the first rates of change themselves
+vary.
+
+A particularly important combination is the two-dimensional Laplacian
+\[
+\nabla^2u
+=
+u_{xx}+u_{yy}.
+\]
+
+\begin{definition}
+A twice continuously differentiable function \(u(x,y)\) is called
+\emph{harmonic} in a region if
+\[
+u_{xx}+u_{yy}=0
+\]
+throughout that region.
+\end{definition}
+
+\begin{example}
+Let
+\[
+u(x,y)=e^x\cos y.
+\]
+Then
+\[
+u_x=e^x\cos y,
+\qquad
+u_{xx}=e^x\cos y.
+\]
+Also,
+\[
+u_y=-e^x\sin y,
+\qquad
+u_{yy}=-e^x\cos y.
+\]
+Therefore
+\[
+u_{xx}+u_{yy}=0.
+\]
+Hence \(u\) is harmonic.
+\end{example}
+
+\section{Additional Detailed Solved Problems}
+
+\subsection*{Problem 3. First and second partial derivatives}
+
+Let
+\[
+u=x^4y^3+\sin(xy).
+\]
+
+First,
+\[
+u_x
+=
+4x^3y^3+y\cos(xy),
+\]
+and
+\[
+u_y
+=
+3x^4y^2+x\cos(xy).
+\]
+
+Now
+\[
+u_{xx}
+=
+12x^2y^3-y^2\sin(xy),
+\]
+and
+\[
+u_{yy}
+=
+6x^4y-x^2\sin(xy).
+\]
+
+For the mixed derivative,
+\[
+\begin{aligned}
+u_{xy}
+&=
+\frac{\partial}{\partial y}
+\left(
+4x^3y^3+y\cos(xy)
+\right)\\
+&=
+12x^3y^2+\cos(xy)-xy\sin(xy).
+\end{aligned}
+\]
+
+Similarly,
+\[
+\begin{aligned}
+u_{yx}
+&=
+\frac{\partial}{\partial x}
+\left(
+3x^4y^2+x\cos(xy)
+\right)\\
+&=
+12x^3y^2+\cos(xy)-xy\sin(xy).
+\end{aligned}
+\]
+
+Hence
+\[
+u_{xy}=u_{yx}.
+\]
+
+\subsection*{Problem 4. Partial derivatives exist but continuity fails}
+
+Consider
+\[
+f(x,y)
+=
+\begin{cases}
+\dfrac{xy}{x^2+y^2},&(x,y)\ne(0,0),\\
+0,&(x,y)=(0,0).
+\end{cases}
+\]
+
+At the origin,
+\[
+f_x(0,0)
+=
+\lim_{h\to0}
+\frac{f(h,0)-f(0,0)}{h}
+=0,
+\]
+because \(f(h,0)=0\).
+
+Likewise,
+\[
+f_y(0,0)=0.
+\]
+
+But along \(y=x\),
+\[
+f(x,x)=\frac12.
+\]
+
+Therefore the function is not continuous at the origin. This example
+shows clearly that the mere existence of both first partial derivatives
+is much weaker than differentiability.
+
+
+\section{Detailed Solved Problems}
+
+\subsection*{Problem 1}
+For
+\[
+u=x^2y^3+e^{x+y},
+\]
+find all first and second partial derivatives.
+
+First:
+\[
+u_x=2xy^3+e^{x+y},
+\qquad
+u_y=3x^2y^2+e^{x+y}.
+\]
+Second:
+\[
+u_{xx}=2y^3+e^{x+y},
+\]
+\[
+u_{xy}=6xy^2+e^{x+y},
+\]
+\[
+u_{yx}=6xy^2+e^{x+y},
+\]
+\[
+u_{yy}=6x^2y+e^{x+y}.
+\]
+
+\subsection*{Problem 2}
+Find \(f_x(0,0)\) and \(f_y(0,0)\) directly for
+\[
+f(x,y)=
+\begin{cases}
+\dfrac{x^2y}{x^4+y^2},&(x,y)\ne(0,0),\\
+0,&(0,0).
+\end{cases}
+\]
+Since \(f(h,0)=0\),
+\[
+f_x(0,0)
+=
+\lim_{h\to0}\frac{0-0}{h}=0.
+\]
+Similarly \(f(0,k)=0\), so
+\[
+f_y(0,0)=0.
+\]
+
+\section{Graded Practice Problems}
+\begin{enumerate}
+\item Find all first partial derivatives of
+\[
+x^3+3x^2y+y^3.
+\]
+\item Find all second partial derivatives of \(e^{x+y}\).
+\item Find \(f_x(1,2)\) and \(f_y(1,2)\) for \(x^2y+xy^2\).
+\item Compute \(f_x(0,0),f_y(0,0)\) from first principles for
+\(x^2+y^2\).
+\item Give an example where both first partial derivatives exist but
+the function is not continuous.
+\end{enumerate}
+
+% ============================================================
+\chapter{Differentiability, Young's Theorem and Schwarz's Theorem}
+% ============================================================
+
+\section*{Learning Objectives}
+Students should be able to:
+\begin{itemize}
+\item state the definition of differentiability in two variables;
+\item interpret differentiability as linear approximation;
+\item prove that differentiability implies continuity;
+\item use continuity of first partial derivatives as a sufficient
+condition for differentiability;
+\item state Young's and Schwarz's theorems;
+\item apply equality of mixed partial derivatives correctly.
+\end{itemize}
+
+\section*{Why Partial Derivatives Are Not Enough}
+
+Partial derivatives only test changes along the coordinate directions.
+Differentiability requires one linear approximation that works for
+\emph{all} sufficiently small changes \((h,k)\).
+
+\section{Definition of Differentiability}
+
+\begin{definition}
+A function \(f(x,y)\) is differentiable at \((a,b)\) if
+\[
+f(a+h,b+k)-f(a,b)
+=
+f_x(a,b)h+f_y(a,b)k
++
+o\!\left(\sqrt{h^2+k^2}\right).
+\]
+Equivalently,
+\[
+\lim_{(h,k)\to(0,0)}
+\frac{
+f(a+h,b+k)-f(a,b)
+-f_x(a,b)h-f_y(a,b)k
+}{
+\sqrt{h^2+k^2}
+}
+=0.
+\]
+\end{definition}
+
+\paragraph{Geometrical meaning.}
+Near \((a,b)\),
+\[
+f(a+h,b+k)
+\approx
+f(a,b)+f_x(a,b)h+f_y(a,b)k.
+\]
+Thus the surface is locally approximated by a plane.
+
+The tangent plane is
+\[
+z
+=
+f(a,b)
++
+f_x(a,b)(x-a)
++
+f_y(a,b)(y-b).
+\]
+
+\section{Differentiability Implies Partial Derivatives Exist}
+
+\begin{theorem}
+If \(f\) is differentiable at \((a,b)\), then both \(f_x(a,b)\) and
+\(f_y(a,b)\) exist.
+\end{theorem}
+
+\begin{proof}
+Suppose
+\[
+f(a+h,b+k)-f(a,b)
+=
+Ah+Bk+\eta(h,k)\sqrt{h^2+k^2},
+\]
+where
+\[
+\eta(h,k)\to0.
+\]
+
+Set \(k=0\):
+\[
+f(a+h,b)-f(a,b)
+=
+Ah+\eta(h,0)\abs{h}.
+\]
+For \(h\ne0\),
+\[
+\frac{f(a+h,b)-f(a,b)}{h}
+=
+A+\eta(h,0)\frac{\abs h}{h}.
+\]
+Since
+\[
+\left|
+\eta(h,0)\frac{\abs h}{h}
+\right|
+=
+\abs{\eta(h,0)}
+\to0,
+\]
+we obtain
+\[
+f_x(a,b)=A.
+\]
+
+Setting \(h=0\) similarly gives
+\[
+f_y(a,b)=B.
+\]
+\end{proof}
+
+\section{Every Differentiable Function Is Continuous}
+
+\begin{theorem}
+If \(f(x,y)\) is differentiable at \((a,b)\), then \(f\) is
+continuous at \((a,b)\).
+\end{theorem}
+
+\begin{proof}
+To prove continuity we must show
+\[
+\lim_{(x,y)\to(a,b)}f(x,y)=f(a,b).
+\]
+
+Put
+\[
+x=a+h,\qquad y=b+k.
+\]
+Then
+\[
+(x,y)\to(a,b)
+\quad\Longleftrightarrow\quad
+(h,k)\to(0,0).
+\]
+
+Since \(f\) is differentiable,
+\[
+f(a+h,b+k)-f(a,b)
+=
+f_x(a,b)h
++
+f_y(a,b)k
++
+\eta(h,k)\sqrt{h^2+k^2},
+\]
+where
+\[
+\eta(h,k)\to0.
+\]
+
+Taking absolute values,
+\[
+\begin{aligned}
+&
+\abs{f(a+h,b+k)-f(a,b)}
+\\
+&\le
+\abs{f_x(a,b)}\abs h
++
+\abs{f_y(a,b)}\abs k
++
+\abs{\eta(h,k)}\sqrt{h^2+k^2}.
+\end{aligned}
+\]
+
+Since
+\[
+\abs h,\abs k\le\sqrt{h^2+k^2},
+\]
+we get
+\[
+\begin{aligned}
+&
+\abs{f(a+h,b+k)-f(a,b)}
+\\
+&\le
+\left(
+\abs{f_x(a,b)}
++\abs{f_y(a,b)}
++\abs{\eta(h,k)}
+\right)
+\sqrt{h^2+k^2}.
+\end{aligned}
+\]
+
+As \((h,k)\to(0,0)\), the right-hand side tends to \(0\).
+Therefore
+\[
+f(a+h,b+k)-f(a,b)\to0.
+\]
+Hence
+\[
+\lim_{(h,k)\to(0,0)}f(a+h,b+k)=f(a,b).
+\]
+Equivalently,
+\[
+\lim_{(x,y)\to(a,b)}f(x,y)=f(a,b).
+\]
+Thus \(f\) is continuous at \((a,b)\).
+\end{proof}
+
+\section{A Standard Sufficient Condition}
+
+\begin{theorem}
+Suppose \(f_x\) and \(f_y\) exist in a neighbourhood of \((a,b)\)
+and are continuous at \((a,b)\). Then \(f\) is differentiable at
+\((a,b)\).
+\end{theorem}
+
+\begin{proof}
+Write
+\[
+\Delta f=f(a+h,b+k)-f(a,b).
+\]
+Insert and subtract \(f(a,b+k)\):
+\[
+\begin{aligned}
+\Delta f
+={}&
+[f(a+h,b+k)-f(a,b+k)]\\
+&+[f(a,b+k)-f(a,b)].
+\end{aligned}
+\]
+
+Apply the one-variable Mean Value Theorem to the first difference as a
+function of \(x\). For some \(\theta\in(0,1)\),
+\[
+f(a+h,b+k)-f(a,b+k)
+=
+h f_x(a+\theta h,b+k).
+\]
+
+Apply the Mean Value Theorem to the second difference as a function of
+\(y\). For some \(\lambda\in(0,1)\),
+\[
+f(a,b+k)-f(a,b)
+=
+k f_y(a,b+\lambda k).
+\]
+
+Therefore
+\[
+\Delta f
+=
+h f_x(a+\theta h,b+k)
++
+k f_y(a,b+\lambda k).
+\]
+
+Subtract
+\[
+f_x(a,b)h+f_y(a,b)k.
+\]
+Then
+\[
+\begin{aligned}
+&
+\Delta f-f_x(a,b)h-f_y(a,b)k\\
+={}&
+h\bigl[
+f_x(a+\theta h,b+k)-f_x(a,b)
+\bigr]\\
+&+
+k\bigl[
+f_y(a,b+\lambda k)-f_y(a,b)
+\bigr].
+\end{aligned}
+\]
+
+Let
+\[
+\rho=\sqrt{h^2+k^2}.
+\]
+Then
+\[
+\frac{\abs h}{\rho}\le1,
+\qquad
+\frac{\abs k}{\rho}\le1.
+\]
+Hence the absolute value of the differentiability quotient is bounded
+by
+\[
+\abs{f_x(a+\theta h,b+k)-f_x(a,b)}
++
+\abs{f_y(a,b+\lambda k)-f_y(a,b)}.
+\]
+By continuity of \(f_x,f_y\), this tends to \(0\). Therefore \(f\) is
+differentiable at \((a,b)\).
+\end{proof}
+
+\section{Logical Relationships}
+
+It is useful to remember:
+\[
+\text{continuous first partial derivatives near the point}
+\Longrightarrow
+\text{differentiable}
+\]
+and
+\[
+\text{differentiable}
+\Longrightarrow
+\text{continuous}.
+\]
+
+But
+\[
+\text{partial derivatives exist}
+\not\Rightarrow
+\text{continuous}
+\]
+and therefore do not imply differentiability.
+
+\section{Young's Theorem}
+
+\begin{theorem}[Young's theorem --- statement]
+Suppose the mixed partial derivatives \(f_{xy}\) and \(f_{yx}\)
+exist in a neighbourhood of \((a,b)\) and one of them is continuous
+at \((a,b)\), under the usual hypotheses ensuring the first partial
+derivatives are defined. Then
+\[
+f_{xy}(a,b)=f_{yx}(a,b).
+\]
+\end{theorem}
+
+Only the statement and applications are required here.
+
+\section{Schwarz's Theorem}
+
+\begin{theorem}[Schwarz's theorem --- statement]
+If the second-order partial derivatives are continuous in a
+neighbourhood of \((a,b)\), then
+\[
+f_{xy}(a,b)=f_{yx}(a,b).
+\]
+\end{theorem}
+
+Again, only the statement and applications are required.
+
+\section{Application}
+
+For
+\[
+f(x,y)=x^3y^2+e^{xy},
+\]
+we obtain
+\[
+f_{xy}
+=
+6x^2y+e^{xy}+xye^{xy},
+\]
+and
+\[
+f_{yx}
+=
+6x^2y+e^{xy}+xye^{xy}.
+\]
+Both are continuous, so Schwarz's theorem applies.
+
+\section{Why the Hypotheses Matter}
+
+Consider
+\[
+f(x,y)=
+\begin{cases}
+\dfrac{xy(x^2-y^2)}{x^2+y^2},&(x,y)\ne(0,0),\\[1ex]
+0,&(x,y)=(0,0).
+\end{cases}
+\]
+
+For \(y\ne0\),
+\[
+f_x(0,y)
+=
+\lim_{h\to0}
+\frac{f(h,y)-f(0,y)}{h}
+=-y.
+\]
+Therefore
+\[
+f_{xy}(0,0)
+=
+\lim_{y\to0}
+\frac{-y-0}{y}
+=-1.
+\]
+
+Similarly one finds
+\[
+f_y(x,0)=x,
+\]
+hence
+\[
+f_{yx}(0,0)=1.
+\]
+
+Thus
+\[
+f_{xy}(0,0)\ne f_{yx}(0,0),
+\]
+showing that mixed partials are not automatically equal.
+
+
+\section{Increment Form of Differentiability}
+
+Let
+\[
+x=a+h,\qquad y=b+k.
+\]
+The change in the function is
+\[
+\Delta f
+=
+f(a+h,b+k)-f(a,b).
+\]
+
+If \(f\) is differentiable at \((a,b)\), then
+\[
+\Delta f
+=
+f_x(a,b)h
++
+f_y(a,b)k
++
+R(h,k),
+\]
+where the remainder satisfies
+\[
+\frac{R(h,k)}{\sqrt{h^2+k^2}}
+\to0.
+\]
+
+Thus the first-order part of the change is
+\[
+df
+=
+f_x\,dx+f_y\,dy.
+\]
+
+The quantity \(df\) is called the \emph{total differential}. For small
+changes,
+\[
+\Delta f\approx df.
+\]
+
+\paragraph{Real-life comparison.}
+Suppose the cost \(C(x,y)\) of production depends on two small input
+changes \(h\) and \(k\). Differentiability says that, sufficiently near
+the operating point, the total change in cost is well approximated by
+adding the separate first-order effects
+\[
+C_xh+C_yk.
+\]
+The remaining error is much smaller than the size
+\[
+\sqrt{h^2+k^2}
+\]
+of the input change.
+
+\section{Tangent Plane and Linear Approximation}
+
+For a differentiable function \(z=f(x,y)\), the tangent plane at
+\[
+(a,b,f(a,b))
+\]
+is
+\[
+z-f(a,b)
+=
+f_x(a,b)(x-a)
++
+f_y(a,b)(y-b).
+\]
+
+Equivalently,
+\[
+z
+=
+f(a,b)
++
+f_x(a,b)(x-a)
++
+f_y(a,b)(y-b).
+\]
+
+Therefore the linear approximation is
+\[
+L(x,y)
+=
+f(a,b)
++
+f_x(a,b)(x-a)
++
+f_y(a,b)(y-b).
+\]
+
+\begin{example}
+Find the tangent plane to
+\[
+z=x^2+xy+y^2
+\]
+at \((1,1)\).
+
+We have
+\[
+f(1,1)=3.
+\]
+Also,
+\[
+f_x=2x+y,
+\]
+so
+\[
+f_x(1,1)=3.
+\]
+And
+\[
+f_y=x+2y,
+\]
+so
+\[
+f_y(1,1)=3.
+\]
+
+Hence
+\[
+z-3
+=
+3(x-1)+3(y-1).
+\]
+
+Thus
+\[
+z=3x+3y-3.
+\]
+\end{example}
+
+\section{Differentiability versus Continuity versus Partial Derivatives}
+
+The correct implication chain is
+\[
+\text{continuous first partials near the point}
+\Longrightarrow
+\text{differentiable}
+\Longrightarrow
+\text{continuous}.
+\]
+
+Also,
+\[
+\text{differentiable}
+\Longrightarrow
+\text{first partial derivatives exist}.
+\]
+
+But none of the reverse implications is automatic.
+
+In particular:
+
+\[
+f_x,f_y\text{ exist}
+\not\Rightarrow
+f\text{ continuous},
+\]
+
+and therefore
+
+\[
+f_x,f_y\text{ exist}
+\not\Rightarrow
+f\text{ differentiable}.
+\]
+
+Also,
+\[
+f\text{ continuous}
+\not\Rightarrow
+f_x,f_y\text{ exist}.
+\]
+
+For example,
+\[
+f(x,y)=\sqrt{x^2+y^2}
+\]
+is continuous at the origin, but
+\[
+f_x(0,0)
+=
+\lim_{h\to0}
+\frac{|h|}{h}
+\]
+does not exist.
+
+\section{A Direct Differentiability Test}
+
+Suppose we already know \(f_x(a,b)\) and \(f_y(a,b)\). To test
+differentiability directly, calculate
+\[
+E(h,k)
+=
+\frac{
+f(a+h,b+k)-f(a,b)
+-f_x(a,b)h
+-f_y(a,b)k
+}{
+\sqrt{h^2+k^2}
+}.
+\]
+
+If
+\[
+E(h,k)\to0
+\]
+as \((h,k)\to(0,0)\), then \(f\) is differentiable.
+
+\begin{example}
+Show directly that
+\[
+f(x,y)=x^2+y^2
+\]
+is differentiable at \((a,b)\).
+
+We have
+\[
+f_x(a,b)=2a,
+\qquad
+f_y(a,b)=2b.
+\]
+
+Now
+\[
+\begin{aligned}
+f(a+h,b+k)-f(a,b)
+&=
+(a+h)^2+(b+k)^2-a^2-b^2\\
+&=
+2ah+2bk+h^2+k^2.
+\end{aligned}
+\]
+
+Subtract the linear part:
+\[
+2ah+2bk.
+\]
+
+The remainder is
+\[
+h^2+k^2.
+\]
+
+Therefore
+\[
+E(h,k)
+=
+\frac{h^2+k^2}{\sqrt{h^2+k^2}}
+=
+\sqrt{h^2+k^2}.
+\]
+
+Hence
+\[
+E(h,k)\to0.
+\]
+
+Thus \(f\) is differentiable at every point.
+\end{example}
+
+\section{Additional Applications of Young's and Schwarz's Theorems}
+
+\begin{example}
+Let
+\[
+f(x,y)=x^2y^3+\sin(x+y).
+\]
+
+We have
+\[
+f_x=2xy^3+\cos(x+y),
+\]
+so
+\[
+f_{xy}
+=
+6xy^2-\sin(x+y).
+\]
+
+Also,
+\[
+f_y=3x^2y^2+\cos(x+y),
+\]
+so
+\[
+f_{yx}
+=
+6xy^2-\sin(x+y).
+\]
+
+The mixed derivatives are continuous everywhere. Therefore Schwarz's
+theorem applies and
+\[
+f_{xy}=f_{yx}.
+\]
+\end{example}
+
+\section{Additional Detailed Solved Problems}
+
+\subsection*{Problem 3. Linear approximation}
+
+Use linear approximation to estimate
+\[
+f(1.02,0.99)
+\]
+for
+\[
+f(x,y)=\sqrt{x^2+y^2}.
+\]
+
+Choose the nearby point \((1,1)\). Then
+\[
+f(1,1)=\sqrt2.
+\]
+
+Also,
+\[
+f_x=\frac{x}{\sqrt{x^2+y^2}},
+\qquad
+f_y=\frac{y}{\sqrt{x^2+y^2}}.
+\]
+
+Hence
+\[
+f_x(1,1)
+=
+f_y(1,1)
+=
+\frac1{\sqrt2}.
+\]
+
+Now
+\[
+h=0.02,\qquad k=-0.01.
+\]
+
+Therefore
+\[
+\begin{aligned}
+f(1.02,0.99)
+&\approx
+\sqrt2
++
+\frac{0.02}{\sqrt2}
+-
+\frac{0.01}{\sqrt2}\\
+&=
+\sqrt2+\frac{0.01}{\sqrt2}.
+\end{aligned}
+\]
+
+\subsection*{Problem 4. Continuity does not imply differentiability}
+
+Consider
+\[
+f(x,y)=\sqrt{x^2+y^2}.
+\]
+
+The function is continuous at \((0,0)\), because
+\[
+\sqrt{x^2+y^2}\to0.
+\]
+
+However,
+\[
+f_x(0,0)
+=
+\lim_{h\to0}
+\frac{|h|}{h},
+\]
+which does not exist.
+
+Hence \(f\) is not differentiable at the origin.
+
+This is an important contrast with the theorem
+\[
+\text{differentiable}\Longrightarrow\text{continuous}.
+\]
+
+
+\section{Detailed Solved Problems}
+
+\subsection*{Problem 1. Prove differentiability}
+Show that
+\[
+f(x,y)=x^2+xy+y^2
+\]
+is differentiable everywhere.
+
+Its first partial derivatives are
+\[
+f_x=2x+y,
+\qquad
+f_y=x+2y.
+\]
+These are polynomials, hence continuous everywhere. Therefore by the
+standard sufficient condition, \(f\) is differentiable at every
+point of \(\R^2\).
+
+\subsection*{Problem 2. A harmonic-function application}
+Let
+\[
+u(x,y)=e^x\cos y.
+\]
+Then
+\[
+u_x=e^x\cos y,
+\qquad
+u_{xx}=e^x\cos y.
+\]
+Also
+\[
+u_y=-e^x\sin y,
+\qquad
+u_{yy}=-e^x\cos y.
+\]
+Therefore
+\[
+u_{xx}+u_{yy}=0.
+\]
+
+\section{Graded Practice Problems}
+\begin{enumerate}
+\item Prove directly that differentiability implies continuity.
+\item Determine whether
+\[
+f(x,y)=
+\begin{cases}
+\dfrac{x^2y}{x^2+y^2},&(x,y)\ne(0,0),\\
+0,&(0,0)
+\end{cases}
+\]
+is differentiable at the origin.
+\item Verify Schwarz's theorem for
+\[
+f(x,y)=x^2y^3+\sin(xy).
+\]
+\item Give an example showing that mixed partial derivatives can
+differ when the continuity hypotheses fail.
+\end{enumerate}
+
+% ============================================================
+\chapter{Derivatives of Composite Functions}
+% ============================================================
+
+\section*{Learning Objectives}
+Students should be able to:
+\begin{itemize}
+\item identify direct and indirect dependence among variables;
+\item use the multivariable chain rule;
+\item differentiate when all variables depend on one parameter;
+\item use dependency diagrams to avoid missing terms.
+\end{itemize}
+
+\section*{Historical Motivation}
+
+Many physical quantities depend on intermediate variables.
+Temperature may depend on position, while position depends on time.
+The chain rule organizes these layers of dependence and tells us how
+small changes propagate through a system.
+
+\section{Two Intermediate Variables}
+
+Suppose
+\[
+z=f(u,v),
+\]
+where
+\[
+u=u(x,y),
+\qquad
+v=v(x,y).
+\]
+
+\begin{theorem}[Chain rule]
+If the functions involved are differentiable, then
+\[
+\pd{z}{x}
+=
+\pd{z}{u}\pd{u}{x}
++
+\pd{z}{v}\pd{v}{x},
+\]
+and
+\[
+\pd{z}{y}
+=
+\pd{z}{u}\pd{u}{y}
++
+\pd{z}{v}\pd{v}{y}.
+\]
+\end{theorem}
+
+\section{Derivation from Differentials}
+
+For differentiable \(z=f(u,v)\),
+\[
+dz=f_u\,du+f_v\,dv.
+\]
+Now
+\[
+du=u_x\,dx+u_y\,dy,
+\]
+\[
+dv=v_x\,dx+v_y\,dy.
+\]
+Substitution gives
+\[
+\begin{aligned}
+dz
+&=
+f_u(u_x\,dx+u_y\,dy)
++
+f_v(v_x\,dx+v_y\,dy)\\
+&=
+(f_u u_x+f_v v_x)\,dx
++
+(f_u u_y+f_v v_y)\,dy.
+\end{aligned}
+\]
+But
+\[
+dz=z_x\,dx+z_y\,dy.
+\]
+Comparing coefficients,
+\[
+z_x=f_u u_x+f_v v_x,
+\]
+\[
+z_y=f_u u_y+f_v v_y.
+\]
+
+\section{Dependency Diagram}
+
+\begin{center}
+\begin{tikzpicture}[
+node distance=1.5cm and 1.9cm,
+every node/.style={draw,rounded corners,minimum width=1cm},
+>=Stealth
+]
+\node (x) at (0,1) {$x$};
+\node (y) at (0,-1) {$y$};
+\node (u) at (3,1) {$u$};
+\node (v) at (3,-1) {$v$};
+\node (z) at (6,0) {$z$};
+
+\draw[->] (x)--(u);
+\draw[->] (x)--(v);
+\draw[->] (y)--(u);
+\draw[->] (y)--(v);
+\draw[->] (u)--(z);
+\draw[->] (v)--(z);
+\end{tikzpicture}
+\end{center}
+
+For a derivative with respect to \(x\), add the products of
+derivatives along every path from \(x\) to \(z\).
+
+\section{Detailed Example}
+
+Let
+\[
+z=u^2+v^2,
+\qquad
+u=x+y,
+\qquad
+v=x-y.
+\]
+First,
+\[
+z_u=2u,\qquad z_v=2v.
+\]
+Since
+\[
+u_x=1,\qquad v_x=1,
+\]
+we have
+\[
+z_x=2u+2v.
+\]
+Substituting \(u=x+y,v=x-y\),
+\[
+z_x=4x.
+\]
+
+Likewise
+\[
+u_y=1,\qquad v_y=-1,
+\]
+so
+\[
+z_y=2u-2v=4y.
+\]
+
+\section{One-Parameter Chain Rule}
+
+If
+\[
+z=f(x,y),
+\qquad
+x=x(t),\quad y=y(t),
+\]
+then
+\[
+\frac{dz}{dt}
+=
+f_x\frac{dx}{dt}
++
+f_y\frac{dy}{dt}.
+\]
+
+\begin{example}
+Let
+\[
+z=x^2y,
+\qquad
+x=t^2,
+\qquad
+y=\sin t.
+\]
+Then
+\[
+z_x=2xy,\qquad z_y=x^2,
+\]
+and
+\[
+\frac{dx}{dt}=2t,
+\qquad
+\frac{dy}{dt}=\cos t.
+\]
+Therefore
+\[
+\begin{aligned}
+\frac{dz}{dt}
+&=
+(2xy)(2t)+x^2\cos t\\
+&=
+4t^3\sin t+t^4\cos t.
+\end{aligned}
+\]
+
+As a check, direct substitution gives
+\[
+z=t^4\sin t,
+\]
+whose derivative is the same expression.
+\end{example}
+
+
+\section{Derivation of the Chain Rule from Differentiability}
+
+Suppose
+\[
+z=f(u,v),
+\]
+where
+\[
+u=u(x,y),
+\qquad
+v=v(x,y).
+\]
+
+Let \(x\) change by \(\Delta x\), while \(y\) is held fixed. Then
+\[
+u\to u+\Delta u,
+\qquad
+v\to v+\Delta v.
+\]
+
+Since \(f\) is differentiable,
+\[
+\Delta z
+=
+f_u\Delta u
++
+f_v\Delta v
++
+\text{higher-order error}.
+\]
+
+Also, since \(u\) and \(v\) are differentiable,
+\[
+\Delta u
+=
+u_x\Delta x
++
+o(\Delta x),
+\]
+and
+\[
+\Delta v
+=
+v_x\Delta x
++
+o(\Delta x).
+\]
+
+Substituting,
+\[
+\Delta z
+=
+f_u u_x\Delta x
++
+f_v v_x\Delta x
++
+o(\Delta x).
+\]
+
+Divide by \(\Delta x\):
+\[
+\frac{\Delta z}{\Delta x}
+=
+f_u u_x
++
+f_v v_x
++
+o(1).
+\]
+
+Letting \(\Delta x\to0\),
+\[
+z_x
+=
+f_u u_x
++
+f_v v_x.
+\]
+
+Similarly,
+\[
+z_y
+=
+f_u u_y
++
+f_v v_y.
+\]
+
+This derivation explains why each path of dependence contributes one
+product of derivatives.
+
+\section{Chain Rule with One Intermediate Variable}
+
+If
+\[
+z=f(u),
+\qquad
+u=u(x,y),
+\]
+then
+\[
+z_x=f'(u)u_x,
+\qquad
+z_y=f'(u)u_y.
+\]
+
+\begin{example}
+Let
+\[
+z=\log(x^2+y^2).
+\]
+
+Set
+\[
+u=x^2+y^2.
+\]
+Then
+\[
+z=\log u.
+\]
+
+Hence
+\[
+z_x
+=
+\frac1u(2x)
+=
+\frac{2x}{x^2+y^2},
+\]
+and
+\[
+z_y
+=
+\frac{2y}{x^2+y^2}.
+\]
+\end{example}
+
+\section{Several Intermediate Variables}
+
+The same principle extends immediately. If
+\[
+z=f(u_1,u_2,\ldots,u_m)
+\]
+and each \(u_i\) depends on \(x\), then
+\[
+\frac{\partial z}{\partial x}
+=
+\sum_{i=1}^m
+\frac{\partial z}{\partial u_i}
+\frac{\partial u_i}{\partial x}.
+\]
+
+The formula simply adds the contributions from all dependency paths.
+
+\section{Additional Detailed Solved Problems}
+
+\subsection*{Problem 3. Two intermediate variables}
+
+Let
+\[
+z=u^2v+e^v,
+\qquad
+u=x^2+y,
+\qquad
+v=x-y^2.
+\]
+
+First,
+\[
+z_u=2uv,
+\qquad
+z_v=u^2+e^v.
+\]
+
+Also,
+\[
+u_x=2x,\qquad v_x=1.
+\]
+
+Therefore
+\[
+\begin{aligned}
+z_x
+&=
+z_u u_x+z_v v_x\\
+&=
+(2uv)(2x)+(u^2+e^v)\\
+&=
+4xuv+u^2+e^v.
+\end{aligned}
+\]
+
+For \(y\),
+\[
+u_y=1,\qquad v_y=-2y.
+\]
+
+Hence
+\[
+\begin{aligned}
+z_y
+&=
+z_u u_y+z_v v_y\\
+&=
+2uv-2y(u^2+e^v).
+\end{aligned}
+\]
+
+Finally substitute
+\[
+u=x^2+y,\qquad v=x-y^2
+\]
+if an answer entirely in \(x,y\) is required.
+
+\subsection*{Problem 4. Parameterized motion}
+
+Let
+\[
+z=x^2+xy+y^2,
+\qquad
+x=e^t,
+\qquad
+y=t^2.
+\]
+
+Then
+\[
+z_x=2x+y,
+\qquad
+z_y=x+2y.
+\]
+
+Also,
+\[
+\frac{dx}{dt}=e^t,
+\qquad
+\frac{dy}{dt}=2t.
+\]
+
+Therefore
+\[
+\frac{dz}{dt}
+=
+(2x+y)e^t
++
+(x+2y)2t.
+\]
+
+Substituting
+\[
+x=e^t,\qquad y=t^2,
+\]
+gives the derivative entirely as a function of \(t\).
+
+
+\section{Detailed Solved Problems}
+
+\subsection*{Problem 1}
+Let
+\[
+z=e^{uv},
+\qquad
+u=x+y,
+\qquad
+v=x-y.
+\]
+Then
+\[
+z_u=ve^{uv},
+\qquad
+z_v=ue^{uv}.
+\]
+Thus
+\[
+z_x
+=
+ve^{uv}+ue^{uv}
+=
+(u+v)e^{uv}
+=
+2xe^{uv}.
+\]
+Similarly,
+\[
+z_y
+=
+ve^{uv}-ue^{uv}
+=
+(v-u)e^{uv}
+=
+-2ye^{uv}.
+\]
+
+\subsection*{Problem 2}
+Let
+\[
+z=\log(u^2+v^2),
+\quad
+u=x^2-y^2,
+\quad
+v=2xy.
+\]
+Then
+\[
+z_u=\frac{2u}{u^2+v^2},
+\qquad
+z_v=\frac{2v}{u^2+v^2}.
+\]
+Also
+\[
+u_x=2x,\quad v_x=2y,
+\qquad
+u_y=-2y,\quad v_y=2x.
+\]
+Hence
+\[
+z_x
+=
+\frac{4xu+4yv}{u^2+v^2},
+\]
+and
+\[
+z_y
+=
+\frac{-4yu+4xv}{u^2+v^2}.
+\]
+
+\section{Graded Practice Problems}
+\begin{enumerate}
+\item If
+\[
+z=u^3+v^3,\quad u=x+y,\quad v=x-y,
+\]
+find \(z_x,z_y\).
+\item If
+\[
+z=e^{xy},\quad x=t^2,\quad y=\cos t,
+\]
+find \(dz/dt\).
+\item Draw a dependency diagram and derive the chain rule when
+\(z=f(u,v,w)\) and each of \(u,v,w\) depends on \(x,y\).
+\end{enumerate}
+
+% ============================================================
+\chapter{Change of Variables and Jacobians}
+% ============================================================
+
+\section*{Learning Objectives}
+Students should be able to:
+\begin{itemize}
+\item understand why variables are changed;
+\item calculate a Jacobian determinant;
+\item derive transformation formulae for first derivatives;
+\item handle a linear transformation;
+\item transform derivatives between Cartesian and polar coordinates.
+\end{itemize}
+
+\section*{Historical Motivation}
+
+Changing coordinates can reveal the geometry hidden in an algebraic
+problem. Circular symmetry suggests polar coordinates, while other
+geometries suggest other transformations. Jacobi's determinant gives a
+systematic way to describe how variables change together.
+
+\section{Change of Independent Variables}
+
+Suppose
+\[
+u=u(x,y),
+\qquad
+v=v(x,y).
+\]
+If the transformation is invertible, we may also write
+\[
+x=x(u,v),
+\qquad
+y=y(u,v).
+\]
+
+A function
+\[
+z=f(x,y)
+\]
+may then be regarded as
+\[
+z=F(u,v).
+\]
+
+\section{The Jacobian}
+
+\begin{definition}
+The Jacobian of \(u,v\) with respect to \(x,y\) is
+\[
+\frac{\partial(u,v)}{\partial(x,y)}
+=
+\begin{vmatrix}
+u_x&u_y\\
+v_x&v_y
+\end{vmatrix}
+=
+u_xv_y-u_yv_x.
+\]
+\end{definition}
+
+A nonzero Jacobian is the elementary signal that the transformation is
+locally invertible.
+
+\section{A Linear Transformation}
+
+Let
+\[
+u=x+y,
+\qquad
+v=x-y.
+\]
+Then
+\[
+u_x=1,\quad u_y=1,
+\qquad
+v_x=1,\quad v_y=-1.
+\]
+Therefore
+\[
+\frac{\partial(u,v)}{\partial(x,y)}
+=
+\begin{vmatrix}
+1&1\\
+1&-1
+\end{vmatrix}
+=-2.
+\]
+
+Solving the equations,
+\[
+x=\frac{u+v}{2},
+\qquad
+y=\frac{u-v}{2}.
+\]
+
+\section{Transformation of Differential Operators}
+
+If \(z=F(u,v)\), then
+\[
+z_x=F_u u_x+F_v v_x.
+\]
+Symbolically,
+\[
+\frac{\partial}{\partial x}
+=
+u_x\frac{\partial}{\partial u}
++
+v_x\frac{\partial}{\partial v}.
+\]
+Similarly,
+\[
+\frac{\partial}{\partial y}
+=
+u_y\frac{\partial}{\partial u}
++
+v_y\frac{\partial}{\partial v}.
+\]
+
+For
+\[
+u=x+y,\qquad v=x-y,
+\]
+we obtain
+\[
+\frac{\partial}{\partial x}
+=
+\frac{\partial}{\partial u}
++
+\frac{\partial}{\partial v},
+\]
+and
+\[
+\frac{\partial}{\partial y}
+=
+\frac{\partial}{\partial u}
+-
+\frac{\partial}{\partial v}.
+\]
+
+\section{A Second-Order Application}
+
+Using the preceding formulas,
+\[
+z_{xx}
+=
+z_{uu}+2z_{uv}+z_{vv},
+\]
+and
+\[
+z_{yy}
+=
+z_{uu}-2z_{uv}+z_{vv}.
+\]
+Subtracting,
+\[
+z_{xx}-z_{yy}=4z_{uv}.
+\]
+
+\section{Reciprocal Jacobian}
+
+If the transformation is invertible and
+\[
+J=
+\frac{\partial(u,v)}{\partial(x,y)}
+\ne0,
+\]
+then
+\[
+\frac{\partial(x,y)}{\partial(u,v)}
+=
+\frac1J.
+\]
+
+For the linear transformation above,
+\[
+\frac{\partial(x,y)}{\partial(u,v)}
+=
+-\frac12,
+\]
+which is indeed the reciprocal of \(-2\).
+
+\section{Polar Coordinates}
+
+Let
+\[
+x=r\cos\theta,
+\qquad
+y=r\sin\theta.
+\]
+If
+\[
+F(r,\theta)=f(x,y),
+\]
+then by the chain rule
+\[
+F_r
+=
+f_x\cos\theta+f_y\sin\theta.
+\]
+
+Also,
+\[
+x_\theta=-r\sin\theta,
+\qquad
+y_\theta=r\cos\theta,
+\]
+so
+\[
+F_\theta
+=
+-rf_x\sin\theta
++
+rf_y\cos\theta.
+\]
+
+Solving these two equations for \(f_x,f_y\),
+\[
+f_x
+=
+F_r\cos\theta
+-
+\frac{\sin\theta}{r}F_\theta,
+\]
+\[
+f_y
+=
+F_r\sin\theta
++
+\frac{\cos\theta}{r}F_\theta.
+\]
+
+\section{Jacobian of Polar Coordinates}
+
+For
+\[
+x=r\cos\theta,\qquad y=r\sin\theta,
+\]
+\[
+x_r=\cos\theta,
+\quad
+x_\theta=-r\sin\theta,
+\]
+\[
+y_r=\sin\theta,
+\quad
+y_\theta=r\cos\theta.
+\]
+Thus
+\[
+\begin{aligned}
+\frac{\partial(x,y)}{\partial(r,\theta)}
+&=
+\begin{vmatrix}
+\cos\theta&-r\sin\theta\\
+\sin\theta&r\cos\theta
+\end{vmatrix}\\
+&=
+r\cos^2\theta+r\sin^2\theta\\
+&=r.
+\end{aligned}
+\]
+
+
+\section{General Change-of-Variable Formulae}
+
+Suppose
+\[
+u=u(x,y),
+\qquad
+v=v(x,y),
+\]
+and
+\[
+z=F(u,v).
+\]
+
+Then
+\[
+z_x=F_u u_x+F_v v_x,
+\]
+and
+\[
+z_y=F_u u_y+F_v v_y.
+\]
+
+In matrix form,
+\[
+\begin{pmatrix}
+z_x\\
+z_y
+\end{pmatrix}
+=
+\begin{pmatrix}
+u_x&v_x\\
+u_y&v_y
+\end{pmatrix}
+\begin{pmatrix}
+F_u\\
+F_v
+\end{pmatrix}.
+\]
+
+The determinant
+\[
+J
+=
+\frac{\partial(u,v)}{\partial(x,y)}
+=
+u_xv_y-u_yv_x
+\]
+measures whether the transformation is locally invertible.
+
+If
+\[
+J\ne0,
+\]
+we can solve locally for \(x,y\) in terms of \(u,v\).
+
+\section{Jacobians and Local Area Scaling}
+
+Besides its algebraic role, the absolute value
+\[
+|J|
+\]
+measures the local area-scaling factor of the transformation.
+
+For example, for
+\[
+u=2x,\qquad v=3y,
+\]
+we have
+\[
+J
+=
+\begin{vmatrix}
+2&0\\
+0&3
+\end{vmatrix}
+=6.
+\]
+
+A small rectangle of area \(\Delta x\,\Delta y\) is therefore mapped
+approximately to a rectangle of area
+\[
+6\,\Delta x\,\Delta y.
+\]
+
+This geometric interpretation becomes especially important later in
+multiple integration.
+
+\section{A Useful Linear Change of Variables}
+
+Let
+\[
+u=x+y,\qquad v=x-y.
+\]
+
+Then
+\[
+x=\frac{u+v}{2},
+\qquad
+y=\frac{u-v}{2}.
+\]
+
+The derivative operators transform as
+\[
+\partial_x=\partial_u+\partial_v,
+\]
+and
+\[
+\partial_y=\partial_u-\partial_v.
+\]
+
+Hence
+\[
+\partial_{xx}
+=
+\partial_{uu}
++
+2\partial_{uv}
++
+\partial_{vv},
+\]
+while
+\[
+\partial_{yy}
+=
+\partial_{uu}
+-
+2\partial_{uv}
++
+\partial_{vv}.
+\]
+
+Therefore
+\[
+\partial_{xx}-\partial_{yy}
+=
+4\partial_{uv}.
+\]
+
+This is a standard example of how an appropriate change of variables
+can simplify a second-order differential expression.
+
+\section{More Detail on Polar Coordinates}
+
+With
+\[
+x=r\cos\theta,
+\qquad
+y=r\sin\theta,
+\]
+we have
+\[
+r=\sqrt{x^2+y^2},
+\qquad
+\theta=\tan^{-1}\frac{y}{x}
+\]
+locally.
+
+The Jacobian is
+\[
+\frac{\partial(x,y)}{\partial(r,\theta)}
+=
+\begin{vmatrix}
+\cos\theta&-r\sin\theta\\
+\sin\theta&r\cos\theta
+\end{vmatrix}
+=r.
+\]
+
+Thus, away from \(r=0\),
+\[
+\frac{\partial(r,\theta)}{\partial(x,y)}
+=
+\frac1r.
+\]
+
+From
+\[
+F(r,\theta)
+=
+f(r\cos\theta,r\sin\theta),
+\]
+we obtain
+\[
+F_r=f_x\cos\theta+f_y\sin\theta,
+\]
+and
+\[
+F_\theta
+=
+-rf_x\sin\theta
++
+rf_y\cos\theta.
+\]
+
+Solving,
+\[
+f_x
+=
+F_r\cos\theta
+-
+\frac{\sin\theta}{r}F_\theta,
+\]
+and
+\[
+f_y
+=
+F_r\sin\theta
++
+\frac{\cos\theta}{r}F_\theta.
+\]
+
+\section{Additional Detailed Solved Problems}
+
+\subsection*{Problem 3. Reciprocal Jacobian}
+
+Let
+\[
+u=x+y,\qquad v=x-y.
+\]
+
+We already found
+\[
+\frac{\partial(u,v)}{\partial(x,y)}
+=-2.
+\]
+
+From
+\[
+x=\frac{u+v}{2},
+\qquad
+y=\frac{u-v}{2},
+\]
+we have
+\[
+x_u=\frac12,\quad x_v=\frac12,
+\]
+and
+\[
+y_u=\frac12,\quad y_v=-\frac12.
+\]
+
+Therefore
+\[
+\frac{\partial(x,y)}{\partial(u,v)}
+=
+\begin{vmatrix}
+1/2&1/2\\
+1/2&-1/2
+\end{vmatrix}
+=
+-\frac12.
+\]
+
+Thus
+\[
+\frac{\partial(u,v)}{\partial(x,y)}
+\frac{\partial(x,y)}{\partial(u,v)}
+=
+(-2)\left(-\frac12\right)
+=1.
+\]
+
+\subsection*{Problem 4. A nonlinear Jacobian}
+
+Let
+\[
+u=x^2-y^2,
+\qquad
+v=2xy.
+\]
+
+Then
+\[
+u_x=2x,\quad u_y=-2y,
+\]
+and
+\[
+v_x=2y,\quad v_y=2x.
+\]
+
+Therefore
+\[
+\begin{aligned}
+\frac{\partial(u,v)}{\partial(x,y)}
+&=
+\begin{vmatrix}
+2x&-2y\\
+2y&2x
+\end{vmatrix}\\
+&=
+4x^2+4y^2\\
+&=
+4(x^2+y^2).
+\end{aligned}
+\]
+
+The transformation fails to be locally invertible only at the origin,
+where the Jacobian vanishes.
+
+
+\section{Detailed Solved Problems}
+
+\subsection*{Problem 1. A quadratic transformation}
+For
+\[
+u=x^2-y^2,
+\qquad
+v=2xy,
+\]
+find the Jacobian.
+
+We have
+\[
+u_x=2x,\quad u_y=-2y,
+\]
+\[
+v_x=2y,\quad v_y=2x.
+\]
+Therefore
+\[
+\begin{aligned}
+\frac{\partial(u,v)}{\partial(x,y)}
+&=
+\begin{vmatrix}
+2x&-2y\\
+2y&2x
+\end{vmatrix}\\
+&=
+4x^2+4y^2\\
+&=
+4(x^2+y^2).
+\end{aligned}
+\]
+
+\subsection*{Problem 2. Transform a second-order expression}
+Let
+\[
+u=x+y,\qquad v=x-y.
+\]
+Then
+\[
+\partial_x=\partial_u+\partial_v,
+\qquad
+\partial_y=\partial_u-\partial_v.
+\]
+Hence
+\[
+z_{xx}
+=
+z_{uu}+2z_{uv}+z_{vv},
+\]
+\[
+z_{yy}
+=
+z_{uu}-2z_{uv}+z_{vv}.
+\]
+Therefore
+\[
+z_{xx}-z_{yy}=4z_{uv}.
+\]
+
+\section{Graded Practice Problems}
+\begin{enumerate}
+\item Find
+\[
+\frac{\partial(u,v)}{\partial(x,y)}
+\]
+for
+\[
+u=3x+2y,\qquad v=x-y.
+\]
+\item If
+\[
+u=xy,\qquad v=x/y,
+\]
+find the Jacobian.
+\item Verify the reciprocal Jacobian relation for
+\[
+u=x+y,\qquad v=x-y.
+\]
+\item Derive the polar formulas for \(f_x,f_y\).
+\item Find the Jacobian of
+\[
+x=r\cos\theta,\qquad y=r\sin\theta.
+\]
+\end{enumerate}
+
+% ============================================================
+\chapter{Homogeneous Functions and Euler's Theorem}
+% ============================================================
+
+\section*{Learning Objectives}
+Students should be able to:
+\begin{itemize}
+\item identify homogeneous functions and their degree;
+\item state and prove Euler's theorem for two variables;
+\item derive first- and second-order consequences;
+\item apply Euler's theorem to composite functions efficiently.
+\end{itemize}
+
+\section*{Historical Motivation}
+
+Homogeneous functions encode scaling. If all independent variables are
+multiplied by the same factor, the output changes by a predictable
+power of that factor. Such functions appear throughout geometry,
+mechanics, thermodynamics and mathematical economics.
+
+\section{Definition}
+
+\begin{definition}
+A function \(u=f(x,y)\) is homogeneous of degree \(n\) if
+\[
+f(tx,ty)=t^n f(x,y)
+\]
+for all suitable \(t>0\).
+\end{definition}
+
+\begin{example}
+For
+\[
+f(x,y)=x^2+xy+y^2,
+\]
+\[
+f(tx,ty)
+=
+t^2(x^2+xy+y^2).
+\]
+Hence \(f\) is homogeneous of degree \(2\).
+\end{example}
+
+\begin{example}
+For
+\[
+f(x,y)=\frac{x+y}{x-y},
+\]
+\[
+f(tx,ty)=f(x,y).
+\]
+Hence the degree is \(0\).
+\end{example}
+
+\section{Euler's Theorem}
+
+\begin{theorem}[Euler's theorem for two variables]
+Let
+\[
+u=f(x,y)
+\]
+be differentiable and homogeneous of degree \(n\). Then
+\[
+x\pd{u}{x}
++
+y\pd{u}{y}
+=
+nu.
+\]
+\end{theorem}
+
+\begin{proof}
+Since \(u=f(x,y)\) is homogeneous of degree \(n\),
+\[
+f(tx,ty)=t^n f(x,y).
+\]
+
+Treat \(x,y\) as constants and differentiate both sides with respect
+to \(t\).
+
+By the chain rule,
+\[
+\begin{aligned}
+\frac{d}{dt}f(tx,ty)
+&=
+f_x(tx,ty)\frac{d(tx)}{dt}
++
+f_y(tx,ty)\frac{d(ty)}{dt}\\
+&=
+x f_x(tx,ty)
++
+y f_y(tx,ty).
+\end{aligned}
+\]
+
+On the right,
+\[
+\frac{d}{dt}
+[t^n f(x,y)]
+=
+nt^{n-1}f(x,y).
+\]
+
+Therefore
+\[
+x f_x(tx,ty)
++
+y f_y(tx,ty)
+=
+nt^{n-1}f(x,y).
+\]
+
+Put \(t=1\):
+\[
+x f_x(x,y)+y f_y(x,y)=nf(x,y).
+\]
+Since \(u=f(x,y)\),
+\[
+xu_x+yu_y=nu.
+\]
+\end{proof}
+
+\section{First Differential Consequences}
+
+Starting with
+\[
+xu_x+yu_y=nu,
+\]
+differentiate with respect to \(x\):
+\[
+u_x+xu_{xx}+yu_{yx}=nu_x.
+\]
+Assuming equality of the mixed derivatives under the appropriate
+hypotheses,
+\[
+xu_{xx}+yu_{xy}=(n-1)u_x.
+\]
+
+Similarly, differentiation with respect to \(y\) gives
+\[
+xu_{xy}+yu_{yy}=(n-1)u_y.
+\]
+
+\section{Second-Order Euler Identity}
+
+Multiply
+\[
+xu_{xx}+yu_{xy}=(n-1)u_x
+\]
+by \(x\):
+\[
+x^2u_{xx}+xyu_{xy}=(n-1)xu_x.
+\]
+
+Multiply
+\[
+xu_{xy}+yu_{yy}=(n-1)u_y
+\]
+by \(y\):
+\[
+xyu_{xy}+y^2u_{yy}=(n-1)yu_y.
+\]
+
+Add:
+\[
+x^2u_{xx}
++
+2xyu_{xy}
++
+y^2u_{yy}
+=
+(n-1)(xu_x+yu_y).
+\]
+
+By Euler's theorem,
+\[
+xu_x+yu_y=nu.
+\]
+Hence
+\[
+x^2u_{xx}
++
+2xyu_{xy}
++
+y^2u_{yy}
+=
+n(n-1)u.
+\]
+
+\section{Composite Form of Euler's Theorem}
+
+Suppose \(v(x,y)\) is homogeneous of degree \(n\) and
+\[
+u=\phi(v).
+\]
+Then
+\[
+u_x=\phi'(v)v_x,
+\qquad
+u_y=\phi'(v)v_y.
+\]
+Therefore
+\[
+\begin{aligned}
+xu_x+yu_y
+&=
+\phi'(v)(xv_x+yv_y)\\
+&=
+nv\phi'(v).
+\end{aligned}
+\]
+
+This simple observation often saves a large amount of direct
+differentiation.
+
+
+\section{Recognizing Homogeneous Functions Efficiently}
+
+A polynomial is homogeneous if every term has the same total degree.
+
+For example,
+\[
+x^3+2x^2y-xy^2+5y^3
+\]
+is homogeneous of degree \(3\), because every monomial has total degree
+\(3\).
+
+A quotient
+\[
+\frac{P(x,y)}{Q(x,y)}
+\]
+of homogeneous functions of degrees \(p\) and \(q\) is homogeneous of
+degree
+\[
+p-q,
+\]
+provided the quotient is defined.
+
+Thus
+\[
+\frac{x^3+y^3}{x+y}
+\]
+is homogeneous of degree
+\[
+3-1=2.
+\]
+
+Similarly,
+\[
+(x^2+y^2)^{3/2}
+\]
+is homogeneous of degree \(3\), because
+\[
+[(tx)^2+(ty)^2]^{3/2}
+=
+t^3(x^2+y^2)^{3/2}
+\]
+for \(t>0\).
+
+\section{Euler's Theorem as a Scaling Law}
+
+The identity
+\[
+xu_x+yu_y=nu
+\]
+has a simple interpretation.
+
+The vector
+\[
+(x,y)
+\]
+points radially away from the origin. Euler's theorem measures the
+change of a homogeneous function when both variables are scaled
+simultaneously.
+
+If
+\[
+u(tx,ty)=t^nu(x,y),
+\]
+then increasing the scale \(t\) changes \(u\) at a rate determined by
+its degree \(n\). Euler's differential identity is exactly the
+infinitesimal form of that scaling law.
+
+\section{More Composite Applications}
+
+Suppose \(v(x,y)\) is homogeneous of degree \(n\) and
+\[
+u=\phi(v).
+\]
+
+Then
+\[
+u_x=\phi'(v)v_x,
+\qquad
+u_y=\phi'(v)v_y.
+\]
+
+Therefore
+\[
+xu_x+yu_y
+=
+\phi'(v)(xv_x+yv_y)
+=
+nv\phi'(v).
+\]
+
+This single formula generates many useful special cases.
+
+If
+\[
+u=\log v,
+\]
+then
+\[
+\phi'(v)=\frac1v,
+\]
+so
+\[
+xu_x+yu_y=n.
+\]
+
+If
+\[
+u=e^v,
+\]
+then
+\[
+xu_x+yu_y=nve^v.
+\]
+
+If
+\[
+u=\sin^{-1}v,
+\]
+then
+\[
+xu_x+yu_y
+=
+\frac{nv}{\sqrt{1-v^2}}.
+\]
+
+Since \(v=\sin u\),
+\[
+xu_x+yu_y
+=
+n\tan u.
+\]
+
+If
+\[
+u=\tan^{-1}v,
+\]
+then
+\[
+xu_x+yu_y
+=
+\frac{nv}{1+v^2}.
+\]
+
+Since \(v=\tan u\),
+\[
+xu_x+yu_y
+=
+n\sin u\cos u
+=
+\frac n2\sin2u.
+\]
+
+\section{A Third-Order Pattern}
+
+Euler's theorem can be differentiated repeatedly.
+
+For a homogeneous function \(u\) of degree \(n\),
+\[
+xu_x+yu_y=nu.
+\]
+
+Differentiating once lowers the degree by one in the corresponding
+derivative. Thus \(u_x\) and \(u_y\), when nonzero, are homogeneous of
+degree \(n-1\).
+
+Differentiating twice leads to the second-order identity
+\[
+x^2u_{xx}
++
+2xyu_{xy}
++
+y^2u_{yy}
+=
+n(n-1)u.
+\]
+
+The pattern suggests that repeated radial differentiation produces the
+falling factorial
+\[
+n(n-1)(n-2)\cdots.
+\]
+
+This observation is useful when higher-order Euler identities are
+encountered.
+
+\section{Additional Detailed Solved Problems}
+
+\subsection*{Problem 5. Verify Euler's theorem directly}
+
+Let
+\[
+u=(x^2+y^2)^2.
+\]
+
+Since
+\[
+u(tx,ty)
+=
+[t^2(x^2+y^2)]^2
+=
+t^4u(x,y),
+\]
+the function is homogeneous of degree \(4\).
+
+Now
+\[
+u_x
+=
+4x(x^2+y^2),
+\]
+and
+\[
+u_y
+=
+4y(x^2+y^2).
+\]
+
+Therefore
+\[
+\begin{aligned}
+xu_x+yu_y
+&=
+4x^2(x^2+y^2)
++
+4y^2(x^2+y^2)\\
+&=
+4(x^2+y^2)^2\\
+&=
+4u.
+\end{aligned}
+\]
+
+This agrees with Euler's theorem.
+
+\subsection*{Problem 6. Logarithm of a homogeneous function}
+
+Let
+\[
+u
+=
+\log\left(\frac{x^2+y^2}{x+y}\right).
+\]
+
+The function
+\[
+v=
+\frac{x^2+y^2}{x+y}
+\]
+is homogeneous of degree
+\[
+2-1=1.
+\]
+
+Since
+\[
+u=\log v,
+\]
+the composite Euler formula gives
+\[
+xu_x+yu_y=1.
+\]
+
+This avoids a lengthy direct differentiation.
+
+\subsection*{Problem 7. Second-order identity}
+
+If \(u\) is homogeneous of degree \(5\), simplify
+\[
+x^2u_{xx}+2xyu_{xy}+y^2u_{yy}.
+\]
+
+By the second-order Euler identity,
+\[
+x^2u_{xx}+2xyu_{xy}+y^2u_{yy}
+=
+n(n-1)u.
+\]
+
+Putting \(n=5\),
+\[
+x^2u_{xx}+2xyu_{xy}+y^2u_{yy}
+=
+20u.
+\]
+
+
+\section{Detailed Solved Problems}
+
+\subsection*{Problem 1 (2025). Euler's theorem}
+Let \(u=f(x,y)\) be homogeneous of degree \(n\). Show that
+\[
+xu_x+yu_y=nu.
+\]
+
+Since
+\[
+f(tx,ty)=t^n f(x,y),
+\]
+differentiate with respect to \(t\):
+\[
+x f_x(tx,ty)+y f_y(tx,ty)
+=
+nt^{n-1}f(x,y).
+\]
+Putting \(t=1\) gives
+\[
+xu_x+yu_y=nu.
+\]
+
+\subsection*{Problem 2 (2024). A trigonometric application}
+Let
+\[
+u
+=
+\tan^{-1}
+\left(
+\frac{x^3+y^3}{x+y}
+\right).
+\]
+Show that
+\[
+xu_x+yu_y=\sin2u.
+\]
+
+Set
+\[
+v=\frac{x^3+y^3}{x+y}.
+\]
+Since
+\[
+x^3+y^3=(x+y)(x^2-xy+y^2),
+\]
+we have
+\[
+v=x^2-xy+y^2,
+\]
+where the original expression is defined. Thus \(v\) is homogeneous
+of degree \(2\).
+
+Euler's theorem gives
+\[
+xv_x+yv_y=2v.
+\]
+
+Now
+\[
+u=\tan^{-1}v,
+\]
+so
+\[
+u_x=\frac{v_x}{1+v^2},
+\qquad
+u_y=\frac{v_y}{1+v^2}.
+\]
+Therefore
+\[
+\begin{aligned}
+xu_x+yu_y
+&=
+\frac{xv_x+yv_y}{1+v^2}\\
+&=
+\frac{2v}{1+v^2}.
+\end{aligned}
+\]
+
+Since
+\[
+v=\tan u,
+\]
+\[
+\begin{aligned}
+xu_x+yu_y
+&=
+\frac{2\tan u}{1+\tan^2u}\\
+&=
+2\tan u\cos^2u\\
+&=
+2\sin u\cos u\\
+&=
+\sin2u.
+\end{aligned}
+\]
+
+\subsection*{Problem 3 (2023). A differentiated Euler identity}
+Suppose \(u(x,y)\) is homogeneous of degree \(n\). Simplify
+\[
+xu_{xy}+yu_{yy}.
+\]
+
+Euler's theorem gives
+\[
+xu_x+yu_y=nu.
+\]
+Differentiate with respect to \(y\):
+\[
+xu_{xy}+u_y+yu_{yy}=nu_y.
+\]
+Hence
+\[
+xu_{xy}+yu_{yy}=(n-1)u_y.
+\]
+
+\subsection*{Problem 4. Logarithm of a homogeneous function}
+Suppose \(v(x,y)\) is homogeneous of degree \(n\), and
+\[
+u=\log v.
+\]
+Then
+\[
+u_x=\frac{v_x}{v},
+\qquad
+u_y=\frac{v_y}{v}.
+\]
+Thus
+\[
+xu_x+yu_y
+=
+\frac{xv_x+yv_y}{v}
+=
+\frac{nv}{v}
+=
+n.
+\]
+
+\section{Graded Practice Problems}
+
+\subsection*{Level I}
+\begin{enumerate}
+\item Determine the degree of
+\[
+x^3+x^2y+xy^2+y^3.
+\]
+\item Determine the degree of
+\[
+\frac{x^2+y^2}{x+y}.
+\]
+\item Verify Euler's theorem for
+\[
+u=x^2+xy+y^2.
+\]
+\end{enumerate}
+
+\subsection*{Level II}
+\begin{enumerate}
+\item Verify Euler's theorem for
+\[
+u=(x^2+y^2)^{3/2}.
+\]
+\item If \(u\) is homogeneous of degree \(n\), prove
+\[
+xu_{xx}+yu_{xy}=(n-1)u_x.
+\]
+\item Derive
+\[
+x^2u_{xx}+2xyu_{xy}+y^2u_{yy}=n(n-1)u.
+\]
+\end{enumerate}
+
+\subsection*{Level III}
+\begin{enumerate}
+\item If \(v\) is homogeneous of degree \(n\) and \(u=\log v\),
+show that \(xu_x+yu_y=n\).
+\item If \(v\) is homogeneous of degree \(n\) and \(u=e^v\), show
+that
+\[
+xu_x+yu_y=nve^v.
+\]
+\item If \(v\) is homogeneous of degree \(n\) and
+\(u=\sin^{-1}v\), express \(xu_x+yu_y\) in terms of \(u\).
+\end{enumerate}
+
+% ============================================================
+\chapter{Integrated Review and Problem-Solving Guide}
+% ============================================================
+
+\section{How to Approach a Two-Variable Limit}
+
+When asked to examine
+\[
+\lim_{(x,y)\to(a,b)}f(x,y),
+\]
+use the following sequence.
+
+\begin{enumerate}
+\item Try direct substitution.
+\item If an indeterminate form occurs, simplify algebraically.
+\item If the point is the origin and \(x^2+y^2\) is present, consider
+polar coordinates.
+\item To prove nonexistence, test simple paths:
+\[
+x=0,\qquad y=0,\qquad y=mx.
+\]
+\item If these paths agree, do not conclude existence. Consider curved
+paths such as \(y=x^2\) when suggested by the algebra.
+\item To prove existence, use an estimate, the Squeeze Theorem, polar
+coordinates, or the \(\eps\)-\(\delta\) definition.
+\end{enumerate}
+
+\section{How to Test Differentiability}
+
+At \((a,b)\):
+
+\begin{enumerate}
+\item Check continuity first. A discontinuous function cannot be
+differentiable.
+\item Find \(f_x(a,b)\) and \(f_y(a,b)\).
+\item If \(f_x,f_y\) exist in a neighbourhood and are continuous at
+the point, differentiability follows.
+\item Otherwise test
+\[
+\frac{
+f(a+h,b+k)-f(a,b)-f_x(a,b)h-f_y(a,b)k
+}{
+\sqrt{h^2+k^2}
+}
+\to0.
+\]
+\end{enumerate}
+
+\section{Common Misconceptions}
+
+\begin{enumerate}
+\item Equal values along the coordinate axes do not prove a joint
+limit exists.
+\item Agreement along all straight lines still need not prove a limit
+exists.
+\item Equal repeated limits do not guarantee the joint limit.
+\item Existence of \(f_x,f_y\) does not imply continuity.
+\item Existence of \(f_x,f_y\) does not imply differentiability.
+\item Mixed partial derivatives are not automatically equal without
+suitable hypotheses.
+\item Euler's theorem applies only after homogeneity and its degree
+have been identified correctly.
+\item In a chain-rule problem, every path of dependence contributes a
+term.
+\end{enumerate}
+
+\section{Quick Reference}
+
+\subsection*{Joint limit}
+\[
+\lim_{(x,y)\to(a,b)}f(x,y)=L
+\]
+means: for every \(\eps>0\), there exists \(\delta>0\) such that
+\[
+0<\sqrt{(x-a)^2+(y-b)^2}<\delta
+\]
+implies
+\[
+\abs{f(x,y)-L}<\eps.
+\]
+
+\subsection*{Continuity}
+\[
+f\text{ continuous at }(a,b)
+\iff
+\lim_{(x,y)\to(a,b)}f(x,y)=f(a,b).
+\]
+
+\subsection*{Partial derivatives}
+\[
+f_x(a,b)
+=
+\lim_{h\to0}
+\frac{f(a+h,b)-f(a,b)}{h},
+\]
+\[
+f_y(a,b)
+=
+\lim_{k\to0}
+\frac{f(a,b+k)-f(a,b)}{k}.
+\]
+
+\subsection*{Differentiability}
+\[
+f(a+h,b+k)-f(a,b)
+=
+f_x(a,b)h+f_y(a,b)k
++
+o(\sqrt{h^2+k^2}).
+\]
+
+\subsection*{Tangent plane}
+\[
+z=f(a,b)+f_x(a,b)(x-a)+f_y(a,b)(y-b).
+\]
+
+\subsection*{Chain rule}
+If
+\[
+z=f(u,v),\quad u=u(x,y),\quad v=v(x,y),
+\]
+then
+\[
+z_x=f_u u_x+f_v v_x,
+\qquad
+z_y=f_u u_y+f_v v_y.
+\]
+
+\subsection*{Jacobian}
+\[
+\frac{\partial(u,v)}{\partial(x,y)}
+=
+\begin{vmatrix}
+u_x&u_y\\
+v_x&v_y
+\end{vmatrix}.
+\]
+
+\subsection*{Euler's theorem}
+If \(u\) is homogeneous of degree \(n\),
+\[
+xu_x+yu_y=nu.
+\]
+Also,
+\[
+xu_{xx}+yu_{xy}=(n-1)u_x,
+\]
+\[
+xu_{xy}+yu_{yy}=(n-1)u_y,
+\]
+and
+\[
+x^2u_{xx}+2xyu_{xy}+y^2u_{yy}=n(n-1)u.
+\]
+
+
+\section{Conceptual Checklist}
+
+Before finishing the unit, a student should be able to answer the
+following questions without relying only on memorized formulas.
+
+\begin{enumerate}
+\item Why is a two-variable limit harder than a one-variable limit?
+\item Why can two different paths disprove a limit?
+\item Why can checking many paths still fail to prove a limit?
+\item What is the difference between a joint limit and a repeated
+limit?
+\item Why do partial derivatives examine only coordinate directions?
+\item Why does existence of partial derivatives not guarantee
+differentiability?
+\item What does the error term in the definition of differentiability
+mean?
+\item How is the tangent plane obtained from the linear part of the
+increment?
+\item Under what hypotheses may we interchange the order of mixed
+partial differentiation?
+\item How does the chain rule follow dependency paths?
+\item What does a Jacobian measure algebraically and geometrically?
+\item Why does Euler's theorem express the scaling property of a
+homogeneous function?
+\end{enumerate}
+
+\section{Further Comprehensive Problems}
+
+\begin{enumerate}
+\item Find and sketch the domain of
+\[
+f(x,y)=\log(9-x^2-y^2)+\sqrt{y-x^2}.
+\]
+
+\item Determine whether
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^2y^2}{x^4+y^4}
+\]
+exists.
+
+\item Show that
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^4y^2}{x^4+y^2}=0.
+\]
+
+\item Find both repeated limits of
+\[
+f(x,y)=\frac{x^2-y^2}{x^2+y^2}
+\]
+at the origin and compare them with the joint limit.
+
+\item Prove directly from the definition that
+\[
+f(x,y)=x^2+xy+y^2
+\]
+is differentiable at an arbitrary point \((a,b)\).
+
+\item Find the tangent plane to
+\[
+z=x^2e^y
+\]
+at \((1,0)\).
+
+\item For
+\[
+z=u^2+uv+v^2,\quad
+u=x+y,\quad
+v=x-y,
+\]
+find \(z_x,z_y\) by the chain rule and verify the result by first
+expressing \(z\) directly in terms of \(x,y\).
+
+\item For
+\[
+u=x^2-y^2,\qquad v=2xy,
+\]
+calculate the Jacobian and determine where the transformation can fail
+to be locally invertible.
+
+\item If \(u(x,y)\) is homogeneous of degree \(n\), derive
+\[
+xu_{xx}+yu_{xy}=(n-1)u_x
+\]
+and
+\[
+xu_{xy}+yu_{yy}=(n-1)u_y.
+\]
+
+\item Let
+\[
+v=x^2+xy+y^2,\qquad
+u=\tan^{-1}v.
+\]
+Use Euler's theorem to simplify
+\[
+xu_x+yu_y.
+\]
+\end{enumerate}
+
+
+\section{Comprehensive Review Problems}
+
+\begin{enumerate}
+\item Examine
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^2y}{x^4+y^2}.
+\]
+
+\item Determine both repeated limits of
+\[
+\frac{x-y}{x+y}.
+\]
+
+\item Find all first- and second-order partial derivatives of
+\[
+u=e^{xy}\sin(x+y).
+\]
+
+\item Determine whether
+\[
+f(x,y)=
+\begin{cases}
+\dfrac{x^2y}{x^2+y^2},&(x,y)\ne(0,0),\\
+0,&(0,0)
+\end{cases}
+\]
+is continuous at the origin.
+
+\item Explain why existence of both first partial derivatives at a
+point does not guarantee differentiability.
+
+\item Let
+\[
+z=u^2v,\quad u=x+y,\quad v=x-y.
+\]
+Find \(z_x,z_y\).
+
+\item For
+\[
+u=x^2-y^2,\qquad v=2xy,
+\]
+calculate
+\[
+\frac{\partial(u,v)}{\partial(x,y)}.
+\]
+
+\item If \(u\) is homogeneous of degree \(5\), simplify
+\[
+xu_x+yu_y.
+\]
+
+\item If \(u\) is homogeneous of degree \(n\), simplify
+\[
+xu_{xy}+yu_{yy}.
+\]
+
+\item If
+\[
+v=x^2+xy+y^2,
+\qquad
+u=\log v,
+\]
+find \(xu_x+yu_y\) without separately expanding both partial
+derivatives.
+\end{enumerate}
+
+\backmatter
+
+\chapter*{Final Perspective}
+\addcontentsline{toc}{chapter}{Final Perspective}
+
+The essential change from one-variable to multivariable calculus is
+geometrical. A point on a line has only two basic directions of
+approach, while a point in the plane can be approached along infinitely
+many curves. A one-variable derivative gives one local slope; a
+two-variable function has several directional rates of change.
+
+Partial derivatives isolate coordinate directions, while
+differentiability brings all small changes together through a single
+linear approximation. The chain rule explains how changes propagate
+through intermediate variables. Jacobians organize changes of
+coordinates, and Euler's theorem converts a scaling law into a
+differential identity.
+
+These ideas are foundational for vector calculus, partial differential
+equations, differential geometry, mathematical physics and applied
+mathematics.
+
+\end{document}
