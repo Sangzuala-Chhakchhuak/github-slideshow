@@ -651,6 +651,285 @@ z=\frac{x^2}{4}+y^2.
 \]
 
 
+
+\section{How a Two-Variable Function Differs from a One-Variable Function}
+
+For a function of one variable,
+\[
+y=f(x),
+\]
+a single input \(x\) determines the output. Its graph lies in the
+two-dimensional \(xy\)-plane.
+
+For a function of two variables,
+\[
+z=f(x,y),
+\]
+the input is an ordered pair \((x,y)\). Its graph therefore lies in
+three-dimensional space.
+
+This difference has several consequences.
+
+\begin{enumerate}
+\item A one-variable domain is usually an interval or a union of
+intervals. A two-variable domain is usually a \emph{region} in the
+plane.
+
+\item A one-variable graph is a curve. A two-variable graph is usually
+a surface.
+
+\item In one variable, approaching \(a\) essentially means approaching
+from the left or the right. In two variables, \((x,y)\) may approach
+\((a,b)\) through infinitely many paths.
+
+\item In one variable there is one ordinary derivative. In two
+variables we may vary \(x\) while keeping \(y\) fixed, or vary \(y\)
+while keeping \(x\) fixed. This produces partial derivatives.
+\end{enumerate}
+
+Thus the passage from one variable to two variables is not merely an
+increase in notation; it changes the geometry of the theory.
+
+\section{Examples from Geometry and Applications}
+
+\subsection*{Height of a surface}
+
+If the height of a hill above the \(xy\)-plane is given by
+\[
+z=100-2x^2-y^2,
+\]
+then each ground position \((x,y)\) determines exactly one height
+\(z\).
+
+\subsection*{Temperature on a plate}
+
+If
+\[
+T(x,y)=25+3x-2y,
+\]
+then \(T(x,y)\) represents the temperature at the point \((x,y)\) on a
+thin plate.
+
+\subsection*{Distance from the origin}
+
+The function
+\[
+f(x,y)=\sqrt{x^2+y^2}
+\]
+assigns to every point \((x,y)\) its Euclidean distance from the
+origin.
+
+\subsection*{Potential-type functions}
+
+Expressions such as
+\[
+V(x,y)=\frac{1}{\sqrt{x^2+y^2}}
+\]
+occur naturally in physical models. Its domain excludes the origin,
+because the denominator vanishes there.
+
+These examples show why domains should always be determined before
+performing differentiation or limit calculations.
+
+\section{A Systematic Strategy for Finding Domains}
+
+When the formula contains several restrictions, it is helpful to
+analyze them one at a time.
+
+\begin{enumerate}
+\item Write the restriction imposed by every denominator.
+
+\item Write the restriction imposed by every square root or other even
+root.
+
+\item Write the restriction imposed by every logarithm.
+
+\item Intersect all the resulting regions.
+
+\item Translate the final inequalities into a geometric description.
+\end{enumerate}
+
+\begin{example}
+Find the domain of
+\[
+f(x,y)
+=
+\frac{\log(y-x^2)}{\sqrt{9-x^2-y^2}}.
+\]
+
+For the logarithm,
+\[
+y-x^2>0,
+\]
+so
+\[
+y>x^2.
+\]
+
+For the denominator involving the square root, we need
+\[
+9-x^2-y^2>0,
+\]
+not merely \(\ge0\), because the square root appears in the
+denominator.
+
+Thus
+\[
+x^2+y^2<9.
+\]
+
+Therefore the domain is the part of the open disc
+\[
+x^2+y^2<9
+\]
+which lies strictly above the parabola
+\[
+y=x^2.
+\]
+\end{example}
+
+\section{Vertical Traces and Horizontal Traces}
+
+The graph of a surface can often be understood by taking cross-sections.
+
+For
+\[
+z=f(x,y),
+\]
+fixing \(y=b\) gives the vertical trace
+\[
+z=f(x,b).
+\]
+
+Fixing \(x=a\) gives
+\[
+z=f(a,y).
+\]
+
+Fixing \(z=c\) gives the horizontal trace or level curve
+\[
+f(x,y)=c.
+\]
+
+For example, let
+\[
+z=x^2+y^2.
+\]
+
+If \(y=0\),
+\[
+z=x^2,
+\]
+a parabola in the \(xz\)-plane.
+
+If \(x=0\),
+\[
+z=y^2,
+\]
+a parabola in the \(yz\)-plane.
+
+If \(z=c>0\),
+\[
+x^2+y^2=c,
+\]
+a circle.
+
+These three families of traces together make the shape of the
+paraboloid much easier to visualize.
+
+\section{More Detailed Problems on Domains and Level Curves}
+
+\subsection*{Problem 7. Domain involving a quotient and logarithm}
+
+Find the domain of
+\[
+f(x,y)
+=
+\log\left(\frac{x+y}{x-y}\right).
+\]
+
+The logarithm requires
+\[
+\frac{x+y}{x-y}>0.
+\]
+
+A quotient is positive when numerator and denominator have the same
+sign. Hence either
+\[
+x+y>0,\qquad x-y>0,
+\]
+or
+\[
+x+y<0,\qquad x-y<0.
+\]
+
+These two cases describe two opposite angular regions bounded by the
+lines
+\[
+y=x,\qquad y=-x.
+\]
+
+The boundary lines are excluded.
+
+\subsection*{Problem 8. A family of level curves}
+
+Let
+\[
+f(x,y)=xy.
+\]
+
+The level curves satisfy
+\[
+xy=c.
+\]
+
+If \(c\ne0\),
+\[
+y=\frac{c}{x},
+\]
+which gives a family of rectangular hyperbolas.
+
+If \(c=0\),
+\[
+xy=0,
+\]
+so the level set consists of the two coordinate axes.
+
+Thus a single surface can produce qualitatively different level sets
+for different values of \(c\).
+
+\subsection*{Problem 9. Comparing two surfaces}
+
+Compare
+\[
+z=x^2+y^2
+\]
+with
+\[
+z=x^2-y^2.
+\]
+
+For \(z=x^2+y^2\), both coordinate traces are upward-opening
+parabolas. Its level curves are circles, so the surface is an elliptic
+paraboloid.
+
+For \(z=x^2-y^2\), the trace \(y=0\) is
+\[
+z=x^2,
+\]
+while the trace \(x=0\) is
+\[
+z=-y^2.
+\]
+
+Thus one direction curves upward and the perpendicular direction
+curves downward. The surface is a saddle. Its level curves
+\[
+x^2-y^2=c
+\]
+are hyperbolas for \(c\ne0\).
+
+
 \section{Detailed Solved Problems}
 
 \subsection*{Problem 1. Domain of a square-root function}
@@ -1669,6 +1948,552 @@ whereas
 does not by itself prove existence.
 
 
+
+\section{Why the Two-Variable Limit Definition Uses Distance}
+
+In one variable,
+\[
+|x-a|<\delta
+\]
+means that \(x\) lies inside a small interval centered at \(a\).
+
+In two variables, the natural analogue is
+\[
+\sqrt{(x-a)^2+(y-b)^2}<\delta.
+\]
+
+This describes a disc centered at \((a,b)\). The condition is
+direction-free: it does not matter whether the point approaches from
+the left, right, above, below, diagonally, or along a curved path.
+
+That is exactly what a joint limit must control.
+
+\section{A Second Direct \(\eps\)-\(\delta\) Proof}
+
+Prove that
+\[
+\lim_{(x,y)\to(0,0)}(x^2+y^2)=0.
+\]
+
+Let \(\eps>0\) be given. We want
+\[
+|x^2+y^2|<\eps.
+\]
+
+But
+\[
+x^2+y^2
+=
+\left(\sqrt{x^2+y^2}\right)^2.
+\]
+
+Thus if
+\[
+\sqrt{x^2+y^2}<\delta,
+\]
+then
+\[
+x^2+y^2<\delta^2.
+\]
+
+Choose
+\[
+\delta=\sqrt{\eps}.
+\]
+
+Then
+\[
+0<\sqrt{x^2+y^2}<\delta
+\]
+implies
+\[
+|x^2+y^2|
+=
+x^2+y^2
+<
+\delta^2
+=
+\eps.
+\]
+
+Therefore
+\[
+\lim_{(x,y)\to(0,0)}(x^2+y^2)=0.
+\]
+
+\section{A More Involved \(\eps\)-\(\delta\) Proof}
+
+Prove
+\[
+\lim_{(x,y)\to(1,2)}(x+2y)=5.
+\]
+
+We have
+\[
+\begin{aligned}
+|(x+2y)-5|
+&=
+|(x-1)+2(y-2)|\\
+&\le
+|x-1|+2|y-2|.
+\end{aligned}
+\]
+
+Also,
+\[
+|x-1|
+\le
+\sqrt{(x-1)^2+(y-2)^2},
+\]
+and
+\[
+|y-2|
+\le
+\sqrt{(x-1)^2+(y-2)^2}.
+\]
+
+Therefore
+\[
+|(x+2y)-5|
+\le
+3\sqrt{(x-1)^2+(y-2)^2}.
+\]
+
+Choose
+\[
+\delta=\frac{\eps}{3}.
+\]
+
+Then
+\[
+0<
+\sqrt{(x-1)^2+(y-2)^2}
+<\delta
+\]
+implies
+\[
+|(x+2y)-5|<3\delta=\eps.
+\]
+
+Hence
+\[
+\lim_{(x,y)\to(1,2)}(x+2y)=5.
+\]
+
+\section{Limit Laws}
+
+The familiar algebra of one-variable limits remains valid.
+
+Suppose
+\[
+\lim_{(x,y)\to(a,b)}f(x,y)=L
+\]
+and
+\[
+\lim_{(x,y)\to(a,b)}g(x,y)=M.
+\]
+
+Then
+\[
+\lim(f+g)=L+M,
+\]
+\[
+\lim(f-g)=L-M,
+\]
+\[
+\lim(fg)=LM,
+\]
+and if \(M\ne0\),
+\[
+\lim\frac{f}{g}=\frac{L}{M}.
+\]
+
+Also, for a constant \(c\),
+\[
+\lim cf=cL.
+\]
+
+These laws allow direct substitution into polynomials and rational
+functions whenever the denominator does not vanish.
+
+\subsection*{Why direct substitution works for polynomials}
+
+A polynomial in \(x,y\) is built from constants, coordinate functions,
+sums and products. Since
+\[
+\lim_{(x,y)\to(a,b)}x=a,
+\qquad
+\lim_{(x,y)\to(a,b)}y=b,
+\]
+the limit laws imply
+\[
+\lim_{(x,y)\to(a,b)}P(x,y)=P(a,b)
+\]
+for every polynomial \(P\).
+
+\section{Path Tests: A Hierarchy of Increasing Strength}
+
+When nonexistence is suspected, try paths in stages.
+
+\subsection*{Stage 1: Coordinate axes}
+
+Try
+\[
+x=0
+\quad\text{and}\quad
+y=0.
+\]
+
+If these give different values, stop: the limit does not exist.
+
+\subsection*{Stage 2: Straight lines}
+
+Try
+\[
+y=mx.
+\]
+
+If the resulting limit depends on \(m\), the joint limit does not
+exist.
+
+\subsection*{Stage 3: Curved paths}
+
+If all straight lines give the same value, look at the powers in the
+formula and choose a balancing path such as
+\[
+y=kx^2,\qquad y=kx^3,\qquad x=ky^2.
+\]
+
+\subsection*{Stage 4: Uniform proof}
+
+If no path reveals a contradiction and the limit appears to exist,
+path checking should stop. Replace it by a uniform estimate or polar
+argument.
+
+This is an important change in strategy:
+\[
+\text{paths are best for disproving,}
+\]
+while
+\[
+\text{inequalities are usually better for proving existence.}
+\]
+
+\section{A General Polar-Coordinate Test}
+
+Suppose that after substituting
+\[
+x=r\cos\theta,\qquad y=r\sin\theta,
+\]
+a function becomes
+\[
+f(x,y)=r^\alpha \Phi(\theta),
+\]
+where
+\[
+|\Phi(\theta)|\le M
+\]
+for all \(\theta\).
+
+If \(\alpha>0\), then
+\[
+|f(x,y)|
+\le
+Mr^\alpha
+\to0.
+\]
+
+Hence
+\[
+\lim_{(x,y)\to(0,0)}f(x,y)=0.
+\]
+
+The boundedness of the angular factor is essential. Merely rewriting in
+polar coordinates is not itself a proof.
+
+\section{A Polar Example with a Nonzero Angular Dependence}
+
+Consider
+\[
+f(x,y)
+=
+\frac{x^2-y^2}{x^2+y^2}.
+\]
+
+With
+\[
+x=r\cos\theta,\qquad y=r\sin\theta,
+\]
+we get
+\[
+f
+=
+\frac{r^2(\cos^2\theta-\sin^2\theta)}{r^2}
+=
+\cos2\theta.
+\]
+
+The variable \(r\) disappears completely. Therefore the value depends
+on the direction \(\theta\).
+
+For \(\theta=0\),
+\[
+f=1,
+\]
+while for \(\theta=\frac{\pi}{2}\),
+\[
+f=-1.
+\]
+
+Hence the joint limit does not exist.
+
+This illustrates a useful principle: if polar conversion leaves a
+nonconstant angular factor with no vanishing power of \(r\), the limit
+is usually path-dependent.
+
+\section{Repeated Limits in Full Detail}
+
+Consider
+\[
+\lim_{x\to a}
+\left[
+\lim_{y\to b}f(x,y)
+\right].
+\]
+
+The first limit treats \(x\) as a fixed parameter. It produces a new
+one-variable function
+\[
+\phi(x)=\lim_{y\to b}f(x,y),
+\]
+provided this inner limit exists for \(x\) near \(a\).
+
+The outer limit is then
+\[
+\lim_{x\to a}\phi(x).
+\]
+
+The reverse repeated limit may be different because the order of the
+two limiting operations has changed.
+
+\begin{example}
+Let
+\[
+f(x,y)=\frac{x-y}{x+y}.
+\]
+
+For fixed \(x\ne0\),
+\[
+\lim_{y\to0}f(x,y)=1.
+\]
+Hence
+\[
+\lim_{x\to0}\lim_{y\to0}f(x,y)=1.
+\]
+
+For fixed \(y\ne0\),
+\[
+\lim_{x\to0}f(x,y)=-1.
+\]
+Hence
+\[
+\lim_{y\to0}\lim_{x\to0}f(x,y)=-1.
+\]
+
+Thus the order matters.
+\end{example}
+
+\section{Joint Limit versus Repeated Limits: Logical Summary}
+
+The relationships can be summarized as follows.
+
+\begin{enumerate}
+\item If the joint limit exists, then every path limit must agree with
+it.
+
+\item If two path limits disagree, the joint limit does not exist.
+
+\item If the two repeated limits disagree, the joint limit cannot
+exist.
+
+\item If the two repeated limits agree, the joint limit may still fail
+to exist.
+
+\item Agreement along every straight line is still not sufficient for
+existence.
+
+\item To establish existence, use a uniform argument that controls all
+directions simultaneously.
+\end{enumerate}
+
+\section{Continuity on a Region}
+
+A function \(f\) is continuous on a region \(D\) if it is continuous
+at every point of \(D\).
+
+For a rational function
+\[
+f(x,y)=\frac{P(x,y)}{Q(x,y)},
+\]
+where \(P,Q\) are polynomials, continuity holds at every point where
+\[
+Q(x,y)\ne0.
+\]
+
+For example,
+\[
+f(x,y)=\frac{x+y}{1+x^2+y^2}
+\]
+is continuous everywhere because
+\[
+1+x^2+y^2>0
+\]
+for all \((x,y)\).
+
+\section{Removable and Nonremovable Discontinuity in Two Variables}
+
+Consider
+\[
+f(x,y)
+=
+\frac{x^2+y^2}{\sqrt{x^2+y^2}}
+\]
+for \((x,y)\ne(0,0)\).
+
+This simplifies to
+\[
+f(x,y)=\sqrt{x^2+y^2}.
+\]
+
+Hence
+\[
+\lim_{(x,y)\to(0,0)}f(x,y)=0.
+\]
+
+If we define \(f(0,0)=0\), the discontinuity is removed.
+
+By contrast,
+\[
+\frac{x^2-y^2}{x^2+y^2}
+\]
+has no limit at the origin, so no choice of \(f(0,0)\) can make it
+continuous there.
+
+\section{Further Detailed Solved Problems}
+
+\subsection*{Problem 9. Limit by polar coordinates}
+
+Evaluate
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^4y^2}{(x^2+y^2)^2}.
+\]
+
+Put
+\[
+x=r\cos\theta,\qquad y=r\sin\theta.
+\]
+
+Then
+\[
+x^4y^2
+=
+r^6\cos^4\theta\sin^2\theta,
+\]
+and
+\[
+(x^2+y^2)^2=r^4.
+\]
+
+Therefore
+\[
+f
+=
+r^2\cos^4\theta\sin^2\theta.
+\]
+
+Since
+\[
+|\cos^4\theta\sin^2\theta|\le1,
+\]
+we get
+\[
+|f|\le r^2.
+\]
+
+Thus
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^4y^2}{(x^2+y^2)^2}=0.
+\]
+
+\subsection*{Problem 10. Detecting a balancing path}
+
+Examine
+\[
+\lim_{(x,y)\to(0,0)}
+\frac{x^3y}{x^6+y^2}.
+\]
+
+The denominator contains \(x^6\) and \(y^2\). These have the same order
+when
+\[
+y=kx^3.
+\]
+
+Along this path,
+\[
+\frac{x^3(kx^3)}{x^6+k^2x^6}
+=
+\frac{k}{1+k^2}.
+\]
+
+The result depends on \(k\). Therefore the joint limit does not exist.
+
+\subsection*{Problem 11. A continuous piecewise function}
+
+Let
+\[
+f(x,y)
+=
+\begin{cases}
+\dfrac{x^2y}{\sqrt{x^2+y^2}},&(x,y)\ne(0,0),\\[1ex]
+0,&(x,y)=(0,0).
+\end{cases}
+\]
+
+For \((x,y)\ne(0,0)\),
+\[
+|f(x,y)|
+=
+\frac{|x|^2|y|}{\sqrt{x^2+y^2}}.
+\]
+
+Let
+\[
+r=\sqrt{x^2+y^2}.
+\]
+Since
+\[
+|x|\le r,\qquad |y|\le r,
+\]
+we have
+\[
+|f(x,y)|
+\le
+\frac{r^3}{r}
+=
+r^2.
+\]
+
+Hence
+\[
+f(x,y)\to0=f(0,0).
+\]
+
+Therefore \(f\) is continuous at the origin.
+
+
 \section{Detailed Solved Problems}
 
 \subsection*{Problem 1. A direct limit}
@@ -2280,6 +3105,396 @@ f(x,x)=\frac12.
 Therefore the function is not continuous at the origin. This example
 shows clearly that the mere existence of both first partial derivatives
 is much weaker than differentiability.
+
+
+
+\section{Partial Derivatives as Ordinary Derivatives of Slices}
+
+Suppose
+\[
+z=f(x,y).
+\]
+
+To compute \(f_x(a,b)\), hold \(y=b\) fixed and define the one-variable
+function
+\[
+g(x)=f(x,b).
+\]
+
+Then
+\[
+f_x(a,b)=g'(a).
+\]
+
+Similarly, if
+\[
+h(y)=f(a,y),
+\]
+then
+\[
+f_y(a,b)=h'(b).
+\]
+
+This viewpoint is useful because partial differentiation is not a new
+kind of differentiation. It is ordinary one-variable differentiation
+applied to a suitable cross-section of the surface.
+
+\section{Partial Derivatives from First Principles: A Second Example}
+
+Let
+\[
+f(x,y)=x^2y+xy^2.
+\]
+
+Find \(f_y(a,b)\) directly from the definition.
+
+By definition,
+\[
+f_y(a,b)
+=
+\lim_{k\to0}
+\frac{
+f(a,b+k)-f(a,b)
+}{k}.
+\]
+
+Now
+\[
+f(a,b+k)
+=
+a^2(b+k)+a(b+k)^2.
+\]
+
+Expanding,
+\[
+\begin{aligned}
+f(a,b+k)
+&=
+a^2b+a^2k+a(b^2+2bk+k^2)\\
+&=
+a^2b+a^2k+ab^2+2abk+ak^2.
+\end{aligned}
+\]
+
+Since
+\[
+f(a,b)=a^2b+ab^2,
+\]
+we obtain
+\[
+f(a,b+k)-f(a,b)
+=
+a^2k+2abk+ak^2.
+\]
+
+Divide by \(k\):
+\[
+\frac{
+f(a,b+k)-f(a,b)
+}{k}
+=
+a^2+2ab+ak.
+\]
+
+Letting \(k\to0\),
+\[
+f_y(a,b)=a^2+2ab.
+\]
+
+Thus
+\[
+f_y=x^2+2xy,
+\]
+as obtained by the usual rule.
+
+\section{First-Order Increment Approximation}
+
+If \(f\) is differentiable, then for small changes
+\[
+\Delta x=h,\qquad \Delta y=k,
+\]
+the corresponding change in \(f\) is approximately
+\[
+\Delta f
+\approx
+f_x\,\Delta x+f_y\,\Delta y.
+\]
+
+Even before formal differentiability is introduced, this formula
+provides intuition: \(f_x\) measures the contribution from the
+\(x\)-change, while \(f_y\) measures the contribution from the
+\(y\)-change.
+
+\begin{example}
+Let
+\[
+f(x,y)=x^2y.
+\]
+At \((1,2)\),
+\[
+f_x=2xy,
+\qquad
+f_y=x^2.
+\]
+
+Hence
+\[
+f_x(1,2)=4,
+\qquad
+f_y(1,2)=1.
+\]
+
+If
+\[
+\Delta x=0.01,\qquad
+\Delta y=-0.02,
+\]
+then the first-order prediction is
+\[
+\Delta f
+\approx
+4(0.01)+1(-0.02)
+=
+0.02.
+\]
+\end{example}
+
+\section{Second Partial Derivatives: Order Matters in the Notation}
+
+The mixed derivatives are
+\[
+f_{xy}
+=
+\frac{\partial}{\partial y}
+\left(
+\frac{\partial f}{\partial x}
+\right),
+\]
+and
+\[
+f_{yx}
+=
+\frac{\partial}{\partial x}
+\left(
+\frac{\partial f}{\partial y}
+\right).
+\]
+
+Thus the order of the subscripts records the order of differentiation.
+
+For sufficiently smooth functions these are equal, but this equality
+is a theorem, not a consequence of notation.
+
+\section{A Detailed Mixed-Derivative Computation}
+
+Let
+\[
+f(x,y)=x^2e^{xy}.
+\]
+
+First,
+\[
+f_x
+=
+2xe^{xy}+x^2ye^{xy}.
+\]
+
+Now differentiate with respect to \(y\):
+\[
+\begin{aligned}
+f_{xy}
+&=
+2x(xe^{xy})
++
+x^2\frac{\partial}{\partial y}
+\left(ye^{xy}\right)\\
+&=
+2x^2e^{xy}
++
+x^2\left(e^{xy}+xy e^{xy}\right)\\
+&=
+3x^2e^{xy}
++
+x^3y e^{xy}.
+\end{aligned}
+\]
+
+Now start in the opposite order.
+
+\[
+f_y
+=
+x^3e^{xy}.
+\]
+
+Hence
+\[
+\begin{aligned}
+f_{yx}
+&=
+3x^2e^{xy}
++
+x^3ye^{xy}.
+\end{aligned}
+\]
+
+Therefore
+\[
+f_{xy}=f_{yx}.
+\]
+
+\section{Common Errors in Partial Differentiation}
+
+\begin{enumerate}
+\item Forgetting which variable is held constant.
+
+For example, if
+\[
+f(x,y)=x^2y^3,
+\]
+then
+\[
+f_x=2xy^3,
+\]
+not
+\[
+2xy^2.
+\]
+
+\item Treating \(xy\) as a constant when differentiating
+\(e^{xy}\).
+
+For \(x\)-differentiation,
+\[
+\frac{\partial}{\partial x}e^{xy}
+=
+ye^{xy}.
+\]
+
+\item Forgetting product or chain rules in partial derivatives.
+
+For
+\[
+f(x,y)=x^2\sin(xy),
+\]
+\[
+f_x
+=
+2x\sin(xy)+x^2y\cos(xy).
+\]
+
+\item Assuming automatically that
+\[
+f_{xy}=f_{yx}.
+\]
+Equality requires appropriate hypotheses.
+\end{enumerate}
+
+\section{More Detailed Solved Problems}
+
+\subsection*{Problem 5. Compute all second-order partial derivatives}
+
+Let
+\[
+u=\log(x^2+y^2),
+\]
+where \((x,y)\ne(0,0)\).
+
+First,
+\[
+u_x
+=
+\frac{2x}{x^2+y^2},
+\qquad
+u_y
+=
+\frac{2y}{x^2+y^2}.
+\]
+
+Differentiate again:
+\[
+u_{xx}
+=
+\frac{
+2(x^2+y^2)-4x^2
+}{
+(x^2+y^2)^2
+}
+=
+\frac{2(y^2-x^2)}{(x^2+y^2)^2}.
+\]
+
+Similarly,
+\[
+u_{yy}
+=
+\frac{2(x^2-y^2)}{(x^2+y^2)^2}.
+\]
+
+For the mixed derivative,
+\[
+u_{xy}
+=
+-\frac{4xy}{(x^2+y^2)^2}.
+\]
+
+Likewise,
+\[
+u_{yx}
+=
+-\frac{4xy}{(x^2+y^2)^2}.
+\]
+
+Thus
+\[
+u_{xy}=u_{yx}.
+\]
+
+Also,
+\[
+u_{xx}+u_{yy}=0.
+\]
+
+Hence \(\log(x^2+y^2)\) is harmonic away from the origin.
+
+\subsection*{Problem 6. First-principles partial derivative of a piecewise function}
+
+Let
+\[
+f(x,y)
+=
+\begin{cases}
+\dfrac{x^2y}{x^2+y^2},&(x,y)\ne(0,0),\\
+0,&(x,y)=(0,0).
+\end{cases}
+\]
+
+Find \(f_x(0,0)\).
+
+By definition,
+\[
+f_x(0,0)
+=
+\lim_{h\to0}
+\frac{f(h,0)-f(0,0)}{h}.
+\]
+
+Since
+\[
+f(h,0)=0,
+\]
+we get
+\[
+f_x(0,0)=0.
+\]
+
+Similarly,
+\[
+f_y(0,0)=0.
+\]
+
+This calculation illustrates why coordinate partial derivatives can
+exist even when the full two-variable behavior is more complicated.
 
 
 \section{Detailed Solved Problems}
@@ -3428,6 +4643,483 @@ This is an important contrast with the theorem
 \]
 
 
+
+\section{Why Differentiability Is Stronger Than Having Partial Derivatives}
+
+Partial derivatives test only two special directions:
+\[
+(h,0)
+\quad\text{and}\quad
+(0,k).
+\]
+
+Differentiability, however, requires one linear approximation to work
+for \emph{all} small increments \((h,k)\), regardless of direction.
+
+That is why existence of \(f_x\) and \(f_y\) is not enough.
+
+The definition
+\[
+f(a+h,b+k)
+=
+f(a,b)
++
+f_x(a,b)h
++
+f_y(a,b)k
++
+R(h,k)
+\]
+requires
+\[
+\frac{R(h,k)}{\sqrt{h^2+k^2}}
+\to0.
+\]
+
+Thus the error must be small compared with the distance
+\[
+\sqrt{h^2+k^2}.
+\]
+
+\section{Little-\(o\) Notation Explained}
+
+The notation
+\[
+R(h,k)=o\!\left(\sqrt{h^2+k^2}\right)
+\]
+means precisely that
+\[
+\frac{R(h,k)}
+{\sqrt{h^2+k^2}}
+\to0.
+\]
+
+It does not merely mean that \(R(h,k)\to0\). The remainder must go to
+zero \emph{faster} than the distance from \((a+h,b+k)\) to \((a,b)\).
+
+For example,
+\[
+h^2+k^2
+=
+o\!\left(\sqrt{h^2+k^2}\right),
+\]
+because
+\[
+\frac{h^2+k^2}{\sqrt{h^2+k^2}}
+=
+\sqrt{h^2+k^2}
+\to0.
+\]
+
+But
+\[
+\sqrt{h^2+k^2}
+\]
+is not little-\(o\) of itself, because the ratio equals \(1\).
+
+\section{Differentiability of a Polynomial: Detailed Verification}
+
+Let
+\[
+f(x,y)=x^2+xy+y^2.
+\]
+
+We verify differentiability at an arbitrary point \((a,b)\).
+
+First,
+\[
+f_x=2x+y,
+\qquad
+f_y=x+2y.
+\]
+
+Thus
+\[
+f_x(a,b)=2a+b,
+\]
+and
+\[
+f_y(a,b)=a+2b.
+\]
+
+Now
+\[
+\begin{aligned}
+f(a+h,b+k)
+={}&
+(a+h)^2
++
+(a+h)(b+k)
++
+(b+k)^2.
+\end{aligned}
+\]
+
+Expanding,
+\[
+\begin{aligned}
+f(a+h,b+k)
+={}&
+a^2+2ah+h^2
++
+ab+ak+bh+hk\\
+&+
+b^2+2bk+k^2.
+\end{aligned}
+\]
+
+Subtract
+\[
+f(a,b)=a^2+ab+b^2.
+\]
+
+Then
+\[
+\begin{aligned}
+\Delta f
+={}&
+(2a+b)h
++
+(a+2b)k
++
+h^2+hk+k^2.
+\end{aligned}
+\]
+
+The linear part is
+\[
+f_x(a,b)h+f_y(a,b)k.
+\]
+
+Hence
+\[
+R(h,k)=h^2+hk+k^2.
+\]
+
+We estimate
+\[
+|hk|
+\le
+\frac{h^2+k^2}{2}.
+\]
+
+Therefore
+\[
+|R(h,k)|
+\le
+h^2+\frac{h^2+k^2}{2}+k^2
+=
+\frac32(h^2+k^2).
+\]
+
+Thus
+\[
+\frac{|R(h,k)|}{\sqrt{h^2+k^2}}
+\le
+\frac32\sqrt{h^2+k^2}.
+\]
+
+The right-hand side tends to \(0\). Hence
+\[
+f
+\]
+is differentiable at \((a,b)\).
+
+Since \((a,b)\) was arbitrary, \(f\) is differentiable everywhere.
+
+\section{Deriving the Tangent Plane Formula from Differentiability}
+
+Differentiability gives
+\[
+f(a+h,b+k)
+\approx
+f(a,b)
++
+f_x(a,b)h
++
+f_y(a,b)k.
+\]
+
+Since
+\[
+h=x-a,
+\qquad
+k=y-b,
+\]
+we obtain
+\[
+z
+\approx
+f(a,b)
++
+f_x(a,b)(x-a)
++
+f_y(a,b)(y-b).
+\]
+
+The right-hand side is a plane. Therefore the tangent plane is not an
+independent formula to memorize; it is exactly the linear part of the
+definition of differentiability.
+
+\section{Total Differential}
+
+The linear change
+\[
+df
+=
+f_x\,dx+f_y\,dy
+\]
+is called the total differential.
+
+For small changes,
+\[
+\Delta f
+\approx df.
+\]
+
+If
+\[
+z=f(x,y),
+\]
+then
+\[
+dz=f_x\,dx+f_y\,dy.
+\]
+
+\begin{example}
+Let
+\[
+z=x^2y+y^2.
+\]
+
+Then
+\[
+z_x=2xy,
+\qquad
+z_y=x^2+2y.
+\]
+
+Therefore
+\[
+dz
+=
+2xy\,dx
++
+(x^2+2y)\,dy.
+\]
+\end{example}
+
+\section{Error in Linear Approximation}
+
+Suppose
+\[
+L(x,y)
+=
+f(a,b)
++
+f_x(a,b)(x-a)
++
+f_y(a,b)(y-b).
+\]
+
+Then the approximation error is
+\[
+E(x,y)=f(x,y)-L(x,y).
+\]
+
+Differentiability means
+\[
+\frac{|E(x,y)|}
+{\sqrt{(x-a)^2+(y-b)^2}}
+\to0.
+\]
+
+Thus the error becomes negligible compared with the distance from the
+base point.
+
+\section{Another Example: Partial Derivatives Exist but Differentiability Fails}
+
+Define
+\[
+f(x,y)
+=
+\begin{cases}
+\dfrac{x^2y}{x^4+y^2},&(x,y)\ne(0,0),\\
+0,&(x,y)=(0,0).
+\end{cases}
+\]
+
+Along both coordinate axes,
+\[
+f(h,0)=0,
+\qquad
+f(0,k)=0.
+\]
+
+Hence
+\[
+f_x(0,0)=0,
+\qquad
+f_y(0,0)=0.
+\]
+
+However, along
+\[
+y=x^2,
+\]
+\[
+f(x,x^2)=\frac12.
+\]
+
+The function is not even continuous at the origin. Therefore it cannot
+be differentiable there.
+
+This example reinforces the hierarchy:
+\[
+\text{partial derivatives}
+\]
+look only in coordinate directions, while
+\[
+\text{differentiability}
+\]
+controls all directions simultaneously.
+
+\section{A Practical Differentiability Checklist}
+
+At a point \((a,b)\):
+
+\begin{enumerate}
+\item Check whether the function is continuous. If not, it is not
+differentiable.
+
+\item Compute \(f_x(a,b)\) and \(f_y(a,b)\).
+
+\item If \(f_x,f_y\) exist in a neighbourhood and are continuous at
+\((a,b)\), differentiability follows from the sufficient theorem.
+
+\item If continuity of the partial derivatives is unavailable, use the
+definition directly.
+
+\item In the direct test, subtract the linear part and divide the
+remainder by
+\[
+\sqrt{h^2+k^2}.
+\]
+\end{enumerate}
+
+\section{Young's and Schwarz's Theorems: Interpretation}
+
+The equality
+\[
+f_{xy}=f_{yx}
+\]
+says that, under suitable smoothness conditions, the order in which we
+differentiate with respect to \(x\) and \(y\) does not matter.
+
+This is analogous to the fact that sufficiently smooth processes can
+be performed in either order without changing the final result.
+
+But the hypotheses are essential. Without suitable continuity or
+regularity, mixed partial derivatives may exist and still be unequal.
+
+\section{More Detailed Solved Problems}
+
+\subsection*{Problem 5. Test differentiability directly}
+
+Define
+\[
+f(x,y)
+=
+\begin{cases}
+\dfrac{x^2y}{\sqrt{x^2+y^2}},&(x,y)\ne(0,0),\\
+0,&(x,y)=(0,0).
+\end{cases}
+\]
+
+First,
+\[
+f(h,0)=0,\qquad f(0,k)=0,
+\]
+so
+\[
+f_x(0,0)=f_y(0,0)=0.
+\]
+
+For differentiability we must test
+\[
+\frac{|f(h,k)|}{\sqrt{h^2+k^2}}.
+\]
+
+Now
+\[
+\frac{|f(h,k)|}{\sqrt{h^2+k^2}}
+=
+\frac{|h|^2|k|}{h^2+k^2}.
+\]
+
+Let
+\[
+r=\sqrt{h^2+k^2}.
+\]
+
+Since
+\[
+|h|\le r,\qquad |k|\le r,
+\]
+we get
+\[
+\frac{|h|^2|k|}{h^2+k^2}
+\le
+\frac{r^3}{r^2}
+=
+r.
+\]
+
+Thus the expression tends to zero. Therefore \(f\) is differentiable
+at the origin.
+
+\subsection*{Problem 6. Tangent plane and approximation}
+
+Let
+\[
+f(x,y)=e^{x+y}.
+\]
+
+At \((0,0)\),
+\[
+f(0,0)=1,
+\]
+\[
+f_x=e^{x+y},
+\qquad
+f_y=e^{x+y}.
+\]
+
+Hence
+\[
+f_x(0,0)=f_y(0,0)=1.
+\]
+
+The tangent plane is
+\[
+z=1+x+y.
+\]
+
+Therefore, near the origin,
+\[
+e^{x+y}\approx1+x+y.
+\]
+
+For example,
+\[
+e^{0.02-0.01}
+=
+e^{0.01}
+\approx
+1.01.
+\]
+
+
 \section{Detailed Solved Problems}
 
 \subsection*{Problem 1. Prove differentiability}
@@ -3950,6 +5642,287 @@ Substituting
 x=e^t,\qquad y=t^2,
 \]
 gives the derivative entirely as a function of \(t\).
+
+
+
+\section{Why the Multivariable Chain Rule Has a Sum}
+
+Suppose
+\[
+z=f(u,v),
+\]
+and both \(u\) and \(v\) depend on \(x\).
+
+A change in \(x\) affects \(z\) in two ways:
+\[
+x\longrightarrow u\longrightarrow z,
+\]
+and
+\[
+x\longrightarrow v\longrightarrow z.
+\]
+
+The first contribution is
+\[
+f_u u_x,
+\]
+and the second is
+\[
+f_v v_x.
+\]
+
+Since both effects occur simultaneously, they add:
+\[
+z_x=f_u u_x+f_v v_x.
+\]
+
+This is the conceptual reason for the sum in the chain rule.
+
+\section{Tree Method for the Chain Rule}
+
+A dependency tree can be used to avoid missing terms.
+
+If
+\[
+z=f(u,v),
+\qquad
+u=u(x,y),
+\qquad
+v=v(x,y),
+\]
+then for \(z_x\) list all paths from \(x\) to \(z\):
+
+\[
+x\to u\to z,
+\qquad
+x\to v\to z.
+\]
+
+Multiply derivatives along each path and add:
+\[
+z_x
+=
+u_xz_u+v_xz_v.
+\]
+
+For \(z_y\):
+\[
+y\to u\to z,
+\qquad
+y\to v\to z,
+\]
+so
+\[
+z_y
+=
+u_yz_u+v_yz_v.
+\]
+
+\section{Chain Rule with a Parameter: Detailed Derivation}
+
+Let
+\[
+z=f(x,y),
+\]
+where
+\[
+x=x(t),\qquad y=y(t).
+\]
+
+For a small change \(\Delta t\),
+\[
+\Delta x\approx x'(t)\Delta t,
+\qquad
+\Delta y\approx y'(t)\Delta t.
+\]
+
+Differentiability of \(f\) gives
+\[
+\Delta z
+\approx
+f_x\Delta x+f_y\Delta y.
+\]
+
+Therefore
+\[
+\Delta z
+\approx
+\left(
+f_xx'(t)+f_yy'(t)
+\right)\Delta t.
+\]
+
+Dividing by \(\Delta t\) and passing to the limit,
+\[
+\frac{dz}{dt}
+=
+f_x\frac{dx}{dt}
++
+f_y\frac{dy}{dt}.
+\]
+
+\section{Second Derivatives of Composite Functions}
+
+Suppose
+\[
+z=f(u),
+\qquad
+u=u(x).
+\]
+
+Then
+\[
+z_x=f'(u)u_x.
+\]
+
+Differentiate again:
+\[
+z_{xx}
+=
+f''(u)(u_x)^2
++
+f'(u)u_{xx}.
+\]
+
+In several variables, repeated application of the chain rule produces
+similar terms.
+
+\begin{example}
+Let
+\[
+z=e^u,
+\qquad
+u=x^2+y^2.
+\]
+
+Then
+\[
+z_x=e^u(2x).
+\]
+
+Differentiate again:
+\[
+z_{xx}
+=
+2e^u
++
+4x^2e^u.
+\]
+
+Since \(u=x^2+y^2\),
+\[
+z_{xx}
+=
+(2+4x^2)e^{x^2+y^2}.
+\]
+\end{example}
+
+\section{More Detailed Solved Problems}
+
+\subsection*{Problem 5. Nested composite function}
+
+Let
+\[
+z=\sin(u^2+v),
+\qquad
+u=x+y,
+\qquad
+v=xy.
+\]
+
+Set
+\[
+w=u^2+v.
+\]
+
+Then
+\[
+z=\sin w,
+\]
+so
+\[
+z_w=\cos w.
+\]
+
+Also,
+\[
+w_u=2u,
+\qquad
+w_v=1.
+\]
+
+Now
+\[
+u_x=1,\qquad v_x=y.
+\]
+
+Thus
+\[
+\begin{aligned}
+z_x
+&=
+z_w(w_u u_x+w_v v_x)\\
+&=
+\cos(u^2+v)(2u+y).
+\end{aligned}
+\]
+
+Similarly,
+\[
+u_y=1,\qquad v_y=x,
+\]
+so
+\[
+z_y
+=
+\cos(u^2+v)(2u+x).
+\]
+
+Finally substitute
+\[
+u=x+y,\qquad v=xy.
+\]
+
+\subsection*{Problem 6. Motion along a curve}
+
+Suppose
+\[
+T(x,y)=x^2+y^2
+\]
+is a temperature field and a particle moves according to
+\[
+x=t,\qquad y=t^2.
+\]
+
+Then
+\[
+T_x=2x,\qquad T_y=2y.
+\]
+
+Also,
+\[
+\frac{dx}{dt}=1,
+\qquad
+\frac{dy}{dt}=2t.
+\]
+
+Therefore
+\[
+\frac{dT}{dt}
+=
+2x+4ty.
+\]
+
+Substituting
+\[
+x=t,\qquad y=t^2,
+\]
+gives
+\[
+\frac{dT}{dt}
+=
+2t+4t^3.
+\]
 
 
 \section{Detailed Solved Problems}
@@ -4647,6 +6620,376 @@ The transformation fails to be locally invertible only at the origin,
 where the Jacobian vanishes.
 
 
+
+\section{Why We Change Variables}
+
+A change of variables is useful when the original coordinates hide the
+structure of a problem.
+
+For example, the expression
+\[
+x^2+y^2
+\]
+is naturally adapted to polar coordinates because
+\[
+x^2+y^2=r^2.
+\]
+
+Similarly, the expressions
+\[
+x+y
+\quad\text{and}\quad
+x-y
+\]
+suggest the transformation
+\[
+u=x+y,\qquad v=x-y.
+\]
+
+A good change of variables simplifies either the formula, the geometry,
+or the differential operators.
+
+\section{Jacobian as the Determinant of the Differential Transformation}
+
+For
+\[
+u=u(x,y),
+\qquad
+v=v(x,y),
+\]
+small changes satisfy approximately
+\[
+\Delta u
+\approx
+u_x\Delta x+u_y\Delta y,
+\]
+\[
+\Delta v
+\approx
+v_x\Delta x+v_y\Delta y.
+\]
+
+In matrix form,
+\[
+\begin{pmatrix}
+\Delta u\\
+\Delta v
+\end{pmatrix}
+\approx
+\begin{pmatrix}
+u_x&u_y\\
+v_x&v_y
+\end{pmatrix}
+\begin{pmatrix}
+\Delta x\\
+\Delta y
+\end{pmatrix}.
+\]
+
+The determinant of this matrix is
+\[
+J
+=
+u_xv_y-u_yv_x.
+\]
+
+Thus the Jacobian measures whether the local transformation collapses
+area.
+
+If
+\[
+J=0,
+\]
+the linearized transformation is singular.
+
+If
+\[
+J\ne0,
+\]
+the transformation is locally invertible under suitable regularity
+conditions.
+
+\section{Reciprocal Jacobian in Detail}
+
+Suppose
+\[
+u=u(x,y),
+\qquad
+v=v(x,y),
+\]
+and the inverse transformation
+\[
+x=x(u,v),
+\qquad
+y=y(u,v)
+\]
+exists.
+
+Then
+\[
+\frac{\partial(u,v)}{\partial(x,y)}
+\frac{\partial(x,y)}{\partial(u,v)}
+=1.
+\]
+
+This is the determinant version of the matrix identity
+\[
+A^{-1}A=I.
+\]
+
+\begin{example}
+Let
+\[
+u=2x+y,
+\qquad
+v=x-y.
+\]
+
+Then
+\[
+\frac{\partial(u,v)}{\partial(x,y)}
+=
+\begin{vmatrix}
+2&1\\
+1&-1
+\end{vmatrix}
+=-3.
+\]
+
+Solving,
+\[
+x=\frac{u+v}{3},
+\qquad
+y=\frac{u-2v}{3}.
+\]
+
+Hence
+\[
+\frac{\partial(x,y)}{\partial(u,v)}
+=
+\begin{vmatrix}
+1/3&1/3\\
+1/3&-2/3
+\end{vmatrix}
+=
+-\frac13.
+\]
+
+Therefore
+\[
+(-3)\left(-\frac13\right)=1.
+\]
+\end{example}
+
+\section{Operator Transformation: Step-by-Step}
+
+Let
+\[
+u=u(x,y),
+\qquad
+v=v(x,y),
+\]
+and let
+\[
+z=F(u,v).
+\]
+
+Then
+\[
+z_x
+=
+F_u u_x+F_v v_x.
+\]
+
+This can be written symbolically as
+\[
+\frac{\partial}{\partial x}
+=
+u_x\frac{\partial}{\partial u}
++
+v_x\frac{\partial}{\partial v}.
+\]
+
+Similarly,
+\[
+\frac{\partial}{\partial y}
+=
+u_y\frac{\partial}{\partial u}
++
+v_y\frac{\partial}{\partial v}.
+\]
+
+These operator identities should be applied to a function on the
+right. They are shorthand for the chain rule.
+
+\section{Detailed Polar-Coordinate Derivation}
+
+Let
+\[
+x=r\cos\theta,\qquad y=r\sin\theta.
+\]
+
+If
+\[
+F(r,\theta)=f(x,y),
+\]
+then
+\[
+F_r
+=
+f_xx_r+f_yy_r.
+\]
+
+Now
+\[
+x_r=\cos\theta,
+\qquad
+y_r=\sin\theta,
+\]
+so
+\[
+F_r
+=
+f_x\cos\theta+f_y\sin\theta.
+\]
+
+Likewise,
+\[
+F_\theta
+=
+f_xx_\theta+f_yy_\theta.
+\]
+
+Since
+\[
+x_\theta=-r\sin\theta,
+\qquad
+y_\theta=r\cos\theta,
+\]
+we obtain
+\[
+F_\theta
+=
+-rf_x\sin\theta
++
+rf_y\cos\theta.
+\]
+
+To solve for \(f_x,f_y\), divide the second equation by \(r\):
+\[
+\frac1rF_\theta
+=
+-f_x\sin\theta
++
+f_y\cos\theta.
+\]
+
+Thus
+\[
+\begin{pmatrix}
+F_r\\
+\frac1rF_\theta
+\end{pmatrix}
+=
+\begin{pmatrix}
+\cos\theta&\sin\theta\\
+-\sin\theta&\cos\theta
+\end{pmatrix}
+\begin{pmatrix}
+f_x\\
+f_y
+\end{pmatrix}.
+\]
+
+The matrix is a rotation matrix. Its inverse is its transpose.
+Therefore
+\[
+f_x
+=
+F_r\cos\theta
+-
+\frac{\sin\theta}{r}F_\theta,
+\]
+\[
+f_y
+=
+F_r\sin\theta
++
+\frac{\cos\theta}{r}F_\theta.
+\]
+
+\section{More Detailed Solved Problems}
+
+\subsection*{Problem 5. Transform a first-order expression}
+
+Let
+\[
+u=x+y,\qquad v=x-y.
+\]
+
+Show that
+\[
+z_x+z_y=2z_u.
+\]
+
+Since
+\[
+\partial_x=\partial_u+\partial_v
+\]
+and
+\[
+\partial_y=\partial_u-\partial_v,
+\]
+we have
+\[
+\begin{aligned}
+z_x+z_y
+&=
+(z_u+z_v)+(z_u-z_v)\\
+&=
+2z_u.
+\end{aligned}
+\]
+
+Similarly,
+\[
+z_x-z_y=2z_v.
+\]
+
+\subsection*{Problem 6. Polar Jacobian}
+
+For
+\[
+x=r\cos\theta,\qquad y=r\sin\theta,
+\]
+\[
+\frac{\partial(x,y)}{\partial(r,\theta)}
+=
+\begin{vmatrix}
+\cos\theta&-r\sin\theta\\
+\sin\theta&r\cos\theta
+\end{vmatrix}.
+\]
+
+Hence
+\[
+\begin{aligned}
+J
+&=
+r\cos^2\theta+r\sin^2\theta\\
+&=
+r.
+\end{aligned}
+\]
+
+Thus polar coordinates become singular at
+\[
+r=0,
+\]
+which reflects the fact that every angle \(\theta\) represents the same
+point at the origin.
+
+
 \section{Detailed Solved Problems}
 
 \subsection*{Problem 1. A quadratic transformation}
@@ -5234,6 +7577,448 @@ x^2u_{xx}+2xyu_{xy}+y^2u_{yy}
 =
 20u.
 \]
+
+
+
+\section{Homogeneity: Several Equivalent Ways to Recognize It}
+
+The defining condition is
+\[
+f(tx,ty)=t^nf(x,y).
+\]
+
+But in practice there are several useful recognition rules.
+
+\subsection*{Polynomials}
+
+A polynomial is homogeneous of degree \(n\) if every monomial has total
+degree \(n\).
+
+For example,
+\[
+x^4+3x^3y+2x^2y^2+y^4
+\]
+is homogeneous of degree \(4\).
+
+\subsection*{Products}
+
+If \(f\) is homogeneous of degree \(p\) and \(g\) is homogeneous of
+degree \(q\), then
+\[
+fg
+\]
+is homogeneous of degree
+\[
+p+q.
+\]
+
+\subsection*{Quotients}
+
+If \(g\ne0\),
+\[
+\frac{f}{g}
+\]
+is homogeneous of degree
+\[
+p-q.
+\]
+
+\subsection*{Powers}
+
+If \(f\) is positive and homogeneous of degree \(p\), then
+\[
+f^\alpha
+\]
+is homogeneous of degree
+\[
+\alpha p.
+\]
+
+These rules often make the degree obvious without substituting
+\((tx,ty)\) explicitly.
+
+\section{Euler's Theorem: A Second Proof Viewpoint}
+
+Define
+\[
+\phi(t)=f(tx,ty).
+\]
+
+Homogeneity gives
+\[
+\phi(t)=t^nf(x,y).
+\]
+
+Differentiate:
+\[
+\phi'(t)
+=
+x f_x(tx,ty)
++
+y f_y(tx,ty).
+\]
+
+On the other hand,
+\[
+\phi'(t)
+=
+nt^{n-1}f(x,y).
+\]
+
+At \(t=1\),
+\[
+x f_x(x,y)+y f_y(x,y)=nf(x,y).
+\]
+
+This viewpoint is useful because Euler's theorem is simply the ordinary
+one-variable derivative of the scaling function \(\phi(t)\).
+
+\section{Converse of Euler's Theorem}
+
+Under suitable regularity and on an appropriate star-shaped domain, the
+Euler identity can also characterize homogeneity.
+
+Suppose
+\[
+xf_x+yf_y=nf.
+\]
+
+Fix \(x,y\) and define
+\[
+\phi(t)=f(tx,ty).
+\]
+
+Then
+\[
+\phi'(t)
+=
+x f_x(tx,ty)+y f_y(tx,ty).
+\]
+
+Applying the Euler relation at \((tx,ty)\),
+\[
+(tx)f_x(tx,ty)
++
+(ty)f_y(tx,ty)
+=
+n f(tx,ty).
+\]
+
+Therefore
+\[
+t\phi'(t)=n\phi(t),
+\]
+so
+\[
+\frac{\phi'(t)}{\phi(t)}
+=
+\frac nt
+\]
+where \(\phi\ne0\).
+
+Integrating,
+\[
+\log|\phi(t)|
+=
+n\log t+C.
+\]
+
+Thus
+\[
+\phi(t)=Ct^n.
+\]
+
+At \(t=1\),
+\[
+C=\phi(1)=f(x,y).
+\]
+
+Hence
+\[
+f(tx,ty)=t^nf(x,y).
+\]
+
+This shows why Euler's differential equation and homogeneity are
+closely connected.
+
+\section{First Derivatives of a Homogeneous Function}
+
+If \(u\) is homogeneous of degree \(n\), then \(u_x\) and \(u_y\) are
+homogeneous of degree \(n-1\), provided the derivatives exist.
+
+To see this, differentiate
+\[
+u(tx,ty)=t^nu(x,y)
+\]
+with respect to \(x\).
+
+The left-hand side gives
+\[
+t\,u_x(tx,ty),
+\]
+while the right-hand side gives
+\[
+t^nu_x(x,y).
+\]
+
+Thus
+\[
+u_x(tx,ty)
+=
+t^{n-1}u_x(x,y).
+\]
+
+Therefore \(u_x\) is homogeneous of degree \(n-1\).
+
+Similarly,
+\[
+u_y(tx,ty)
+=
+t^{n-1}u_y(x,y).
+\]
+
+This explains naturally why the differentiated Euler identities contain
+the factor \(n-1\).
+
+\section{Second Derivatives of a Homogeneous Function}
+
+By the same reasoning,
+\[
+u_{xx},\quad u_{xy},\quad u_{yy}
+\]
+are homogeneous of degree
+\[
+n-2.
+\]
+
+Thus repeated differentiation lowers the degree by one each time.
+
+\section{Deriving the Second-Order Euler Identity in Full}
+
+Start from
+\[
+xu_x+yu_y=nu.
+\]
+
+Differentiate with respect to \(x\):
+\[
+u_x+xu_{xx}+yu_{yx}=nu_x.
+\]
+
+Hence
+\[
+xu_{xx}+yu_{xy}
+=
+(n-1)u_x.
+\]
+
+Differentiate the original Euler identity with respect to \(y\):
+\[
+xu_{xy}+u_y+yu_{yy}=nu_y.
+\]
+
+Hence
+\[
+xu_{xy}+yu_{yy}
+=
+(n-1)u_y.
+\]
+
+Multiply the first equation by \(x\):
+\[
+x^2u_{xx}+xyu_{xy}
+=
+(n-1)xu_x.
+\]
+
+Multiply the second by \(y\):
+\[
+xyu_{xy}+y^2u_{yy}
+=
+(n-1)yu_y.
+\]
+
+Add:
+\[
+x^2u_{xx}
++
+2xyu_{xy}
++
+y^2u_{yy}
+=
+(n-1)(xu_x+yu_y).
+\]
+
+Using
+\[
+xu_x+yu_y=nu,
+\]
+we obtain
+\[
+x^2u_{xx}
++
+2xyu_{xy}
++
+y^2u_{yy}
+=
+n(n-1)u.
+\]
+
+\section{Composite Homogeneous Functions: A General Template}
+
+Let
+\[
+v=v(x,y)
+\]
+be homogeneous of degree \(n\), and let
+\[
+u=\phi(v).
+\]
+
+Then
+\[
+u_x=\phi'(v)v_x,
+\qquad
+u_y=\phi'(v)v_y.
+\]
+
+Therefore
+\[
+xu_x+yu_y
+=
+\phi'(v)(xv_x+yv_y).
+\]
+
+Euler's theorem for \(v\) gives
+\[
+xv_x+yv_y=nv.
+\]
+
+Hence
+\[
+xu_x+yu_y
+=
+nv\phi'(v).
+\]
+
+This one formula should be remembered as a method rather than as a
+collection of separate examples.
+
+\section{More Detailed Solved Problems}
+
+\subsection*{Problem 8. Inverse trigonometric composite}
+
+Let
+\[
+v=\frac{x^2+y^2}{x+y},
+\]
+and
+\[
+u=\sin^{-1}v.
+\]
+
+The numerator has degree \(2\) and the denominator degree \(1\), so
+\(v\) is homogeneous of degree \(1\).
+
+Therefore
+\[
+xv_x+yv_y=v.
+\]
+
+Now
+\[
+u_x
+=
+\frac{v_x}{\sqrt{1-v^2}},
+\qquad
+u_y
+=
+\frac{v_y}{\sqrt{1-v^2}}.
+\]
+
+Hence
+\[
+xu_x+yu_y
+=
+\frac{v}{\sqrt{1-v^2}}.
+\]
+
+Since
+\[
+v=\sin u,
+\]
+we obtain
+\[
+xu_x+yu_y
+=
+\frac{\sin u}{\cos u}
+=
+\tan u,
+\]
+where the relevant branch makes \(\cos u\) positive.
+
+\subsection*{Problem 9. Exponential composite}
+
+Let
+\[
+v=x^2+xy+y^2,
+\qquad
+u=e^v.
+\]
+
+Since \(v\) is homogeneous of degree \(2\),
+\[
+xv_x+yv_y=2v.
+\]
+
+Also,
+\[
+u_x=e^v v_x,
+\qquad
+u_y=e^v v_y.
+\]
+
+Therefore
+\[
+xu_x+yu_y
+=
+e^v(xv_x+yv_y)
+=
+2ve^v.
+\]
+
+Since
+\[
+u=e^v,
+\]
+this may also be written
+\[
+xu_x+yu_y=2vu.
+\]
+
+\subsection*{Problem 10. Second-order application}
+
+Let
+\[
+u=x^4+2x^2y^2+y^4.
+\]
+
+This is homogeneous of degree \(4\).
+
+Therefore, without calculating any second partial derivatives,
+\[
+x^2u_{xx}
++
+2xyu_{xy}
++
+y^2u_{yy}
+=
+4(3)u
+=
+12u.
+\]
+
+This is often much shorter than direct differentiation.
 
 
 \section{Detailed Solved Problems}
