@@ -4119,53 +4119,228 @@ even continuity together with existence of both partial derivatives is
 still insufficient in general.
 
 
+
+\section{Young's Theorem and Schwarz's Theorem}
+
+\subsection*{A note on terminology}
+
+The names \emph{Clairaut's theorem}, \emph{Schwarz's theorem}, and
+\emph{Young's theorem} are not used in exactly the same way in every
+calculus or analysis textbook. In some elementary texts, ``Clairaut's
+theorem'' or ``Schwarz's theorem'' refers simply to the familiar
+\(C^2\)-result that continuous mixed second partial derivatives are
+equal.
+
+To avoid ambiguity, throughout these notes we shall use the following
+precise formulations.
+
+\subsection*{Notation convention}
+
+We use
+\[
+f_{xy}
+=
+\frac{\partial}{\partial y}
+\left(
+\frac{\partial f}{\partial x}
+\right),
+\qquad
+f_{yx}
+=
+\frac{\partial}{\partial x}
+\left(
+\frac{\partial f}{\partial y}
+\right).
+\]
+
+Thus in \(f_{xy}\), differentiation with respect to \(x\) is performed
+first and differentiation with respect to \(y\) second.
+
 \section{Young's Theorem}
 
 \begin{theorem}[Young's theorem --- statement]
-Suppose the mixed partial derivatives \(f_{xy}\) and \(f_{yx}\)
-exist in a neighbourhood of \((a,b)\) and one of them is continuous
-at \((a,b)\), under the usual hypotheses ensuring the first partial
-derivatives are defined. Then
+Let \(f\) be defined in a neighbourhood of \((a,b)\), and suppose that
+the first partial derivatives
+\[
+f_x,\qquad f_y
+\]
+exist in that neighbourhood. If the functions \(f_x\) and \(f_y\)
+are themselves totally differentiable at \((a,b)\), then the two
+mixed second partial derivatives at the point are equal:
 \[
 f_{xy}(a,b)=f_{yx}(a,b).
 \]
 \end{theorem}
 
-Only the statement and applications are required here.
+Only the statement and applications are required for the present
+syllabus.
+
+\paragraph{What the hypothesis means.}
+Young's theorem places the regularity assumption on the
+\emph{first-derivative functions} \(f_x\) and \(f_y\). They must behave
+linearly, to first order, near \((a,b)\).
+
+In particular, total differentiability of \(f_x\) and \(f_y\) is
+stronger than merely saying that the numerical values
+\(f_{xy}(a,b)\) and \(f_{yx}(a,b)\) happen to exist.
 
 \section{Schwarz's Theorem}
 
 \begin{theorem}[Schwarz's theorem --- statement]
-If the second-order partial derivatives are continuous in a
-neighbourhood of \((a,b)\), then
+Let \(f\) be defined in a neighbourhood \(U\) of \((a,b)\). Suppose
+that
+\[
+f_x,\qquad f_y,\qquad f_{xy}
+\]
+exist throughout \(U\), and suppose that \(f_{xy}\) is continuous at
+\((a,b)\). Then \(f_{yx}(a,b)\) exists and
 \[
 f_{xy}(a,b)=f_{yx}(a,b).
 \]
 \end{theorem}
 
-Again, only the statement and applications are required.
+Notice an important feature of this statement: we do not need to assume
+in advance that \(f_{yx}(a,b)\) exists. Under the hypotheses of the
+theorem, its existence follows.
 
-\section{Application}
+\section{The Common Schwarz--Clairaut Corollary}
 
-For
-\[
-f(x,y)=x^3y^2+e^{xy},
-\]
-we obtain
+For undergraduate calculations, the following more symmetric form is
+often the one used most frequently.
+
+\begin{corollary}[Schwarz--Clairaut]
+If the mixed second partial derivatives
 \[
 f_{xy}
-=
-6x^2y+e^{xy}+xye^{xy},
-\]
-and
-\[
+\quad\text{and}\quad
 f_{yx}
-=
-6x^2y+e^{xy}+xye^{xy}.
 \]
-Both are continuous, so Schwarz's theorem applies.
+exist in a neighbourhood of \((a,b)\) and are continuous at
+\((a,b)\), then
+\[
+f_{xy}(a,b)=f_{yx}(a,b).
+\]
+\end{corollary}
 
-\section{Why the Hypotheses Matter}
+A still more convenient sufficient condition is:
+\[
+f\in C^2
+\quad\Longrightarrow\quad
+f_{xy}=f_{yx}.
+\]
+
+Here \(f\in C^2\) means that all second-order partial derivatives exist
+and are continuous.
+
+\section{Young versus Schwarz: What Is the Difference?}
+
+Both theorems lead to the same conclusion,
+\[
+f_{xy}(a,b)=f_{yx}(a,b),
+\]
+but they reach it from different regularity assumptions.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{0.94\textwidth}{
+>{\bfseries}p{0.20\textwidth}
+p{0.36\textwidth}
+X}
+\toprule
+Theorem & Main hypothesis & Conclusion\\
+\midrule
+Young
+&
+\(f_x\) and \(f_y\) exist near the point and are totally
+differentiable at \((a,b)\)
+&
+\(
+f_{xy}(a,b)=f_{yx}(a,b)
+\)
+\\
+Schwarz
+&
+\(f_x,f_y,f_{xy}\) exist near the point and \(f_{xy}\) is
+continuous at \((a,b)\)
+&
+\(f_{yx}(a,b)\) exists and
+\(
+f_{xy}(a,b)=f_{yx}(a,b)
+\)
+\\
+Schwarz--Clairaut corollary
+&
+Both mixed second partial derivatives are continuous near the point
+&
+\(
+f_{xy}(a,b)=f_{yx}(a,b)
+\)
+\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Thus it is misleading to summarize the distinction merely as
+\[
+\text{``one mixed partial continuous''}
+\quad\text{versus}\quad
+\text{``both mixed partials continuous.''}
+\]
+
+The more meaningful distinction is that Young's theorem uses
+differentiability of the first-derivative functions, whereas the
+Schwarz-type results use continuity assumptions on mixed second
+partial derivatives.
+
+\section{Application 1: A \(C^2\) Function}
+
+Let
+\[
+f(x,y)=x^3y^2+e^{xy}.
+\]
+
+First,
+\[
+f_x=3x^2y^2+ye^{xy}.
+\]
+Therefore
+\[
+f_{xy}=6x^2y+e^{xy}+xye^{xy}.
+\]
+
+Also,
+\[
+f_y=2x^3y+xe^{xy},
+\]
+so
+\[
+f_{yx}=6x^2y+e^{xy}+xye^{xy}.
+\]
+
+All second partial derivatives involved are continuous everywhere.
+Therefore the Schwarz--Clairaut theorem applies and
+\[
+f_{xy}=f_{yx}.
+\]
+
+\section{Application 2: Schwarz Can Supply Existence}
+
+Suppose \(f_x,f_y,f_{xy}\) exist throughout a neighbourhood of
+\((a,b)\), and suppose \(f_{xy}\) is continuous at \((a,b)\).
+
+Then Schwarz's theorem tells us that
+\[
+f_{yx}(a,b)
+\]
+exists and
+\[
+f_{yx}(a,b)=f_{xy}(a,b).
+\]
+
+Thus Schwarz's theorem can do more than merely compare two mixed
+partials already known to exist.
+
+\section{Why the Hypotheses Cannot Be Omitted}
 
 Consider
 \[
@@ -4178,35 +4353,62 @@ f(x,y)=
 
 For \(y\ne0\),
 \[
-f_x(0,y)
-=
-\lim_{h\to0}
-\frac{f(h,y)-f(0,y)}{h}
-=-y.
+f_x(0,y)=-y,
+\qquad
+f_x(0,0)=0.
 \]
+
 Therefore
 \[
 f_{xy}(0,0)
 =
 \lim_{y\to0}
-\frac{-y-0}{y}
+\frac{-y}{y}
 =-1.
 \]
 
-Similarly one finds
+Similarly,
 \[
 f_y(x,0)=x,
+\qquad
+f_y(0,0)=0,
 \]
-hence
+and so
 \[
+f_{yx}(0,0)
+=
+\lim_{x\to0}
+\frac{x}{x}
+=1.
+\]
+
+Hence
+\[
+f_{xy}(0,0)=-1,
+\qquad
 f_{yx}(0,0)=1.
 \]
 
-Thus
-\[
-f_{xy}(0,0)\ne f_{yx}(0,0),
-\]
-showing that mixed partials are not automatically equal.
+Thus mixed partial derivatives can both exist at a point and still be
+unequal if the required regularity hypotheses are absent.
+
+\section{How to Use These Theorems in Problems}
+
+When a problem asks whether mixed partial derivatives may be
+interchanged, use the following checklist.
+
+\begin{enumerate}
+\item If the function is clearly \(C^2\), use Schwarz--Clairaut.
+
+\item If \(f_x,f_y,f_{xy}\) exist near the point and \(f_{xy}\) is
+continuous at the point, Schwarz's theorem applies.
+
+\item If \(f_x\) and \(f_y\) are totally differentiable at the point,
+Young's theorem applies.
+
+\item If these hypotheses are not available, do not interchange the
+order automatically. Compute directly if necessary.
+\end{enumerate}
 
 
 \section{Increment Form of Differentiability}
