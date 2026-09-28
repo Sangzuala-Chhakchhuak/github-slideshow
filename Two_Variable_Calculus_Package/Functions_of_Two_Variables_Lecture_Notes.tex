@@ -5209,20 +5209,14 @@ remainder by
 \]
 \end{enumerate}
 
-\section{Young's and Schwarz's Theorems: Interpretation}
+\section{Exam Note on Equality of Mixed Partial Derivatives}
 
-The equality
+For routine undergraduate problems, if the given function is built from polynomials, exponentials, trigonometric functions, logarithms, or rational functions on a region where all denominators are nonzero, the relevant second partial derivatives are usually continuous there. Hence the Schwarz--Clairaut theorem gives
 \[
-f_{xy}=f_{yx}
+f_{xy}=f_{yx}.
 \]
-says that, under suitable smoothness conditions, the order in which we
-differentiate with respect to \(x\) and \(y\) does not matter.
 
-This is analogous to the fact that sufficiently smooth processes can
-be performed in either order without changing the final result.
-
-But the hypotheses are essential. Without suitable continuity or
-regularity, mixed partial derivatives may exist and still be unequal.
+For piecewise functions or functions defined specially at one point, continuity of the mixed partials must not be assumed. In such cases, calculate the relevant derivatives from their definitions or verify the theorem's hypotheses explicitly.
 
 \section{More Detailed Solved Problems}
 
@@ -5384,6 +5378,22 @@ differ when the continuity hypotheses fail.
 \end{enumerate}
 
 % ============================================================
+\section{Focused Practice: Young, Schwarz and Schwarz--Clairaut}
+
+\begin{enumerate}
+\item State Young's theorem using differentiability of \(f_x\) and \(f_y\).
+\item State Schwarz's theorem in the form where continuity of one mixed partial yields existence of the reverse mixed partial at the point.
+\item State the common Schwarz--Clairaut \(C^2\) corollary.
+\item Explain why the distinction ``one mixed partial continuous'' versus ``both mixed partials continuous'' is not a reliable way to distinguish Young's and Schwarz's theorems.
+\item Verify Schwarz--Clairaut for \(f(x,y)=e^{xy}+x^2y^3\).
+\item For
+\[
+f(x,y)=\begin{cases}\dfrac{xy(x^2-y^2)}{x^2+y^2},&(x,y)\ne(0,0),\\0,&(x,y)=(0,0),\end{cases}
+\]
+calculate \(f_{xy}(0,0)\) and \(f_{yx}(0,0)\), and identify which regularity condition fails.
+\item Suppose \(f_x,f_y,f_{xy}\) exist near \((a,b)\), \(f_{xy}\) is continuous at \((a,b)\), but \(f_{yx}(a,b)\) has not yet been shown to exist. Which theorem applies directly, and what does it conclude?
+\end{enumerate}
+
 \chapter{Derivatives of Composite Functions}
 % ============================================================
 
@@ -8544,6 +8554,27 @@ z_y=f_u u_y+f_v v_y.
 u_x&u_y\\
 v_x&v_y
 \end{vmatrix}.
+\]
+
+\subsection*{Equality of mixed partial derivatives}
+
+Young's theorem:
+\[
+f_x,\ f_y\text{ totally differentiable at }(a,b)
+\quad\Longrightarrow\quad
+f_{xy}(a,b)=f_{yx}(a,b).
+\]
+
+Schwarz's theorem: if \(f_x,f_y,f_{xy}\) exist near \((a,b)\) and \(f_{xy}\) is continuous at \((a,b)\), then \(f_{yx}(a,b)\) exists and
+\[
+f_{xy}(a,b)=f_{yx}(a,b).
+\]
+
+Common Schwarz--Clairaut form:
+\[
+f\in C^2
+\quad\Longrightarrow\quad
+f_{xy}=f_{yx}.
 \]
 
 \subsection*{Euler's theorem}
